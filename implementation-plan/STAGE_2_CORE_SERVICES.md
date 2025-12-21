@@ -10,35 +10,53 @@
 ## Overview
 
 This stage focuses on building the three core services of your portfolio platform:
-1. **Web (Astro)** - Static portfolio website with React islands
+1. **Web (AstroWind)** - Static portfolio website based on AstroWind template with React islands
 2. **API (FastAPI)** - Backend for contact form and future endpoints
 3. **Demos (Streamlit)** - Interactive ML demonstrations
 
 Each service will be developed and tested independently before containerization.
+
+### AstroWind Implementation Notes
+
+**What is AstroWind?**
+- Professional Astro + Tailwind template for landing pages and portfolios
+- Pre-built components, layouts, and responsive design
+- Configured for static output (perfect for nginx deployment)
+
+**Our Approach:**
+- Use AstroWind as the base UI scaffold
+- Remove blog and unused features
+- Customize for portfolio: Home, About, Projects, Contact
+- Keep static build mode (no SSR)
+- Connect contact form to `/api/contact` endpoint
 
 ---
 
 ## Phase 2: Build the Astro Web (MVP)
 
 ### Objectives
-- Create a fast, SEO-optimized portfolio website
-- Implement core pages with zero JS by default
+- Create a fast, SEO-optimized portfolio website using AstroWind template
+- Customize AstroWind for portfolio use (remove blog, keep only needed pages)
 - Add React islands for interactive components
 - Achieve Lighthouse 100 scores
 
+> **Implementation Note:**  
+> - Web UI uses **AstroWind** as the base template  
+> - Deploy mode stays **static build**; nginx serves `/dist`  
+> - Only customization required: remove unused AstroWind pages and connect contact form to `/api/contact`
+
 ---
 
-### Task 2.1: Scaffold Astro Application
+### Task 2.1: Initialize from AstroWind Template
 
 ```bash
 # Navigate to apps directory
 cd apps
 
-# Create Astro project
-npm create astro@latest web
+# Clone AstroWind template
+npm create astro@latest web -- --template onwidget/astrowind
 
 # Choose options:
-# - Template: Empty
 # - TypeScript: Yes (strict)
 # - Install dependencies: Yes
 # - Git: No (already initialized)
@@ -46,57 +64,57 @@ npm create astro@latest web
 cd web
 ```
 
-**Install additional dependencies:**
+**Verify AstroWind setup:**
 
 ```bash
-# Tailwind CSS
-npx astro add tailwind
+# Check that it's configured for static output
+# In astro.config.mjs, ensure: output: 'static'
 
-# React (for islands)
-npx astro add react
+# AstroWind comes with:
+# - Tailwind CSS (already integrated)
+# - React support (already integrated)
+# - Sitemap (already integrated)
+```
 
-# Additional utilities
-npm install -D @astrojs/sitemap
+**Install any additional dependencies:**
+
+```bash
+# If needed for contact form
 npm install clsx tailwind-merge
 ```
 
 ---
 
-### Task 2.2: Configure Astro
+### Task 2.2: Verify and Update Astro Config
 
-Update `astro.config.mjs`:
+AstroWind comes pre-configured, but verify these settings in `astro.config.mjs`:
 
 ```javascript
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
+// AstroWind already includes tailwind, react, sitemap, etc.
 
 export default defineConfig({
   site: 'https://yourdomain.com', // Update with your domain
-  integrations: [
-    tailwind(),
-    react(),
-    sitemap()
-  ],
-  output: 'static', // Static site generation
-  build: {
-    inlineStylesheets: 'auto',
-  },
-  vite: {
-    build: {
-      cssMinify: true,
-      minify: true,
-    },
-  },
+  output: 'static', // CRITICAL: Ensure this is 'static', not 'server'
+  // AstroWind includes other integrations - keep them
+  // Just verify output mode is static for nginx deployment
 });
 ```
 
+**Key verification:**
+- ✅ `output: 'static'` - Required for nginx deployment
+- ✅ Tailwind, React, Sitemap already configured by AstroWind
+- ✅ No SSR adapters (Vercel, Netlify, Node) - we're deploying static files
+
 ---
 
-### Task 2.3: Set Up Design System
+### Task 2.3: Customize AstroWind Design (Optional)
 
-Create `src/styles/global.css`:
+AstroWind comes with a complete design system. You can either:
+1. **Use as-is** - AstroWind's default styling is professional
+2. **Customize** - Modify colors, fonts, components to match your brand
+
+If customizing, update `src/styles/global.css` or AstroWind's existing styles:
 
 ```css
 @tailwind base;
@@ -281,9 +299,16 @@ const currentPath = Astro.url.pathname;
 
 ---
 
-### Task 2.6: Create Core Pages
+### Task 2.6: Customize AstroWind Pages for Portfolio
 
-#### Home Page: `src/pages/index.astro`
+**Remove unused AstroWind features:**
+- Delete or disable blog-related pages (if you don't need a blog)
+- Remove extra demo pages
+- Keep only: Home, About, Projects, Contact
+
+**Adapt existing AstroWind pages:**
+
+#### Home Page: Customize `src/pages/index.astro`
 
 ```astro
 ---

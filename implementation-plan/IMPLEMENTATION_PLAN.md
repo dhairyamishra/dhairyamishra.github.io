@@ -45,7 +45,7 @@ For detailed step-by-step instructions, follow these stage guides:
 ### What You're Building
 
 A single-domain portfolio platform that serves:
-- **Fast static portfolio website** (Astro + React islands)
+- **Fast static portfolio website** (AstroWind template - Astro + Tailwind, customized as portfolio)
 - **Production API** for contact + anti-spam + email delivery (FastAPI)
 - **Interactive ML demos** (Streamlit) under `/demos`
 - **Optional project mini-apps** under `/projects/*` (add later)
@@ -155,6 +155,12 @@ This section is the "why" behind the architecture, so future changes stay consis
 - **Content-first** → Built for portfolios, blogs, marketing sites
 - **Fast builds** → Much faster than SPAs for static content
 - **TypeScript support** → Full type safety
+
+**Template choice:** Use **AstroWind** as the base UI scaffold to accelerate layout/sections/responsiveness.
+
+**Rendering mode:** Keep **static output** (no SSR) so it deploys as files served by nginx.
+
+**Customization rule:** Treat AstroWind as a theme: remove blog/pages you don't need; keep only portfolio pages + components.
 
 **Production note:** Astro builds to static output and is served by nginx in a container (not Astro dev server).
 
@@ -397,7 +403,7 @@ headless = true
 ```
 portfolio/
 ├── apps/
-│   ├── web/                      # Astro site (static build served by nginx)
+│   ├── web/                      # AstroWind-based Astro site (static build served by nginx)
 │   │   ├── src/
 │   │   │   ├── pages/
 │   │   │   │   ├── index.astro   # Home (hero, skills, featured projects)
@@ -512,8 +518,10 @@ portfolio/
 
 > **📖 See:** [Stage 2: Core Services Development](STAGE_2_CORE_SERVICES.md#phase-2-build-the-astro-web-mvp)
 
-- [ ] Scaffold Astro app in `apps/web`
-- [ ] Set up Tailwind CSS + design system (Astro integration)
+- [ ] Initialize web from AstroWind template in `apps/web`
+- [ ] Confirm static build output (no SSR)
+- [ ] Customize AstroWind sections → Home / About / Experience / Projects / Contact
+- [ ] Remove unused features (blog, extra integrations, pages)
 - [ ] Implement layouts + core pages:
   - [ ] `src/pages/index.astro` - Home (hero, skills, featured projects)
   - [ ] `src/pages/projects/index.astro` - Projects gallery
@@ -524,7 +532,7 @@ portfolio/
   - [ ] `ContactForm.tsx` - React island (client:load)
   - [ ] `ProjectFilter.tsx` - React island (client:visible)
 - [ ] Add projects content (content collections or JSON)
-- [ ] Ensure API calls are relative: `fetch("/api/contact")`
+- [ ] Wire contact form to `fetch("/api/contact")`
 - [ ] SEO basics: titles, meta, OG tags, sitemap, robots.txt
 - [ ] Optimize performance (Lighthouse 100 target) - Zero JS by default
 - [ ] Set up content collections for projects
@@ -1010,6 +1018,8 @@ services:
 ### 1) Web Dockerfile (Astro → Static → Nginx)
 
 **Goal:** Build once, serve static reliably.
+
+**Note:** AstroWind is still Astro: Dockerfile remains build → copy dist → nginx serve (no SSR server).
 
 ```dockerfile
 # apps/web/Dockerfile
@@ -1635,6 +1645,9 @@ location /projects/my-new-project/ {
 ```
 
 **6. Add Project Card to Homepage**
+
+**Note:** Projects list lives in AstroWind's content/data approach (keep your content collections or migrate to AstroWind's preferred structure), but links should still point to `/projects/<name>/`.
+
 ```typescript
 // apps/web/src/content/projects/my-new-project.md
 ---
