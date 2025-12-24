@@ -417,13 +417,15 @@ server {
     }
 }
 
-# HTTPS server
+# HTTPS server (comment out SSL lines until after certbot runs)
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
     server_name yourdomain.com www.yourdomain.com;
 
-    # SSL certificates (will be configured by certbot)
+    # SSL certificates (certbot will uncomment/configure these)
+    # IMPORTANT: Comment these lines out for initial deployment
+    # Certbot will automatically add them after obtaining certificates
     ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
 
@@ -487,6 +489,13 @@ server {
         proxy_read_timeout 300s;
     }
 
+    # Cache static assets (must come before catch-all /)
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_cache_valid 200 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
     # Web - Astro static served by nginx container (must be last)
     location / {
         proxy_pass http://127.0.0.1:8080;
@@ -495,13 +504,6 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        
-        # Cache static assets
-        location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
-            proxy_pass http://127.0.0.1:8080;
-            proxy_cache_valid 200 1y;
-            add_header Cache-Control "public, immutable";
-        }
     }
 }
 ```
@@ -510,20 +512,32 @@ server {
 
 ## Task 7.3: Deploy Nginx Configuration
 
+**IMPORTANT: Initial deployment workflow to avoid HTTPS deadlock:**
+
 ```bash
-# Copy configuration to Nginx sites-available
+# Step 1: Copy configuration
 sudo cp ~/portfolio/infra/nginx/portfolio.conf /etc/nginx/sites-available/portfolio
 
-# Remove default site
+# Step 2: Edit the config to comment out SSL certificate lines
+sudo nano /etc/nginx/sites-available/portfolio
+# Comment out these two lines in the HTTPS server block:
+#   ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+#   ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+# Step 3: Remove default site
 sudo rm /etc/nginx/sites-enabled/default
 
-# Enable portfolio site
+# Step 4: Enable portfolio site
 sudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
 
-# Test configuration (will fail until SSL certs are obtained)
+# Step 5: Test configuration (should pass now)
 sudo nginx -t
 
-# Don't reload yet - we need SSL certificates first
+# Step 6: Reload Nginx
+sudo systemctl reload nginx
+
+# Step 7: Now proceed to Task 7.4 to obtain SSL certificates
+# After certbot runs, it will automatically uncomment and configure the SSL lines
 ```
 
 ---

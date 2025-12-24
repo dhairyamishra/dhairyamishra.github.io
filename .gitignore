@@ -1,9 +1,9 @@
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Environment variables
+.env
+.env.local
+.env.production
+.env.*.local
+/etc/portfolio/.env
 
 # Python
 __pycache__/
@@ -11,24 +11,32 @@ __pycache__/
 *$py.class
 *.so
 .Python
-venv/
 env/
+venv/
 ENV/
 .venv
-
-# Build outputs
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+*.egg-info/
 dist/
 build/
-*.egg-info/
-.parcel-cache/
 
-# Environment variables
-.env
-.env.local
-.env.*.local
-*.env
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm
+.yarn/
 
-# IDE
+# Astro
+.astro/
+dist/
+.output/
+
+# IDEs
 .vscode/
 .idea/
 *.swp
@@ -36,49 +44,20 @@ build/
 *~
 .DS_Store
 
+# Data (mounted from persistent disk)
+data/
+!data/.gitkeep
+
 # Logs
 logs/
 *.log
-.pm2/
-
-# Testing
-coverage/
-.nyc_output/
-.pytest_cache/
-
-# Docker
-.dockerignore
-
-# Cloud
-.gcloud/
-.terraform/
-*.tfstate
-*.tfstate.backup
-
-# Data directory (persistent disk mount)
-data/
-
-# ML Models (large files)
-*.h5
-*.pkl
-*.pth
-*.onnx
-*.bin
-*.safetensors
-models/
-checkpoints/
-
-# Datasets
-datasets/
-*.csv
-*.tsv
-*.parquet
-
-# Outputs
-outputs/
-generated/
-uploads/
 
 # OS
 Thumbs.db
 .DS_Store
+
+# Docker
+.dockerignore
+
+# PM2
+.pm2/
