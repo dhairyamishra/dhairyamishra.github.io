@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    --neon-cyan: #00f0ff;
-    --neon-magenta: #ff00e5;
-    --neon-violet: #8b5cf6;
-    --neon-lime: #39ff14;
-    --bg-base: #0a0a0f;
-    --bg-surface: #12121a;
-    --bg-surface-light: #1a1a2e;
-    --text-primary: #e0e0ff;
-    --text-muted: #8888aa;
+    --neon-cyan: #D45060;
+    --neon-magenta: #D4AF37;
+    --neon-violet: #B8648A;
+    --neon-lime: #6B8F71;
+    --bg-base: #0A0A0B;
+    --bg-surface: #151315;
+    --bg-surface-light: #211D1F;
+    --text-primary: #F5F0EB;
+    --text-muted: #B5A99A;
   }
 
   html {
@@ -22,16 +22,16 @@
   body {
     @apply bg-base text-text font-body;
     background-image:
-      radial-gradient(ellipse at 20% 0%, rgba(0,240,255,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 80%, rgba(255,0,229,0.04) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 0%, rgba(212,80,96,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(184,100,138,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.04) 0%, transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   ::selection {
-    background: rgba(0, 240, 255, 0.25);
-    color: #f0f0ff;
+    background: rgba(212, 80, 96, 0.25);
+    color: #FAF7F2;
   }
 
   ::-webkit-scrollbar {
@@ -39,16 +39,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0a0a0f;
+    background: #0A0A0B;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(0, 240, 255, 0.2);
+    background: rgba(212, 80, 96, 0.2);
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 240, 255, 0.4);
+    background: rgba(212, 80, 96, 0.4);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -80,9 +80,9 @@
 
   .btn-neon-fill {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply bg-gradient-to-r from-neon-cyan/20 to-neon-violet/20;
-    @apply border border-neon-cyan/40 text-neon-cyan;
-    @apply hover:from-neon-cyan/30 hover:to-neon-violet/30;
+    @apply bg-gradient-to-r from-neon-cyan/40 to-neon-violet/35;
+    @apply border border-neon-cyan/50 text-text-bright;
+    @apply hover:from-neon-cyan/55 hover:to-neon-violet/50;
     @apply hover:border-neon-cyan hover:shadow-neon-md;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
@@ -148,12 +148,12 @@
 
   .text-gradient-neon {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #00f0ff, #8b5cf6, #ff00e5);
+    background-image: linear-gradient(135deg, #D45060, #B8648A, #D4AF37);
   }
 
   .text-gradient-cyan {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #00f0ff, #8b5cf6);
+    background-image: linear-gradient(135deg, #D45060, #B8648A);
   }
 
   .section-container {
@@ -161,13 +161,13 @@
   }
 
   .neon-glow-text {
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2);
+    text-shadow: 0 0 10px rgba(212, 80, 96, 0.5), 0 0 40px rgba(212, 80, 96, 0.2);
   }
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(212,80,96,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,80,96,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 

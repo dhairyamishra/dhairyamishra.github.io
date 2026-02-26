@@ -7,7 +7,7 @@ interface FormData {
   honeypot: string; // Anti-spam field
 }
 
-const inputClasses = "w-full px-4 py-3 rounded-lg bg-[#0a0a0f] border border-white/10 text-[#e0e0ff] placeholder-[#555570] focus:outline-none focus:border-[#00f0ff]/50 focus:shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-all duration-300 text-sm";
+const inputClasses = "w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-white/10 text-[#F5F0EB] placeholder-[#6B6560] focus:outline-none focus:border-[#D45060]/50 focus:shadow-[0_0_10px_rgba(212,80,96,0.15)] transition-all duration-300 text-sm";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -74,7 +74,7 @@ export default function ContactForm() {
       
       {/* Name */}
       <div>
-        <label htmlFor="name" className="block text-xs font-medium text-[#8888aa] uppercase tracking-wider mb-2">
+        <label htmlFor="name" className="block text-xs font-medium text-[#B5A99A] uppercase tracking-wider mb-2">
           Name
         </label>
         <input
@@ -90,7 +90,7 @@ export default function ContactForm() {
       
       {/* Email */}
       <div>
-        <label htmlFor="email" className="block text-xs font-medium text-[#8888aa] uppercase tracking-wider mb-2">
+        <label htmlFor="email" className="block text-xs font-medium text-[#B5A99A] uppercase tracking-wider mb-2">
           Email
         </label>
         <input
@@ -106,7 +106,7 @@ export default function ContactForm() {
       
       {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-xs font-medium text-[#8888aa] uppercase tracking-wider mb-2">
+        <label htmlFor="message" className="block text-xs font-medium text-[#B5A99A] uppercase tracking-wider mb-2">
           Message
         </label>
         <textarea
@@ -124,7 +124,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full px-6 py-3 rounded-lg font-medium text-sm tracking-wide bg-gradient-to-r from-[#00f0ff]/20 to-[#8b5cf6]/20 border border-[#00f0ff]/40 text-[#00f0ff] hover:from-[#00f0ff]/30 hover:to-[#8b5cf6]/30 hover:border-[#00f0ff] hover:shadow-[0_0_10px_rgba(0,240,255,0.4),0_0_30px_rgba(0,240,255,0.15)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
+        className="w-full px-6 py-3 rounded-lg font-medium text-sm tracking-wide bg-gradient-to-r from-[#D45060]/40 to-[#B8648A]/35 border border-[#D45060]/50 text-[#FAF7F2] hover:from-[#D45060]/55 hover:to-[#B8648A]/50 hover:border-[#D45060] hover:shadow-[0_0_10px_rgba(212,80,96,0.4),0_0_30px_rgba(212,80,96,0.15)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
       >
         {status === 'loading' ? (
           <span className="inline-flex items-center gap-2">
@@ -136,13 +136,13 @@ export default function ContactForm() {
       
       {/* Status Messages */}
       {status === 'success' && (
-        <div className="p-4 rounded-lg border border-[#39ff14]/20 bg-[#39ff14]/5 text-[#39ff14] text-sm">
+        <div className="p-4 rounded-lg border border-[#6B8F71]/20 bg-[#6B8F71]/5 text-[#6B8F71] text-sm">
           Message sent successfully! I'll get back to you soon.
         </div>
       )}
       
       {status === 'error' && (
-        <div className="p-4 rounded-lg border border-[#ff00e5]/20 bg-[#ff00e5]/5 text-[#ff00e5] text-sm">
+        <div className="p-4 rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[#D4AF37] text-sm">
           {errorMessage}
         </div>
       )}
