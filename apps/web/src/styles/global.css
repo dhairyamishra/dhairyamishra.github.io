@@ -171,6 +171,32 @@
     background-size: 60px 60px;
   }
 
+  .brand-logo {
+    opacity: 0.75;
+    filter: saturate(0.7);
+    transition: all 0.3s ease-out;
+  }
+
+  .brand-logo:hover,
+  .group:hover .brand-logo,
+  .brand-strip-item:hover .brand-logo {
+    opacity: 1;
+    filter: saturate(1);
+  }
+
+  .brand-strip {
+    @apply flex items-center justify-center gap-8 md:gap-12 flex-wrap;
+  }
+
+  .brand-strip-item {
+    @apply flex flex-col items-center gap-2;
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .brand-strip-item:hover {
+    transform: scale(1.1);
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(20px);
