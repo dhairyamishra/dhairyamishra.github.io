@@ -54,11 +54,11 @@ const companyBrand: Record<string, string> = {
           <img
             src="/profile.jpg"
             alt="Dhairya Mishra"
-            class="w-48 h-48 md:w-56 md:h-56 rounded-2xl object-cover border-2 border-neon-cyan/30 shadow-[0_0_25px_rgba(0,255,255,0.15)] mx-auto"
+            class="w-48 h-48 md:w-56 md:h-56 rounded-2xl object-cover border-2 border-neon-rose/30 shadow-[0_0_25px_rgba(212,80,96,0.15)] mx-auto"
           />
         </div>
         <div class="flex-1">
-          <p class="text-neon-cyan font-mono text-sm tracking-widest uppercase mb-4 animate-fade-in">About Me</p>
+          <p class="text-neon-rose font-mono text-sm tracking-widest uppercase mb-4 animate-fade-in">About Me</p>
           <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">
             <span class="text-gradient-neon">Software Engineer</span>
             <br />
@@ -68,7 +68,7 @@ const companyBrand: Record<string, string> = {
             Software Engineer with 4+ years of experience building AI/ML production and platform systems across full-stack services and data pipelines. Skilled in computer vision, NLP, cloud automation, CI/CD, and reliability-oriented orchestration, with hands-on big-data processing for large-scale ETL and backfills.
           </p>
           <p class="text-lg text-muted-light leading-relaxed">
-            Contributor to multi-agent video world model research at <span class="text-neon-cyan">NYU Courant</span> (ICML 2026 submission).
+            Contributor to multi-agent video world model research at <span class="text-neon-rose">NYU Courant</span> (ICML 2026 submission).
           </p>
         </div>
       </div>
@@ -80,16 +80,16 @@ const companyBrand: Record<string, string> = {
     <section class="section-container py-20 md:py-28">
       <div class="reveal text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-          Professional <span class="text-gradient-cyan">Experience</span>
+          Professional <span class="text-gradient-rose">Experience</span>
         </h2>
       </div>
       
       <div class="relative max-w-3xl mx-auto">
-        <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan/40 via-neon-violet/30 to-transparent"></div>
+        <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-rose/40 via-neon-violet/30 to-transparent"></div>
         
         {experience.map((exp, i) => (
           <div class={`reveal reveal-delay-${i + 1} relative pl-12 md:pl-20 pb-12 last:pb-0`}>
-            <div class="absolute left-[11px] md:left-[27px] top-1 w-3 h-3 rounded-full bg-neon-cyan shadow-neon-sm border-2 border-base"></div>
+            <div class="absolute left-[11px] md:left-[27px] top-1 w-3 h-3 rounded-full bg-neon-rose shadow-neon-sm border-2 border-base"></div>
             
             <div class="card-neon group">
               <div class="flex items-start gap-3 mb-2">
@@ -103,7 +103,7 @@ const companyBrand: Record<string, string> = {
                     <h3 class="text-lg font-heading font-semibold text-text-bright">{exp.data.role}</h3>
                     <span class="text-xs text-muted font-mono">{exp.data.startDate} — {exp.data.endDate}</span>
                   </div>
-                  <p class="text-sm text-neon-cyan/70">{exp.data.company} &middot; {exp.data.location}</p>
+                  <p class="text-sm text-neon-rose/70">{exp.data.company} &middot; {exp.data.location}</p>
                 </div>
               </div>
               
@@ -126,7 +126,7 @@ const companyBrand: Record<string, string> = {
     <section class="section-container py-20 md:py-28">
       <div class="reveal text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-          Publications & <span class="text-gradient-cyan">Talks</span>
+          Publications & <span class="text-gradient-rose">Talks</span>
         </h2>
       </div>
       
@@ -139,7 +139,7 @@ const companyBrand: Record<string, string> = {
               </div>
               <div>
                 <h3 class="font-heading font-semibold text-text-bright text-sm">{pub.title}</h3>
-                <p class="text-xs text-neon-cyan/70 mt-1">{pub.venue}</p>
+                <p class="text-xs text-neon-rose/70 mt-1">{pub.venue}</p>
               </div>
             </div>
             <div class="flex items-center gap-3 text-xs text-muted">
@@ -160,19 +160,19 @@ const companyBrand: Record<string, string> = {
     <section class="section-container py-20 md:py-28">
       <div class="reveal text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-          Skills <span class="text-gradient-cyan">Matrix</span>
+          Skills <span class="text-gradient-rose">Matrix</span>
         </h2>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {skills.map((group, i) => (
           <div class={`reveal reveal-delay-${(i % 5) + 1} card-neon`}>
-            <h3 class="text-sm font-heading font-semibold uppercase tracking-wider mb-3 text-neon-cyan">
+            <h3 class="text-sm font-heading font-semibold uppercase tracking-wider mb-3 text-neon-rose">
               {group.category}
             </h3>
             <div class="flex flex-wrap gap-2">
               {group.items.map(item => (
-                <span class="text-xs px-2.5 py-1 rounded-full border bg-neon-cyan/5 text-neon-cyan/80 border-neon-cyan/15">
+                <span class="text-xs px-2.5 py-1 rounded-full border bg-neon-rose/5 text-neon-rose/80 border-neon-rose/15">
                   {item}
                 </span>
               ))}
@@ -188,7 +188,7 @@ const companyBrand: Record<string, string> = {
     <section class="section-container py-20 md:py-28">
       <div class="reveal text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-          <span class="text-gradient-cyan">Education</span>
+          <span class="text-gradient-rose">Education</span>
         </h2>
       </div>
       
@@ -200,11 +200,11 @@ const companyBrand: Record<string, string> = {
             </div>
             <div>
               <h3 class="font-heading font-semibold text-text-bright">New York University</h3>
-              <p class="text-sm text-neon-cyan/70">Courant Institute</p>
+              <p class="text-sm text-neon-rose/70">Courant Institute</p>
               <p class="text-sm text-muted mt-1">M.S. Computer Science (AI)</p>
               <div class="flex items-center gap-3 mt-2 text-xs text-muted">
                 <span>May 2026</span>
-                <span class="text-neon-cyan">GPA: 3.7</span>
+                <span class="text-neon-rose">GPA: 3.7</span>
               </div>
             </div>
           </div>
@@ -212,7 +212,7 @@ const companyBrand: Record<string, string> = {
         
         <div class="reveal reveal-delay-2 card-neon group">
           <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-lg bg-neon-cyan/10 border border-neon-cyan/20 flex items-center justify-center flex-shrink-0">
+            <div class="w-12 h-12 rounded-lg bg-neon-rose/10 border border-neon-rose/20 flex items-center justify-center flex-shrink-0">
               <BrandLogo brand="trine" size="lg" />
             </div>
             <div>

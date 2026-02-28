@@ -14,8 +14,8 @@ export default {
           400: '#393233',
         },
         neon: {
-          cyan: '#D45060',
-          magenta: '#D4AF37',
+          rose: '#D45060',
+          gold: '#D4AF37',
           violet: '#B8648A',
           lime: '#6B8F71',
           pink: '#B8648A',
@@ -43,8 +43,8 @@ export default {
       backgroundImage: {
         'neon-mesh': 'radial-gradient(ellipse at 20% 50%, rgba(212,80,96,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(184,100,138,0.08) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.06) 0%, transparent 50%)',
         'neon-grid': 'linear-gradient(rgba(212,80,96,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(212,80,96,0.03) 1px, transparent 1px)',
-        'neon-gradient-cyan': 'linear-gradient(135deg, #D45060, #B8648A)',
-        'neon-gradient-magenta': 'linear-gradient(135deg, #D4AF37, #B8648A)',
+        'neon-gradient-rose': 'linear-gradient(135deg, #D45060, #B8648A)',
+        'neon-gradient-gold': 'linear-gradient(135deg, #D4AF37, #B8648A)',
         'neon-gradient-full': 'linear-gradient(135deg, #D45060, #B8648A, #D4AF37)',
       },
       backgroundSize: {
@@ -54,8 +54,8 @@ export default {
         'neon-sm': '0 0 5px rgba(212,80,96,0.3), 0 0 10px rgba(212,80,96,0.1)',
         'neon-md': '0 0 10px rgba(212,80,96,0.4), 0 0 30px rgba(212,80,96,0.15)',
         'neon-lg': '0 0 20px rgba(212,80,96,0.5), 0 0 60px rgba(212,80,96,0.2)',
-        'neon-magenta-sm': '0 0 5px rgba(212,175,55,0.3), 0 0 10px rgba(212,175,55,0.1)',
-        'neon-magenta-md': '0 0 10px rgba(212,175,55,0.4), 0 0 30px rgba(212,175,55,0.15)',
+        'neon-gold-sm': '0 0 5px rgba(212,175,55,0.3), 0 0 10px rgba(212,175,55,0.1)',
+        'neon-gold-md': '0 0 10px rgba(212,175,55,0.4), 0 0 30px rgba(212,175,55,0.15)',
         'neon-violet-sm': '0 0 5px rgba(184,100,138,0.3), 0 0 10px rgba(184,100,138,0.1)',
         'neon-violet-md': '0 0 10px rgba(184,100,138,0.4), 0 0 30px rgba(184,100,138,0.15)',
         'neon-glow': '0 0 15px rgba(212,80,96,0.3), 0 0 45px rgba(184,100,138,0.15), inset 0 0 15px rgba(212,80,96,0.05)',

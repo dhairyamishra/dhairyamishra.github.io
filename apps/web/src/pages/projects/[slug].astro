@@ -35,7 +35,7 @@ const categoryLabels: Record<string, string> = {
   <main id="main-content" class="py-20 md:py-28">
     <article class="section-container">
       <!-- Back link -->
-      <a href="/projects" class="inline-flex items-center text-sm text-muted hover:text-neon-cyan transition-colors mb-8 font-mono">
+      <a href="/projects" class="inline-flex items-center text-sm text-muted hover:text-neon-rose transition-colors mb-8 font-mono">
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
         Back to Projects
       </a>
@@ -61,7 +61,7 @@ const categoryLabels: Record<string, string> = {
         <!-- Metric highlight -->
         {project.data.metric && (
           <div class="inline-flex items-center gap-3 card-neon px-5 py-3 mb-6">
-            <span class="text-2xl font-heading font-bold text-neon-cyan">{project.data.metric}</span>
+            <span class="text-2xl font-heading font-bold text-neon-rose">{project.data.metric}</span>
             {project.data.metricLabel && <span class="text-sm text-muted">{project.data.metricLabel}</span>}
           </div>
         )}
@@ -81,7 +81,7 @@ const categoryLabels: Record<string, string> = {
             </a>
           )}
           {project.data.paperUrl && (
-            <a href={project.data.paperUrl} target="_blank" rel="noopener noreferrer" class="btn-neon-magenta text-sm inline-flex items-center gap-2">
+            <a href={project.data.paperUrl} target="_blank" rel="noopener noreferrer" class="btn-neon-gold text-sm inline-flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
               Paper
             </a>
@@ -108,14 +108,14 @@ const categoryLabels: Record<string, string> = {
         <div class="mt-20">
           <div class="divider-neon-animated mb-12"></div>
           <h2 class="text-2xl font-heading font-bold mb-8 text-center">
-            Related <span class="text-gradient-cyan">Projects</span>
+            Related <span class="text-gradient-rose">Projects</span>
           </h2>
           <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {related.map(rel => (
               <a href={`/projects/${rel.slug}`} class="group card-neon-interactive flex flex-col">
-                <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-cyan via-neon-violet to-neon-magenta mb-3 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+                <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold mb-3 opacity-40 group-hover:opacity-100 transition-opacity"></div>
                 <span class="badge-neon text-[10px] w-fit mb-2">{categoryLabels[rel.data.category] || rel.data.category}</span>
-                <h3 class="text-base font-heading font-semibold text-text-bright group-hover:text-neon-cyan transition-colors mb-1">{rel.data.title}</h3>
+                <h3 class="text-base font-heading font-semibold text-text-bright group-hover:text-neon-rose transition-colors mb-1">{rel.data.title}</h3>
                 <p class="text-xs text-muted leading-relaxed">{rel.data.description}</p>
               </a>
             ))}
@@ -146,7 +146,7 @@ const categoryLabels: Record<string, string> = {
   }
   .prose-neon li::before {
     content: '';
-    @apply absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-neon-cyan/50;
+    @apply absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-neon-rose/50;
   }
   .prose-neon ol {
     @apply space-y-2 mb-6 list-decimal list-inside;
@@ -161,10 +161,10 @@ const categoryLabels: Record<string, string> = {
     @apply text-text-bright font-semibold;
   }
   .prose-neon a {
-    @apply text-neon-cyan/80 hover:text-neon-cyan underline decoration-neon-cyan/20 underline-offset-4 hover:decoration-neon-cyan/60 transition-all;
+    @apply text-neon-rose/80 hover:text-neon-rose underline decoration-neon-rose/20 underline-offset-4 hover:decoration-neon-rose/60 transition-all;
   }
   .prose-neon code {
-    @apply text-neon-magenta bg-neon-magenta/10 px-1.5 py-0.5 rounded text-xs font-mono;
+    @apply text-neon-gold bg-neon-gold/10 px-1.5 py-0.5 rounded text-xs font-mono;
   }
   .prose-neon pre {
     @apply bg-surface border border-white/5 rounded-lg p-4 mb-6 overflow-x-auto;
@@ -176,7 +176,7 @@ const categoryLabels: Record<string, string> = {
     @apply w-full mb-6 text-sm;
   }
   .prose-neon thead th {
-    @apply text-left text-neon-cyan/80 font-heading font-semibold py-2 px-3 border-b border-white/10;
+    @apply text-left text-neon-rose/80 font-heading font-semibold py-2 px-3 border-b border-white/10;
   }
   .prose-neon tbody td {
     @apply py-2 px-3 text-muted-light border-b border-white/5;
@@ -185,6 +185,6 @@ const categoryLabels: Record<string, string> = {
     @apply border-white/5 my-8;
   }
   .prose-neon blockquote {
-    @apply border-l-2 border-neon-cyan/30 pl-4 italic text-muted my-4;
+    @apply border-l-2 border-neon-rose/30 pl-4 italic text-muted my-4;
   }
 </style>

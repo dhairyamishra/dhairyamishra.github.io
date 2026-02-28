@@ -3,23 +3,24 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
   .filter(p => p.data.featured)
   .sort((a, b) => b.data.date.localeCompare(a.data.date))
-  .slice(0, 3);
+  .slice(0, 4);
 
 const allExperience = await getCollection('experience');
 const experience = allExperience.sort((a, b) => a.data.order - b.data.order);
 
 const skills = [
-  { category: 'Languages', items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'C++', 'SQL', 'HTML/CSS'], color: 'cyan' },
-  { category: 'ML / AI', items: ['PyTorch', 'TensorFlow', 'Hugging Face', 'scikit-learn', 'OpenCV', 'RAG', 'ChromaDB', 'FAISS', 'wandb'], color: 'magenta' },
+  { category: 'Languages', items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'C++', 'SQL', 'HTML/CSS'], color: 'rose' },
+  { category: 'ML / AI', items: ['PyTorch', 'TensorFlow', 'Hugging Face', 'scikit-learn', 'OpenCV', 'RAG', 'ChromaDB', 'FAISS', 'wandb'], color: 'gold' },
   { category: 'Cloud & DevOps', items: ['EC2', 'S3', 'Lambda', 'GKE', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Jenkins', 'ArgoCD'], color: 'violet' },
-  { category: 'Frameworks', items: ['FastAPI', 'React', 'Astro', 'Vite', 'TailwindCSS', 'Streamlit', 'Zustand', 'React Flow'], color: 'cyan' },
-  { category: 'Data & Storage', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Pandas', 'NumPy', 'Spark', 'HDFS', 'REST APIs'], color: 'magenta' },
+  { category: 'Frameworks', items: ['FastAPI', 'React', 'Astro', 'Vite', 'TailwindCSS', 'Streamlit', 'Zustand', 'React Flow'], color: 'rose' },
+  { category: 'Data & Storage', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Pandas', 'NumPy', 'Spark', 'HDFS', 'REST APIs'], color: 'gold' },
   { category: 'Testing & Observability', items: ['OpenTelemetry', 'Grafana', 'Prometheus', 'Playwright', 'pytest', 'Pydantic'], color: 'violet' },
 ];
 
@@ -57,8 +58,8 @@ const companyBrand: Record<string, string> = {
       <!-- Grid background -->
       <div class="absolute inset-0 grid-bg opacity-40"></div>
       <!-- Gradient orbs -->
-      <div class="absolute top-1/4 -left-32 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-neon-magenta/5 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/4 -left-32 w-96 h-96 bg-neon-rose/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-neon-gold/5 rounded-full blur-3xl"></div>
 
       <div class="section-container relative z-10 text-center py-20">
         <div class="flex flex-col md:flex-row md:items-center md:justify-center md:gap-10 mb-6">
@@ -66,11 +67,11 @@ const companyBrand: Record<string, string> = {
             <img
               src="/profile.jpg"
               alt="Dhairya Mishra"
-              class="w-36 h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-neon-cyan/30 shadow-[0_0_20px_rgba(0,255,255,0.15)] mx-auto"
+              class="w-36 h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-neon-rose/30 shadow-[0_0_20px_rgba(212,80,96,0.15)] mx-auto"
             />
           </div>
           <div class="animate-fade-in md:text-left">
-            <p class="text-neon-cyan font-mono text-sm tracking-widest uppercase mb-6">Software Engineer &middot; ML Researcher</p>
+            <p class="text-neon-rose font-mono text-sm tracking-widest uppercase mb-6">Software Engineer &middot; ML Researcher</p>
             <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold leading-tight">
               <span class="text-gradient-neon">Dhairya</span>
               <br />
@@ -100,7 +101,7 @@ const companyBrand: Record<string, string> = {
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <div class={`reveal reveal-delay-${i + 1} text-center`}>
-              <div class="text-3xl md:text-4xl font-heading font-bold text-gradient-cyan mb-1">{stat.value}</div>
+              <div class="text-3xl md:text-4xl font-heading font-bold text-gradient-rose mb-1">{stat.value}</div>
               <div class="text-sm text-muted">{stat.label}</div>
             </div>
           ))}
@@ -128,41 +129,18 @@ const companyBrand: Record<string, string> = {
       <div class="section-container">
         <div class="reveal text-center mb-14">
           <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Featured <span class="text-gradient-cyan">Projects</span>
+            Featured <span class="text-gradient-rose">Projects</span>
           </h2>
           <p class="text-muted max-w-lg mx-auto">Research and production work spanning ML, full-stack, and cloud systems.</p>
         </div>
         
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProjects.map((project, i) => (
-            <a href={`/projects/${project.slug}`} class={`reveal reveal-delay-${i + 1} group card-neon-interactive flex flex-col`}>
-              <!-- Neon top accent bar -->
-              <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-cyan via-neon-violet to-neon-magenta mb-4 opacity-60 group-hover:opacity-100 transition-opacity"></div>
-              
-              <div class="flex items-start justify-between mb-3">
-                <span class="badge-neon text-[10px]">{project.data.category}</span>
-                {project.data.metric && (
-                  <div class="text-right">
-                    <span class="text-lg font-heading font-bold text-neon-cyan">{project.data.metric}</span>
-                    {project.data.metricLabel && <p class="text-[10px] text-muted">{project.data.metricLabel}</p>}
-                  </div>
-                )}
-              </div>
-              
-              <h3 class="text-lg font-heading font-semibold text-text-bright mb-2 group-hover:text-neon-cyan transition-colors">
-                {project.data.title}
-              </h3>
-              
-              <p class="text-sm text-muted leading-relaxed mb-4 flex-grow">
-                {project.data.description}
-              </p>
-              
-              <div class="flex flex-wrap gap-1.5 mt-auto">
-                {project.data.tags.slice(0, 4).map(tag => (
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-muted-light">{tag}</span>
-                ))}
-              </div>
-            </a>
+            <ProjectCard
+              project={project}
+              maxTags={4}
+              revealClass={`reveal reveal-delay-${i + 1}`}
+            />
           ))}
         </div>
 
@@ -182,7 +160,7 @@ const companyBrand: Record<string, string> = {
       <div class="section-container">
         <div class="reveal text-center mb-14">
           <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Skills & <span class="text-gradient-cyan">Technologies</span>
+            Skills & <span class="text-gradient-rose">Technologies</span>
           </h2>
           <p class="text-muted max-w-lg mx-auto">Full-stack proficiency across ML/AI, cloud infrastructure, and modern web frameworks.</p>
         </div>
@@ -191,15 +169,15 @@ const companyBrand: Record<string, string> = {
           {skills.map((group, i) => (
             <div class={`reveal reveal-delay-${(i % 5) + 1} card-neon`}>
               <h3 class={`text-sm font-heading font-semibold uppercase tracking-wider mb-3 ${
-                group.color === 'cyan' ? 'text-neon-cyan' : group.color === 'magenta' ? 'text-neon-magenta' : 'text-neon-violet'
+                group.color === 'rose' ? 'text-neon-rose' : group.color === 'gold' ? 'text-neon-gold' : 'text-neon-violet'
               }`}>
                 {group.category}
               </h3>
               <div class="flex flex-wrap gap-2">
                 {group.items.map(item => (
                   <span class={`text-xs px-2.5 py-1 rounded-full border ${
-                    group.color === 'cyan' ? 'bg-neon-cyan/5 text-neon-cyan/80 border-neon-cyan/15' :
-                    group.color === 'magenta' ? 'bg-neon-magenta/5 text-neon-magenta/80 border-neon-magenta/15' :
+                    group.color === 'rose' ? 'bg-neon-rose/5 text-neon-rose/80 border-neon-rose/15' :
+                    group.color === 'gold' ? 'bg-neon-gold/5 text-neon-gold/80 border-neon-gold/15' :
                     'bg-neon-violet/5 text-neon-violet/80 border-neon-violet/15'
                   }`}>
                     {item}
@@ -219,17 +197,17 @@ const companyBrand: Record<string, string> = {
       <div class="section-container">
         <div class="reveal text-center mb-14">
           <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Experience <span class="text-gradient-cyan">Timeline</span>
+            Experience <span class="text-gradient-rose">Timeline</span>
           </h2>
         </div>
         
         <div class="relative max-w-3xl mx-auto">
           <!-- Vertical thread line -->
-          <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan/40 via-neon-violet/30 to-transparent"></div>
+          <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-rose/40 via-neon-violet/30 to-transparent"></div>
           
           {experience.map((exp, i) => (
             <div class={`reveal reveal-delay-${i + 1} relative pl-12 md:pl-20 pb-12 last:pb-0`}>
-              <div class="absolute left-[11px] md:left-[27px] top-1 w-3 h-3 rounded-full bg-neon-cyan shadow-neon-sm border-2 border-base"></div>
+              <div class="absolute left-[11px] md:left-[27px] top-1 w-3 h-3 rounded-full bg-neon-rose shadow-neon-sm border-2 border-base"></div>
               
               <div class="card-neon group">
                 <div class="flex items-start gap-3 mb-2">
@@ -243,7 +221,7 @@ const companyBrand: Record<string, string> = {
                       <h3 class="text-lg font-heading font-semibold text-text-bright">{exp.data.role}</h3>
                       <span class="text-xs text-muted font-mono">{exp.data.startDate} — {exp.data.endDate}</span>
                     </div>
-                    <p class="text-sm text-neon-cyan/70">{exp.data.company} &middot; {exp.data.location}</p>
+                    <p class="text-sm text-neon-rose/70">{exp.data.company} &middot; {exp.data.location}</p>
                   </div>
                 </div>
                 <div class="text-sm text-muted leading-relaxed prose-sm">
@@ -268,7 +246,7 @@ const companyBrand: Record<string, string> = {
       <div class="section-container">
         <div class="reveal text-center mb-14">
           <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            <span class="text-gradient-cyan">Education</span>
+            <span class="text-gradient-rose">Education</span>
           </h2>
         </div>
         
@@ -280,11 +258,11 @@ const companyBrand: Record<string, string> = {
               </div>
               <div>
                 <h3 class="font-heading font-semibold text-text-bright">New York University</h3>
-                <p class="text-sm text-neon-cyan/70">Courant Institute</p>
+                <p class="text-sm text-neon-rose/70">Courant Institute</p>
                 <p class="text-sm text-muted mt-1">M.S. Computer Science (AI)</p>
                 <div class="flex items-center gap-3 mt-2 text-xs text-muted">
                   <span>May 2026</span>
-                  <span class="text-neon-cyan">GPA: 3.7</span>
+                  <span class="text-neon-rose">GPA: 3.7</span>
                 </div>
               </div>
             </div>
@@ -292,7 +270,7 @@ const companyBrand: Record<string, string> = {
           
           <div class="reveal reveal-delay-2 card-neon group">
             <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg bg-neon-cyan/10 border border-neon-cyan/20 flex items-center justify-center flex-shrink-0">
+              <div class="w-12 h-12 rounded-lg bg-neon-rose/10 border border-neon-rose/20 flex items-center justify-center flex-shrink-0">
                 <BrandLogo brand="trine" size="lg" />
               </div>
               <div>
@@ -314,7 +292,7 @@ const companyBrand: Record<string, string> = {
       <div class="section-container text-center">
         <div class="reveal card-neon max-w-2xl mx-auto py-12 px-8">
           <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">
-            Let's <span class="text-gradient-cyan">Build</span> Something
+            Let's <span class="text-gradient-rose">Build</span> Something
           </h2>
           <p class="text-muted mb-8 max-w-md mx-auto">
             Interested in collaborating on ML research, full-stack systems, or production AI? I'd love to hear from you.

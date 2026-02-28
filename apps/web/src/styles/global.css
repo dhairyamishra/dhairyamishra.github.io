@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --neon-cyan: #D45060;
-    --neon-magenta: #D4AF37;
+    --neon-rose: #D45060;
+    --neon-gold: #D4AF37;
     --neon-violet: #B8648A;
     --neon-lime: #6B8F71;
     --bg-base: #0A0A0B;
@@ -72,26 +72,26 @@
 @layer components {
   .btn-neon {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply border border-neon-cyan/40 text-neon-cyan;
-    @apply hover:border-neon-cyan hover:shadow-neon-md;
+    @apply border border-neon-rose/40 text-neon-rose;
+    @apply hover:border-neon-rose hover:shadow-neon-md;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
   }
 
   .btn-neon-fill {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply bg-gradient-to-r from-neon-cyan/40 to-neon-violet/35;
-    @apply border border-neon-cyan/50 text-text-bright;
-    @apply hover:from-neon-cyan/55 hover:to-neon-violet/50;
-    @apply hover:border-neon-cyan hover:shadow-neon-md;
+    @apply bg-gradient-to-r from-neon-rose/40 to-neon-violet/35;
+    @apply border border-neon-rose/50 text-text-bright;
+    @apply hover:from-neon-rose/55 hover:to-neon-violet/50;
+    @apply hover:border-neon-rose hover:shadow-neon-md;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
   }
 
-  .btn-neon-magenta {
+  .btn-neon-gold {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply border border-neon-magenta/40 text-neon-magenta;
-    @apply hover:border-neon-magenta hover:shadow-neon-magenta-md;
+    @apply border border-neon-gold/40 text-neon-gold;
+    @apply hover:border-neon-gold hover:shadow-neon-gold-md;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
   }
@@ -100,7 +100,7 @@
     @apply relative rounded-xl p-6;
     @apply bg-surface/80 backdrop-blur-sm;
     @apply border border-white/5;
-    @apply hover:border-neon-cyan/20 hover:shadow-neon-sm;
+    @apply hover:border-neon-rose/20 hover:shadow-neon-sm;
     @apply transition-all duration-300 ease-out;
   }
 
@@ -112,7 +112,7 @@
 
   .badge-neon {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
-    @apply bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20;
+    @apply bg-neon-rose/10 text-neon-rose border border-neon-rose/20;
   }
 
   .badge-neon-violet {
@@ -120,29 +120,29 @@
     @apply bg-neon-violet/10 text-neon-violet border border-neon-violet/20;
   }
 
-  .badge-neon-magenta {
+  .badge-neon-gold {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
-    @apply bg-neon-magenta/10 text-neon-magenta border border-neon-magenta/20;
+    @apply bg-neon-gold/10 text-neon-gold border border-neon-gold/20;
   }
 
   .divider-neon {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    background: linear-gradient(90deg, transparent, var(--neon-rose), transparent);
     opacity: 0.3;
   }
 
   .divider-neon-animated {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-violet), transparent);
+    background: linear-gradient(90deg, transparent, var(--neon-rose), var(--neon-violet), transparent);
     background-size: 200% 100%;
     animation: thread-flow 3s linear infinite;
     opacity: 0.4;
   }
 
   .link-neon {
-    @apply text-neon-cyan/80 hover:text-neon-cyan;
-    @apply underline decoration-neon-cyan/20 underline-offset-4;
-    @apply hover:decoration-neon-cyan/60;
+    @apply text-neon-rose/80 hover:text-neon-rose;
+    @apply underline decoration-neon-rose/20 underline-offset-4;
+    @apply hover:decoration-neon-rose/60;
     @apply transition-all duration-200;
   }
 
@@ -151,7 +151,7 @@
     background-image: linear-gradient(135deg, #D45060, #B8648A, #D4AF37);
   }
 
-  .text-gradient-cyan {
+  .text-gradient-rose {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, #D45060, #B8648A);
   }
