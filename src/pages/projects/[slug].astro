@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
-import ProjectGallery from '../../components/ProjectGallery.astro';
+import MediaGallery from '../../components/MediaGallery.astro';
 import MediaLightbox from '../../components/MediaLightbox.astro';
 import { getCollection } from 'astro:content';
 
@@ -102,7 +102,7 @@ const categoryLabels: Record<string, string> = {
 
       {project.data.media && project.data.media.length > 0 && (
         <div class="max-w-4xl mb-12">
-          <ProjectGallery media={project.data.media} />
+          <MediaGallery media={project.data.media} />
           <MediaLightbox />
         </div>
       )}

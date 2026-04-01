@@ -1,5 +1,13 @@
 import { defineCollection, z } from 'astro:content';
 
+const mediaSchema = z.array(z.object({
+  type: z.enum(['image', 'video', 'diagram', 'mermaid']),
+  src: z.string().optional(),
+  code: z.string().optional(),
+  alt: z.string().optional(),
+  caption: z.string().optional(),
+})).default([]);
+
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
@@ -13,13 +21,7 @@ const projects = defineCollection({
     paperUrl: z.string().optional(),
     image: z.string().optional(),
     thumbnail: z.string().optional(),
-    media: z.array(z.object({
-      type: z.enum(['image', 'video', 'diagram', 'mermaid']),
-      src: z.string().optional(),
-      code: z.string().optional(),
-      alt: z.string().optional(),
-      caption: z.string().optional(),
-    })).default([]),
+    media: mediaSchema,
     metric: z.string().optional(),
     metricLabel: z.string().optional(),
     category: z.enum(['research', 'ml-ai', 'full-stack', 'devops', 'open-source']),
@@ -35,6 +37,7 @@ const experience = defineCollection({
     startDate: z.string(),
     endDate: z.string(),
     order: z.number(),
+    media: mediaSchema,
   }),
 });
 

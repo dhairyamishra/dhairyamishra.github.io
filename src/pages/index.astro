@@ -4,6 +4,8 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import MediaGallery from '../components/MediaGallery.astro';
+import MediaLightbox from '../components/MediaLightbox.astro';
 import { getCollection } from 'astro:content';
 import { skills } from '../data/skills';
 import { education } from '../data/education';
@@ -225,10 +227,16 @@ const companyBrand: Record<string, string> = {
                     {line.trim().slice(2)}
                   </p>
                 ))}
+                {exp.data.media && exp.data.media.length > 0 && (
+                  <div class="mt-6 border-t border-white/5 pt-4">
+                    <MediaGallery media={exp.data.media} />
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
+        <MediaLightbox />
       </div>
     </section>
 
