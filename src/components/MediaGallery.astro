@@ -36,12 +36,12 @@ function getVimeoId(url: string): string | null {
     Gallery
   </h2>
 
-  <div class="media-grid">
+  <div class="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4 mb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
     {media.map((item, index) => {
       if (item.type === 'image' || item.type === 'diagram') {
         const lightboxIndex = lightboxItems.indexOf(item);
         return (
-          <figure class="media-grid-item group">
+          <figure class="flex-none w-72 md:w-96 snap-start group">
             <button
               type="button"
               class="media-trigger w-full text-left"
@@ -52,7 +52,7 @@ function getVimeoId(url: string): string | null {
                 <img
                   src={item.src}
                   alt={item.alt || ''}
-                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
                 <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
@@ -61,7 +61,7 @@ function getVimeoId(url: string): string | null {
               </div>
             </button>
             {item.caption && (
-              <figcaption class="text-xs text-muted mt-2 px-1">{item.caption}</figcaption>
+              <figcaption class="text-xs text-muted mt-2 px-1 line-clamp-2">{item.caption}</figcaption>
             )}
           </figure>
         );
@@ -71,7 +71,7 @@ function getVimeoId(url: string): string | null {
         const ytId = getYouTubeId(item.src);
         const vimeoId = getVimeoId(item.src);
         return (
-          <figure class="media-grid-item media-grid-item--wide">
+          <figure class="flex-none w-[85vw] md:w-[32rem] lg:w-[40rem] snap-start">
             <div class="relative overflow-hidden rounded-lg border border-white/5 aspect-video">
               {ytId ? (
                 <iframe
@@ -96,7 +96,7 @@ function getVimeoId(url: string): string | null {
               )}
             </div>
             {item.caption && (
-              <figcaption class="text-xs text-muted mt-2 px-1">{item.caption}</figcaption>
+              <figcaption class="text-xs text-muted mt-2 px-1 line-clamp-2">{item.caption}</figcaption>
             )}
           </figure>
         );
@@ -104,10 +104,10 @@ function getVimeoId(url: string): string | null {
 
       if (item.type === 'mermaid' && item.code) {
         return (
-          <figure class="media-grid-item media-grid-item--wide">
+          <figure class="flex-none w-[85vw] md:w-[32rem] snap-start">
             <MermaidBlock code={item.code} />
             {item.caption && (
-              <figcaption class="text-xs text-muted mt-2 px-1">{item.caption}</figcaption>
+              <figcaption class="text-xs text-muted mt-2 px-1 line-clamp-2">{item.caption}</figcaption>
             )}
           </figure>
         );
