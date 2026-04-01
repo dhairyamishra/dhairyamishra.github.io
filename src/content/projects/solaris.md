@@ -9,6 +9,23 @@ paperUrl: "https://arxiv.org/abs/2602.22208"
 liveUrl: "https://solaris-wm.github.io/"
 metric: "12.6M"
 metricLabel: "Multiplayer Frames"
+media:
+  - type: 'image'
+    src: 'https://solaris-wm.github.io/static/img/solaris-system-outer.png'
+    alt: 'SolarisEngine Overview'
+    caption: 'SolarisEngine Framework Architecture'
+  - type: 'image'
+    src: 'https://solaris-wm.github.io/static/img/dataset-plots.png'
+    alt: 'Dataset statistics across 12.6M frames'
+    caption: 'Breakdown of dataset by episode task categories, types, and lengths'
+  - type: 'image'
+    src: 'https://solaris-wm.github.io/static/img/arch.png'
+    alt: 'Solaris Model Architecture Diagram'
+    caption: 'DiT block modified for multiplayer visual interleaving'
+  - type: 'image'
+    src: 'https://solaris-wm.github.io/static/img/memory_plot.png'
+    alt: 'Peak HBM memory usage comparison'
+    caption: 'Peak HBM memory for Naive Self Forcing vs Checkpointed variant'
 ---
 
 ## Overview

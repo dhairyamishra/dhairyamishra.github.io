@@ -9,6 +9,10 @@ github: "https://github.com/dhairyamishra/teserax"
 liveUrl: "https://www.teserax.io"
 metric: "v2.0"
 metricLabel: "Shipped"
+media:
+  - type: 'video'
+    src: 'https://www.youtube.com/watch?v=aI9RDIcJBQ0'
+    caption: 'Teserax Demo Video'
 ---
 
 ## Overview
