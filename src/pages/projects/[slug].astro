@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
+import MediaLightbox from '../../components/MediaLightbox.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -97,6 +99,13 @@ const categoryLabels: Record<string, string> = {
       </header>
 
       <div class="divider-neon mb-12"></div>
+
+      {project.data.media && project.data.media.length > 0 && (
+        <div class="max-w-4xl mb-12">
+          <ProjectGallery media={project.data.media} />
+          <MediaLightbox />
+        </div>
+      )}
 
       <!-- Markdown Content -->
       <div class="max-w-3xl prose-neon">

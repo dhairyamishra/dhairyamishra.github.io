@@ -7,6 +7,7 @@ interface Props {
       description: string;
       category: string;
       tags: string[];
+      thumbnail?: string;
       metric?: string;
       metricLabel?: string;
     };
@@ -37,12 +38,22 @@ const { project, maxTags = 4, showReadMore = false, revealClass = '', extraClass
   
   <div class="flex items-start justify-between mb-3">
     <span class="badge-neon text-[10px]">{categoryLabels[project.data.category] || project.data.category}</span>
-    {project.data.metric && (
-      <div class="text-right">
-        <span class="text-lg font-heading font-bold text-neon-rose">{project.data.metric}</span>
-        {project.data.metricLabel && <p class="text-[10px] text-muted">{project.data.metricLabel}</p>}
-      </div>
-    )}
+    <div class="flex items-start gap-3">
+      {project.data.metric && (
+        <div class="text-right">
+          <span class="text-lg font-heading font-bold text-neon-rose">{project.data.metric}</span>
+          {project.data.metricLabel && <p class="text-[10px] text-muted">{project.data.metricLabel}</p>}
+        </div>
+      )}
+      {project.data.thumbnail && (
+        <img
+          src={project.data.thumbnail}
+          alt={`${project.data.title} thumbnail`}
+          class="w-16 h-16 rounded-lg object-cover border border-white/10 flex-shrink-0"
+          loading="lazy"
+        />
+      )}
+    </div>
   </div>
   
   <h3 class="text-lg font-heading font-semibold text-text-bright mb-2 group-hover:text-neon-rose transition-colors">

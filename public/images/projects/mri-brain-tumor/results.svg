@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="350" viewBox="0 0 600 350">
+  <rect width="600" height="350" fill="#0A0A0B"/>
+  <text x="300" y="30" text-anchor="middle" fill="#F5F0EB" font-family="sans-serif" font-size="14" font-weight="bold">Model Performance Metrics</text>
+
+  <!-- Bars -->
+  <rect x="80" y="60" width="410" height="50" rx="6" fill="#151315" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.1"/>
+  <rect x="80" y="60" width="374" height="50" rx="6" fill="#D45060" fill-opacity="0.3"/>
+  <text x="90" y="82" fill="#F5F0EB" font-family="sans-serif" font-size="11">Classification Accuracy</text>
+  <text x="90" y="100" fill="#D45060" font-family="sans-serif" font-size="14" font-weight="bold">91.3%</text>
+
+  <rect x="80" y="125" width="410" height="50" rx="6" fill="#151315" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.1"/>
+  <rect x="80" y="125" width="398" height="50" rx="6" fill="#B8648A" fill-opacity="0.3"/>
+  <text x="90" y="147" fill="#F5F0EB" font-family="sans-serif" font-size="11">Sensitivity</text>
+  <text x="90" y="165" fill="#B8648A" font-family="sans-serif" font-size="14" font-weight="bold">97.1%</text>
+
+  <rect x="80" y="190" width="410" height="50" rx="6" fill="#151315" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.1"/>
+  <rect x="80" y="190" width="314" height="50" rx="6" fill="#D4AF37" fill-opacity="0.3"/>
+  <text x="90" y="212" fill="#F5F0EB" font-family="sans-serif" font-size="11">Dice Score (Segmentation)</text>
+  <text x="90" y="230" fill="#D4AF37" font-family="sans-serif" font-size="14" font-weight="bold">76.5%</text>
+
+  <rect x="80" y="255" width="410" height="50" rx="6" fill="#151315" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.1"/>
+  <rect x="80" y="255" width="164" height="50" rx="6" fill="#6B8F71" fill-opacity="0.3"/>
+  <text x="90" y="277" fill="#F5F0EB" font-family="sans-serif" font-size="11">Inference Speedup</text>
+  <text x="90" y="295" fill="#6B8F71" font-family="sans-serif" font-size="14" font-weight="bold">~40% faster</text>
+
+  <text x="300" y="335" text-anchor="middle" fill="#B5A99A" font-family="sans-serif" font-size="10">Compared against separate classification + segmentation models</text>
+</svg>

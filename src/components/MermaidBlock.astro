@@ -1,0 +1,50 @@
+---
+interface Props {
+  code: string;
+}
+
+const { code } = Astro.props;
+---
+
+<div class="mermaid-container rounded-lg border border-white/5 bg-surface/80 p-4 overflow-x-auto">
+  <pre class="mermaid">{code}</pre>
+</div>
+
+<script>
+  async function initMermaid() {
+    const { default: mermaid } = await import('mermaid');
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#D45060',
+        primaryTextColor: '#F5F0EB',
+        primaryBorderColor: '#B8648A',
+        lineColor: '#B8648A',
+        secondaryColor: '#211D1F',
+        tertiaryColor: '#151315',
+        background: '#0A0A0B',
+        mainBkg: '#151315',
+        nodeBorder: '#D45060',
+        clusterBkg: '#151315',
+        clusterBorder: '#B8648A',
+        titleColor: '#F5F0EB',
+        edgeLabelBackground: '#151315',
+        actorTextColor: '#F5F0EB',
+        actorBorder: '#D45060',
+        signalColor: '#F5F0EB',
+        fontFamily: 'Inter, sans-serif',
+      },
+      securityLevel: 'loose',
+    });
+    await mermaid.run({ querySelector: '.mermaid' });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMermaid);
+  } else {
+    initMermaid();
+  }
+
+  document.addEventListener('astro:page-load', initMermaid);
+</script>

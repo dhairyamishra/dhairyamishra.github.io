@@ -8,6 +8,19 @@ category: "ml-ai"
 github: "https://github.com/dhairyamishra"
 metric: "91.3%"
 metricLabel: "Accuracy"
+thumbnail: "/images/projects/mri-brain-tumor/thumbnail.svg"
+media:
+  - type: "diagram"
+    src: "/images/projects/mri-brain-tumor/architecture.svg"
+    alt: "Shared encoder architecture diagram"
+    caption: "Shared encoder architecture — single backbone for classification and segmentation"
+  - type: "image"
+    src: "/images/projects/mri-brain-tumor/results.svg"
+    alt: "Model performance metrics chart"
+    caption: "Performance benchmarks across classification, sensitivity, dice score, and inference speed"
+  - type: "mermaid"
+    code: "flowchart LR\n  A[MRI Input] --> B[Preprocessing]\n  B --> C[Shared Encoder]\n  C --> D{Tumor?}\n  D -->|Yes| E[Segmentation Head]\n  D -->|No| F[No Tumor]\n  E --> G[Pixel Mask]\n  C --> H[Classification Head]\n  H --> D"
+    caption: "Inference pipeline — conditional segmentation activated only when tumor is detected"
 ---
 
 ## Overview
