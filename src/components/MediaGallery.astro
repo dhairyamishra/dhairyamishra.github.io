@@ -50,13 +50,14 @@ function getVimeoId(url: string): string | null {
     <div class="media-carousel flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4 mb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
       {media.map((item, index) => {
       if (item.type === 'image' || item.type === 'diagram') {
-        const lightboxIndex = lightboxItems.indexOf(item);
         return (
           <figure class="flex-none w-72 md:w-96 snap-start group">
             <button
               type="button"
               class="media-trigger w-full text-left"
-              data-lightbox-index={lightboxIndex}
+              data-src={item.src}
+              data-alt={item.alt || ''}
+              data-caption={item.caption || ''}
               aria-label={`View ${item.alt || 'media'} full size`}
             >
               <div class="relative overflow-hidden rounded-lg border border-white/5 group-hover:border-neon-rose/30 transition-all duration-300">
@@ -138,10 +139,6 @@ function getVimeoId(url: string): string | null {
     </button>
   </div>
 </section>
-
-<script define:vars={{ lightboxItems: JSON.stringify(lightboxItems) }}>
-  window.__galleryLightboxItems = JSON.parse(lightboxItems);
-</script>
 
 <script>
   function setupCarousels() {

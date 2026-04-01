@@ -21,9 +21,10 @@
 </dialog>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function setupLightbox() {
     const dialog = document.getElementById('media-lightbox') as HTMLDialogElement | null;
-    if (!dialog) return;
+    if (!dialog || dialog.hasAttribute('data-lightbox-init')) return;
+    dialog.setAttribute('data-lightbox-init', 'true');
 
     const img = dialog.querySelector('.media-lightbox__img') as HTMLImageElement;
     const caption = dialog.querySelector('.media-lightbox__caption') as HTMLElement;
@@ -36,18 +37,6 @@
     type LightboxItem = { src?: string; alt?: string; caption?: string };
     let items: LightboxItem[] = [];
     let currentIndex = 0;
-
-    function getItems(): LightboxItem[] {
-      return (window as any).__galleryLightboxItems || [];
-    }
-
-    function show(index: number) {
-      items = getItems();
-      if (items.length === 0) return;
-      currentIndex = Math.max(0, Math.min(index, items.length - 1));
-      update();
-      dialog!.showModal();
-    }
 
     function update() {
       const item = items[currentIndex];
@@ -63,6 +52,14 @@
       nextBtn.style.display = showNav ? '' : 'none';
     }
 
+    function show(index: number, newItems: LightboxItem[]) {
+      items = newItems;
+      if (items.length === 0) return;
+      currentIndex = Math.max(0, Math.min(index, items.length - 1));
+      update();
+      dialog!.showModal();
+    }
+
     function navigate(delta: number) {
       currentIndex = (currentIndex + delta + items.length) % items.length;
       update();
@@ -72,10 +69,26 @@
       dialog!.close();
     }
 
-    document.querySelectorAll('.media-trigger[data-lightbox-index]').forEach(btn => {
+    // Attach to triggers. We build the item list dynamically from the gallery it belongs to.
+    document.querySelectorAll('.media-trigger').forEach((btn: any) => {
+      // Avoid duplicate bindings if setupLightbox runs again
+      if (btn.hasAttribute('data-trigger-init')) return;
+      btn.setAttribute('data-trigger-init', 'true');
+
       btn.addEventListener('click', () => {
-        const idx = parseInt(btn.getAttribute('data-lightbox-index') || '0', 10);
-        show(idx);
+        // Find the parent gallery section to scope the items
+        const gallery = btn.closest('.media-carousel') || btn.closest('section');
+        const triggers = gallery ? Array.from(gallery.querySelectorAll('.media-trigger')) : [btn];
+        
+        // Extract all items from data attributes
+        const scopedItems = triggers.map((el: any) => ({
+          src: el.getAttribute('data-src') || '',
+          alt: el.getAttribute('data-alt') || '',
+          caption: el.getAttribute('data-caption') || ''
+        }));
+        
+        const idx = triggers.indexOf(btn);
+        show(idx >= 0 ? idx : 0, scopedItems);
       });
     });
 
@@ -89,5 +102,8 @@
       else if (e.key === 'ArrowRight') navigate(1);
       else if (e.key === 'Escape') close();
     });
-  });
+  }
+
+  setupLightbox();
+  document.addEventListener('astro:page-load', setupLightbox);
 </script>
