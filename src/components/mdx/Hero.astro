@@ -1,0 +1,21 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  eyebrow?: string;
+  caption?: string;
+}
+
+const { src, alt, eyebrow, caption } = Astro.props;
+---
+
+<figure class="hero-neon not-prose">
+  <div class="hero-neon__frame">
+    <img src={src} alt={alt} loading="eager" class="hero-neon__img" />
+    <div class="hero-neon__overlay" aria-hidden="true"></div>
+    {eyebrow && (
+      <span class="hero-neon__eyebrow">{eyebrow}</span>
+    )}
+  </div>
+  {caption && <figcaption class="hero-neon__caption">{caption}</figcaption>}
+</figure>

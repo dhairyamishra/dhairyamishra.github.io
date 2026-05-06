@@ -1,0 +1,22 @@
+---
+interface Props {
+  cols?: 2 | 3;
+  caption?: string;
+  width?: 'normal' | 'wide' | 'full';
+}
+
+const { cols = 2, caption, width = 'wide' } = Astro.props;
+
+const wrapperClasses = [
+  'figure-grid',
+  `figure-grid--cols-${cols}`,
+  `figure-grid--width-${width}`,
+].join(' ');
+---
+
+<figure class={wrapperClasses}>
+  <div class="figure-grid__items">
+    <slot />
+  </div>
+  {caption && <figcaption class="figure-grid__caption">{caption}</figcaption>}
+</figure>

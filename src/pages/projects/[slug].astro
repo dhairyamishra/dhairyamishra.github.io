@@ -117,14 +117,16 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
       {project.data.media && project.data.media.length > 0 && (
         <div class="max-w-4xl mb-12">
           <MediaGallery media={project.data.media} />
-          <MediaLightbox />
         </div>
       )}
 
-      <!-- Markdown Content -->
+      <!-- Markdown / MDX Content (figures inline) -->
       <div class="max-w-3xl prose-neon">
         <Content />
       </div>
+
+      <!-- Mounted once for both legacy gallery triggers and inline <Figure> triggers -->
+      <MediaLightbox />
 
       <!-- Related Projects -->
       {related.length > 0 && (

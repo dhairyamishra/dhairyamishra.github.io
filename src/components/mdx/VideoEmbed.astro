@@ -1,0 +1,52 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+  caption?: string;
+  width?: 'normal' | 'wide' | 'full';
+}
+
+const { src, title, caption, width = 'wide' } = Astro.props;
+
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&\s]+)/);
+  return match ? match[1] : null;
+}
+
+function getVimeoId(url: string): string | null {
+  const match = url.match(/vimeo\.com\/(\d+)/);
+  return match ? match[1] : null;
+}
+
+const ytId = getYouTubeId(src);
+const vimeoId = getVimeoId(src);
+const wrapperClasses = ['video-embed', `video-embed--width-${width}`].join(' ');
+const iframeTitle = title || 'Project video';
+---
+
+<figure class={wrapperClasses}>
+  <div class="video-embed__frame">
+    {ytId ? (
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${ytId}`}
+        title={iframeTitle}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+        class="video-embed__iframe"
+      />
+    ) : vimeoId ? (
+      <iframe
+        src={`https://player.vimeo.com/video/${vimeoId}?dnt=1`}
+        title={iframeTitle}
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+        class="video-embed__iframe"
+      />
+    ) : (
+      <p class="text-muted text-sm p-4">Unsupported video URL: {src}</p>
+    )}
+  </div>
+  {caption && <figcaption class="video-embed__caption">{caption}</figcaption>}
+</figure>

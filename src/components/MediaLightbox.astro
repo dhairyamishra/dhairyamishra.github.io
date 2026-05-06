@@ -76,8 +76,14 @@
       btn.setAttribute('data-trigger-init', 'true');
 
       btn.addEventListener('click', () => {
-        // Find the parent gallery section to scope the items
-        const gallery = btn.closest('.media-carousel') || btn.closest('section');
+        // Scope to the nearest container that groups related media:
+        // - .media-carousel for legacy galleries
+        // - section for grouped media on a page
+        // - article for inline MDX figures within a project body
+        const gallery =
+          btn.closest('.media-carousel') ||
+          btn.closest('section') ||
+          btn.closest('article');
         const triggers = gallery ? Array.from(gallery.querySelectorAll('.media-trigger')) : [btn];
         
         // Extract all items from data attributes

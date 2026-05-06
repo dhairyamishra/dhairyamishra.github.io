@@ -387,4 +387,201 @@
   .prose-neon-sm li {
     @apply text-sm leading-relaxed;
   }
+
+  /* --- Inline MDX media: Hero, Figure, FigureGrid, VideoEmbed --- */
+
+  /* Hero: full-width banner that breaks out of prose container on lg+ */
+  .hero-neon {
+    @apply mb-10;
+    margin-top: -1rem;
+  }
+  @media (min-width: 64rem) {
+    .hero-neon {
+      margin-left: -4rem;
+      margin-right: -4rem;
+    }
+  }
+  .hero-neon__frame {
+    @apply relative overflow-hidden rounded-xl border border-neon-rose/20;
+    box-shadow: 0 0 60px rgba(212, 80, 96, 0.12);
+  }
+  .hero-neon__img {
+    @apply w-full h-auto block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .hero-neon__overlay {
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 11, 0) 50%,
+      rgba(10, 10, 11, 0.55) 100%
+    );
+  }
+  .hero-neon__eyebrow {
+    @apply absolute top-4 left-4 inline-flex items-center px-3 py-1;
+    @apply rounded-full text-xs font-mono tracking-wider uppercase;
+    @apply bg-base/70 text-neon-rose border border-neon-rose/30;
+    backdrop-filter: blur(6px);
+  }
+  .hero-neon__caption {
+    @apply text-xs text-muted mt-3 text-center font-mono;
+  }
+
+  /* Figure: single inline image with caption + click-to-zoom */
+  .figure-neon {
+    @apply my-6;
+  }
+  .figure-neon__trigger {
+    @apply block w-full p-0 m-0 bg-transparent border-0 cursor-zoom-in relative;
+    line-height: 0;
+  }
+  .figure-neon__img {
+    @apply w-full h-auto block rounded-lg border border-white/10;
+    transition: border-color 0.3s ease, transform 0.5s ease;
+  }
+  .figure-neon__img--static {
+    @apply rounded-lg border border-white/10;
+  }
+  .figure-neon__trigger:hover .figure-neon__img {
+    @apply border-neon-rose/40;
+  }
+  .figure-neon__zoom-hint {
+    @apply absolute top-3 right-3 w-9 h-9 rounded-full;
+    @apply flex items-center justify-center;
+    @apply bg-base/60 text-white border border-white/10;
+    @apply opacity-0 transition-opacity duration-300;
+    backdrop-filter: blur(6px);
+  }
+  .figure-neon__trigger:hover .figure-neon__zoom-hint,
+  .figure-neon__trigger:focus-visible .figure-neon__zoom-hint {
+    @apply opacity-100;
+  }
+  .figure-neon__caption {
+    @apply text-xs text-muted mt-2 text-center font-mono leading-relaxed;
+  }
+
+  /* Figure alignment: center is default (block), left/right floats on md+ */
+  .figure-neon--align-center {
+    @apply mx-auto;
+  }
+  .figure-neon--align-left,
+  .figure-neon--align-right {
+    @apply block;
+  }
+  @media (min-width: 48rem) {
+    .figure-neon--align-left {
+      float: left;
+      max-width: 22rem;
+      margin: 0.25rem 1.5rem 1rem 0;
+      clear: left;
+    }
+    .figure-neon--align-right {
+      float: right;
+      max-width: 22rem;
+      margin: 0.25rem 0 1rem 1.5rem;
+      clear: right;
+    }
+    /* Caption inherits the float wrapper width */
+    .figure-neon--align-left .figure-neon__caption,
+    .figure-neon--align-right .figure-neon__caption {
+      @apply text-left;
+    }
+  }
+
+  /* Figure widths (only meaningful when align=center) */
+  .figure-neon--width-narrow.figure-neon--align-center {
+    max-width: 28rem;
+  }
+  .figure-neon--width-normal.figure-neon--align-center {
+    max-width: 100%;
+  }
+  .figure-neon--width-wide.figure-neon--align-center {
+    max-width: 100%;
+  }
+  .figure-neon--width-full.figure-neon--align-center {
+    max-width: 100%;
+  }
+  @media (min-width: 64rem) {
+    .figure-neon--width-wide.figure-neon--align-center {
+      margin-left: -4rem;
+      margin-right: -4rem;
+    }
+    .figure-neon--width-full.figure-neon--align-center {
+      margin-left: -8rem;
+      margin-right: -8rem;
+    }
+  }
+
+  /* FigureGrid: 2/3-column wrapper for related figures */
+  .figure-grid {
+    @apply my-8;
+  }
+  .figure-grid__items {
+    @apply grid gap-4;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 48rem) {
+    .figure-grid--cols-2 .figure-grid__items {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .figure-grid--cols-3 .figure-grid__items {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  /* Figures inside a grid lose their default vertical margin and width caps */
+  .figure-grid .figure-neon {
+    @apply my-0;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    float: none !important;
+  }
+  .figure-grid__caption {
+    @apply text-xs text-muted mt-3 text-center font-mono leading-relaxed;
+  }
+  /* Grid breakout widths */
+  @media (min-width: 64rem) {
+    .figure-grid--width-wide {
+      margin-left: -4rem;
+      margin-right: -4rem;
+    }
+    .figure-grid--width-full {
+      margin-left: -8rem;
+      margin-right: -8rem;
+    }
+  }
+
+  /* VideoEmbed: responsive 16:9 iframe */
+  .video-embed {
+    @apply my-8;
+  }
+  .video-embed__frame {
+    @apply relative overflow-hidden rounded-lg border border-white/10;
+    aspect-ratio: 16 / 9;
+  }
+  .video-embed__iframe {
+    @apply absolute inset-0 w-full h-full;
+    border: 0;
+  }
+  .video-embed__caption {
+    @apply text-xs text-muted mt-2 text-center font-mono leading-relaxed;
+  }
+  @media (min-width: 64rem) {
+    .video-embed--width-wide {
+      margin-left: -4rem;
+      margin-right: -4rem;
+    }
+    .video-embed--width-full {
+      margin-left: -8rem;
+      margin-right: -8rem;
+    }
+  }
+
+  /* Clear floats so subsequent headings don't tuck under floated figures */
+  .prose-neon h2,
+  .prose-neon h3,
+  .prose-neon hr {
+    clear: both;
+  }
 }

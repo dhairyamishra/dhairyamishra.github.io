@@ -1,0 +1,46 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  align?: 'left' | 'right' | 'center';
+  width?: 'narrow' | 'normal' | 'wide' | 'full';
+  zoom?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  align = 'center',
+  width = 'normal',
+  zoom = true,
+} = Astro.props;
+
+const figureClasses = [
+  'figure-neon',
+  `figure-neon--align-${align}`,
+  `figure-neon--width-${width}`,
+].join(' ');
+---
+
+<figure class={figureClasses}>
+  {zoom ? (
+    <button
+      type="button"
+      class="media-trigger figure-neon__trigger"
+      data-src={src}
+      data-alt={alt}
+      data-caption={caption || ''}
+      aria-label={`View ${alt} full size`}
+    >
+      <img src={src} alt={alt} loading="lazy" class="figure-neon__img" />
+      <span class="figure-neon__zoom-hint" aria-hidden="true">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" /></svg>
+      </span>
+    </button>
+  ) : (
+    <img src={src} alt={alt} loading="lazy" class="figure-neon__img figure-neon__img--static" />
+  )}
+  {caption && <figcaption class="figure-neon__caption">{caption}</figcaption>}
+</figure>
