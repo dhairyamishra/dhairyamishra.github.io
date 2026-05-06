@@ -9,6 +9,8 @@ interface FormData {
 
 const inputClasses = "w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-white/10 text-[#F5F0EB] placeholder-[#6B6560] focus:outline-none focus:border-[#D45060]/50 focus:shadow-[0_0_10px_rgba(212,80,96,0.15)] transition-all duration-300 text-sm";
 
+const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
+
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -21,16 +23,24 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     // Honeypot check
     if (formData.honeypot) {
       console.log('Bot detected');
       return;
     }
-    
+
+    if (!ACCESS_KEY) {
+      setStatus('error');
+      setErrorMessage(
+        'Contact form is not configured. Please set PUBLIC_WEB3FORMS_KEY in the deployment environment.'
+      );
+      return;
+    }
+
     setStatus('loading');
     setErrorMessage('');
-    
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -38,7 +48,7 @@ export default function ContactForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: '6b97dfee-d577-483a-be0b-4030251352b5',
+          access_key: ACCESS_KEY,
           name: formData.name,
           email: formData.email,
           message: formData.message,

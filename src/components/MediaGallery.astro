@@ -17,8 +17,6 @@ const { media } = Astro.props;
 
 if (!media || media.length === 0) return;
 
-const lightboxItems = media.filter(m => m.type === 'image' || m.type === 'diagram');
-
 function getYouTubeId(url: string): string | null {
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&\s]+)/);
   return match ? match[1] : null;
@@ -48,7 +46,7 @@ function getVimeoId(url: string): string | null {
 
     <!-- Carousel Container -->
     <div class="media-carousel flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4 mb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-      {media.map((item, index) => {
+      {media.map((item) => {
       if (item.type === 'image' || item.type === 'diagram') {
         return (
           <figure class="flex-none w-72 md:w-96 snap-start group">

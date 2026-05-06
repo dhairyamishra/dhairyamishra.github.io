@@ -5,10 +5,17 @@ location: "New York, NY"
 startDate: "Jan 2023"
 endDate: "Jan 2025"
 order: 2
+brand: "cvs"
 ---
 
-- Piloted image-to-alt-text automation using proprietary transformers for enterprise rollout, reducing downstream defects by 15%
-- Delivered an internal RAG support assistant leveraging Slack integrations with OpenAI and ChromaDB. Accelerated self-serve troubleshooting for teams and reduced manual ticket resolution time by 20%
-- Reviewed and shipped 125+ PRs and owned on-call for customer-facing core platform systems (Digital-Blocks 2.0, Experience Builder) serving millions of customers daily; reduced downtime by 12%
-- Built OpenTelemetry-to-Grafana observability + synthetic tests for scale events across deployed applications and microservices; improved debugging efficiency 25% (median incident MTTR)
-- Implemented automated UI quality gates by integrating axe-core with Playwright into GitHub Actions pipelines; shifted validation left across supported repos and cut production issues by 35%
+- Shipped and reviewed 150+ PRs and owned on-call for CPE Webcore (Digital-Blocks 2.0, Previews, Experience Builder) serving millions of customers daily; achieved SLA compliance and reduced downtime by 12-15% on customer-facing core platform systems.
+- Led CI/CD migration from GitLab to GitHub EMU under CPE web-core standards; migrated all accessibility applications and pipelines, validated dependencies, decommissioned legacy Jenkins/ArgoCD deployments, and trained teammates — achieved 100% adoption and reduced technical debt.
+- Enhanced observability by provisioning GCS storage, Postgres databases, and a custom OpenTelemetry-to-Grafana pipeline simulating diverse request scenarios; improved median incident MTTR by 25-30% and safeguarded service stability during scale events.
+- Piloted AI-powered Image-to-Alt-Text solution using Hugging Face transformers, establishing production-grade pipelines for enterprise rollout; reduced downstream defects by 15%. Origin: 1st Prize, CVS GenAI Hackathon (Aug 2023).
+- Delivered RAG chatbot prototype leveraging OpenAI + ChromaDB with secured governance and Slack integration for self-serve troubleshooting; reduced manual ticket resolution time by 20%. Hosted on CVS Enterprise GCP clusters via Terraform and ArgoCD.
+- Automated accessibility QA by integrating axe-core + Playwright into GitHub Actions pipelines; shift-left automation cut production accessibility issues by 60-90% (varying by application maturity) and streamlined WCAG violation detection across teams.
+- Established the microservice ecosystem and GCP cloud infrastructure for the accessibility organization — the foundation for all team tooling, reporting, and compliance workflows.
+- Launched A11yScore PoC with relational queries and leadership dashboards surfacing accessibility metrics; shortened defect resolution time by 20% and guided engineering resource re-allocation that increased throughput by 25%.
+- Provisioned MongoDB database and APIs for the Accessibility org (replacing Rally as quasi-database) with optimized schema, auth integration, and front-end interfaces; boosted data transaction speeds by 55%.
+- Refactored Testaro and Next Reporter, combining 1,000+ accessibility test outputs from multiple tools into standardized dashboards; reduced report analysis time by 20% and expanded adoption across all accessibility teams.
+- Designed weekly multi-project automation auditing every work-item tree in the CVS kanban-hybrid (Rally via Broadcom); improved delivery velocity by 90% and boosted edge case remediation.

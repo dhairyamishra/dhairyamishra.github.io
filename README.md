@@ -39,6 +39,30 @@ All commands are run from the root of the project, from a terminal:
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
 
+## 🔐 Environment Variables
+
+Copy `.env.example` to `.env` and fill in the values:
+
+```bash
+cp .env.example .env
+```
+
+| Variable                  | Purpose                                                                   |
+| :------------------------ | :------------------------------------------------------------------------ |
+| `PUBLIC_WEB3FORMS_KEY`    | Web3Forms public access key used by the contact form. Public by design.   |
+
+For GitHub Pages deploys, add `PUBLIC_WEB3FORMS_KEY` as a repository secret (Settings → Secrets and variables → Actions). The build workflow (`.github/workflows/deploy.yml`) reads it at build time.
+
+## 🖼️ Open Graph Image
+
+The social-share card lives at `public/og.svg` (source of truth) and `public/og.png` (generated). Edit the SVG to customize, then regenerate the PNG:
+
+```bash
+npm run build:og
+```
+
+`npm run build` runs this step automatically before the Astro build.
+
 ## 📝 Recent Additions
 - **Media Lightbox & Galleries**: Added `MediaLightbox.astro` and `ProjectGallery.astro` to showcase project images seamlessly.
 - **Mermaid Markdown**: Added `MermaidBlock.astro` to render Mermaid diagrams directly inside markdown entries.

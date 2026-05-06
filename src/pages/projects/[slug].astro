@@ -1,25 +1,30 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
 import MediaGallery from '../../components/MediaGallery.astro';
 import MediaLightbox from '../../components/MediaLightbox.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type ProjectEntry = CollectionEntry<'projects'>;
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
-  return projects.map((project) => ({
+  return projects.map((project: ProjectEntry) => ({
     params: { slug: project.slug },
     props: { project },
   }));
 }
 
-const { project } = Astro.props;
+type Props = { project: ProjectEntry };
+
+const { project } = Astro.props as Props;
 const { Content } = await project.render();
 
 const allProjects = await getCollection('projects');
 const related = allProjects
-  .filter(p => p.slug !== project.slug && p.data.category === project.data.category)
+  .filter((p: ProjectEntry) => p.slug !== project.slug && p.data.category === project.data.category)
   .slice(0, 2);
 
 const categoryLabels: Record<string, string> = {
@@ -29,9 +34,18 @@ const categoryLabels: Record<string, string> = {
   'devops': 'DevOps',
   'open-source': 'Open Source',
 };
+
+// Normalize partial ISO dates (e.g. "2026-02") to full ISO so og article:published_time validates.
+const rawDate = project.data.date;
+const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
 ---
 
-<Layout title={`${project.data.title} — Dhairya Mishra`} description={project.data.description}>
+<Layout
+  title={`${project.data.title} — Dhairya Mishra`}
+  description={project.data.description}
+  ogType="article"
+  publishedTime={publishedTime}
+>
   <Navigation />
   
   <main id="main-content" class="py-20 md:py-28">
@@ -72,7 +86,7 @@ const categoryLabels: Record<string, string> = {
         <div class="flex flex-wrap gap-3">
           {project.data.github && (
             <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="btn-neon text-sm inline-flex items-center gap-2">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              <Icon name="simple-icons:github" class="w-4 h-4" aria-hidden="true" />
               GitHub
             </a>
           )}
@@ -92,7 +106,7 @@ const categoryLabels: Record<string, string> = {
 
         <!-- Tags -->
         <div class="flex flex-wrap gap-2 mt-6">
-          {project.data.tags.map(tag => (
+          {project.data.tags.map((tag: string) => (
             <span class="badge-neon text-[10px]">{tag}</span>
           ))}
         </div>
@@ -120,7 +134,7 @@ const categoryLabels: Record<string, string> = {
             Related <span class="text-gradient-rose">Projects</span>
           </h2>
           <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {related.map(rel => (
+            {related.map((rel: ProjectEntry) => (
               <a href={`/projects/${rel.slug}`} class="group card-neon-interactive flex flex-col">
                 <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold mb-3 opacity-40 group-hover:opacity-100 transition-opacity"></div>
                 <span class="badge-neon text-[10px] w-fit mb-2">{categoryLabels[rel.data.category] || rel.data.category}</span>
@@ -136,64 +150,3 @@ const categoryLabels: Record<string, string> = {
 
   <Footer />
 </Layout>
-
-<style is:global>
-  .prose-neon h2 {
-    @apply text-2xl font-heading font-bold text-text-bright mt-10 mb-4;
-  }
-  .prose-neon h3 {
-    @apply text-xl font-heading font-semibold text-text-bright mt-8 mb-3;
-  }
-  .prose-neon p {
-    @apply text-sm text-muted-light leading-relaxed mb-4;
-  }
-  .prose-neon ul {
-    @apply space-y-2 mb-6;
-  }
-  .prose-neon li {
-    @apply text-sm text-muted-light leading-relaxed pl-4 relative;
-  }
-  .prose-neon li::before {
-    content: '';
-    @apply absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-neon-rose/50;
-  }
-  .prose-neon ol {
-    @apply space-y-2 mb-6 list-decimal list-inside;
-  }
-  .prose-neon ol li {
-    @apply pl-0;
-  }
-  .prose-neon ol li::before {
-    content: none;
-  }
-  .prose-neon strong {
-    @apply text-text-bright font-semibold;
-  }
-  .prose-neon a {
-    @apply text-neon-rose/80 hover:text-neon-rose underline decoration-neon-rose/20 underline-offset-4 hover:decoration-neon-rose/60 transition-all;
-  }
-  .prose-neon code {
-    @apply text-neon-gold bg-neon-gold/10 px-1.5 py-0.5 rounded text-xs font-mono;
-  }
-  .prose-neon pre {
-    @apply bg-surface border border-white/5 rounded-lg p-4 mb-6 overflow-x-auto;
-  }
-  .prose-neon pre code {
-    @apply bg-transparent text-text p-0;
-  }
-  .prose-neon table {
-    @apply w-full mb-6 text-sm;
-  }
-  .prose-neon thead th {
-    @apply text-left text-neon-rose/80 font-heading font-semibold py-2 px-3 border-b border-white/10;
-  }
-  .prose-neon tbody td {
-    @apply py-2 px-3 text-muted-light border-b border-white/5;
-  }
-  .prose-neon hr {
-    @apply border-white/5 my-8;
-  }
-  .prose-neon blockquote {
-    @apply border-l-2 border-neon-rose/30 pl-4 italic text-muted my-4;
-  }
-</style>

@@ -36,9 +36,9 @@ export default {
         },
       },
       fontFamily: {
-        heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        heading: ['"Space Grotesk Variable"', '"Space Grotesk"', 'system-ui', 'sans-serif'],
+        body: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       backgroundImage: {
         'neon-mesh': 'radial-gradient(ellipse at 20% 50%, rgba(212,80,96,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(184,100,138,0.08) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.06) 0%, transparent 50%)',

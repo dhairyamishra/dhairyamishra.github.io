@@ -5,6 +5,7 @@ export interface Publication {
   institution: string;
   date: string;
   venueBrand: string;
+  url?: string;
 }
 
 export const publications: Publication[] = [
@@ -13,8 +14,9 @@ export const publications: Publication[] = [
     venue: 'ICML 2026 (Submission)',
     role: 'Researcher/Developer',
     institution: 'NYU Courant',
-    date: 'Sep 2025 – Present',
+    date: 'Aug 2025 – Present',
     venueBrand: 'icml',
+    url: 'https://arxiv.org/abs/2602.22208',
   },
   {
     title: 'Testaro: Web Accessibility Testing Framework',
@@ -23,5 +25,6 @@ export const publications: Publication[] = [
     institution: 'CVS Health',
     date: 'Oct 2023',
     venueBrand: 'acm',
+    url: 'https://arxiv.org/abs/2309.10167',
   },
 ];

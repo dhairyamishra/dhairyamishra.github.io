@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type Variant = 'icon-only' | 'icon-only-boxed' | 'icon-with-label';
+
+interface Props {
+  variant?: Variant;
+  iconClass?: string;
+  containerClass?: string;
+}
+
+const { variant = 'icon-only', iconClass, containerClass } = Astro.props;
+
+const links = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/dhairyamishra',
+    icon: 'simple-icons:github',
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://linkedin.com/in/dhairya-mishra/',
+    icon: 'simple-icons:linkedin',
+  },
+];
+
+const defaultContainerClass: Record<Variant, string> = {
+  'icon-only': 'flex items-center space-x-4',
+  'icon-only-boxed': 'flex items-center gap-4',
+  'icon-with-label': 'space-y-2',
+};
+
+const defaultIconClass: Record<Variant, string> = {
+  'icon-only': 'w-5 h-5',
+  'icon-only-boxed': 'w-5 h-5',
+  'icon-with-label': 'w-4 h-4',
+};
+
+const finalContainerClass = containerClass ?? defaultContainerClass[variant];
+const finalIconClass = iconClass ?? defaultIconClass[variant];
+---
+
+{variant === 'icon-with-label' ? (
+  <ul class={finalContainerClass}>
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-muted hover:text-neon-rose transition-colors inline-flex items-center gap-2"
+        >
+          <Icon name={link.icon} class={finalIconClass} aria-hidden="true" />
+          {link.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+) : (
+  <div class={finalContainerClass}>
+    {links.map((link) => (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={link.name}
+        class={
+          variant === 'icon-only-boxed'
+            ? 'w-10 h-10 rounded-lg bg-surface border border-white/5 flex items-center justify-center text-muted hover:text-neon-rose hover:border-neon-rose/20 transition-all'
+            : 'text-muted hover:text-neon-rose transition-colors'
+        }
+      >
+        <Icon name={link.icon} class={finalIconClass} aria-hidden="true" />
+      </a>
+    ))}
+  </div>
+)}

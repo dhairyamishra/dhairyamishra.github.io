@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
@@ -6,21 +8,34 @@ import BrandLogo from '../components/BrandLogo.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import MediaGallery from '../components/MediaGallery.astro';
 import MediaLightbox from '../components/MediaLightbox.astro';
-import { getCollection } from 'astro:content';
+import EducationCards from '../components/EducationCards.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { skills } from '../data/skills';
-import { education } from '../data/education';
+import profileImg from '../assets/profile.jpg';
+
+type ProjectEntry = CollectionEntry<'projects'>;
+type ExperienceEntry = CollectionEntry<'experience'>;
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
-  .filter(p => p.data.featured)
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .filter((p: ProjectEntry) => p.data.featured)
+  .sort((a: ProjectEntry, b: ProjectEntry) => b.data.date.localeCompare(a.data.date))
   .slice(0, 4);
 
 const allExperience = await getCollection('experience');
-const experience = allExperience.sort((a, b) => a.data.order - b.data.order);
+const sortedExperience = allExperience.sort(
+  (a: ExperienceEntry, b: ExperienceEntry) => a.data.order - b.data.order
+);
+const experience = await Promise.all(
+  sortedExperience.map(async (exp: ExperienceEntry) => ({
+    slug: exp.slug,
+    data: exp.data,
+    Content: (await exp.render()).Content,
+  }))
+);
 
 const stats = [
-  { value: '6+', label: 'Years Experience' },
+  { value: '5+', label: 'Years Experience' },
   { value: '8+', label: 'Projects Shipped' },
   { value: 'NYU', label: 'Courant M.S. CS' },
   { value: 'ICML', label: '2026 Submission' },
@@ -36,15 +51,9 @@ const affiliations = [
   { brand: 'icml', label: 'ICML' },
   { brand: 'arxiv', label: 'arXiv' },
 ];
-
-const companyBrand: Record<string, string> = {
-  'CVS Health': 'cvs',
-  'Aetna Health': 'aetna',
-  'Evidenza': 'evidenza',
-};
 ---
 
-<Layout title="Dhairya Mishra — Software Engineer & ML Researcher">
+<Layout title="Dhairya Mishra — Software Engineer & ML Researcher" ogType="profile">
   <Navigation />
   
   <main id="main-content">
@@ -59,9 +68,12 @@ const companyBrand: Record<string, string> = {
       <div class="section-container relative z-10 text-center py-20">
         <div class="flex flex-col md:flex-row md:items-center md:justify-center md:gap-10 mb-6">
           <div class="animate-fade-in md:order-2 flex-shrink-0 mb-6 md:mb-0">
-            <img
-              src="/profile.jpg"
+            <Image
+              src={profileImg}
               alt="Dhairya Mishra"
+              width={352}
+              height={352}
+              loading="eager"
               class="w-36 h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-neon-rose/30 shadow-[0_0_20px_rgba(212,80,96,0.15)] mx-auto"
             />
           </div>
@@ -77,7 +89,7 @@ const companyBrand: Record<string, string> = {
         
         <p class="text-lg md:text-xl text-muted-light max-w-2xl mx-auto mb-10 leading-relaxed">
           Building and deploying AI/ML production systems at scale — multimodal pipelines, LLM tooling, and distributed data infrastructure. 
-          6+ years shipping computer vision, NLP, and cloud-native services.
+          5+ years shipping computer vision, NLP, and cloud-native services.
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -130,7 +142,7 @@ const companyBrand: Record<string, string> = {
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProjects.map((project, i) => (
+          {featuredProjects.map((project: ProjectEntry, i: number) => (
             <ProjectCard
               project={project}
               maxTags={4}
@@ -206,9 +218,9 @@ const companyBrand: Record<string, string> = {
               
               <div class="card-neon group">
                 <div class="flex items-start gap-3 mb-2">
-                  {companyBrand[exp.data.company] && (
+                  {exp.data.brand && (
                     <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <BrandLogo brand={companyBrand[exp.data.company]} size="sm" />
+                      <BrandLogo brand={exp.data.brand} size="sm" />
                     </div>
                   )}
                   <div class="flex-1">
@@ -219,14 +231,9 @@ const companyBrand: Record<string, string> = {
                     <p class="text-sm text-neon-rose/70">{exp.data.company} &middot; {exp.data.location}</p>
                   </div>
                 </div>
-                <div class="text-sm text-muted leading-relaxed prose-sm">
-                  <Fragment set:html={(await exp.render()).Content ? '' : ''} />
+                <div class="prose-neon prose-neon-sm mt-3">
+                  <exp.Content />
                 </div>
-                {(exp.body || '').split('\n').filter(line => line.trim().startsWith('-')).map(line => (
-                  <p class="text-sm text-muted leading-relaxed mt-2 pl-3 border-l border-white/5">
-                    {line.trim().slice(2)}
-                  </p>
-                ))}
                 {exp.data.media && exp.data.media.length > 0 && (
                   <div class="mt-6 border-t border-white/5 pt-4">
                     <MediaGallery media={exp.data.media} />
@@ -250,28 +257,8 @@ const companyBrand: Record<string, string> = {
             <span class="text-gradient-rose">Education</span>
           </h2>
         </div>
-        
-        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {education.map((edu, i) => (
-            <div class={`reveal reveal-delay-${i + 1} card-neon group`}>
-              <div class="flex items-start gap-4">
-                <div class={`w-12 h-12 rounded-lg ${edu.brandBgClass} border flex items-center justify-center flex-shrink-0`}>
-                  <BrandLogo brand={edu.brand} size="lg" />
-                </div>
-                <div>
-                  <h3 class="font-heading font-semibold text-text-bright">{edu.institution}</h3>
-                  {edu.subtitle && <p class="text-sm text-neon-rose/70">{edu.subtitle}</p>}
-                  <p class="text-sm text-muted mt-1">{edu.degree}</p>
-                  <div class="flex items-center gap-3 mt-2 text-xs text-muted">
-                    <span>{edu.date}</span>
-                    {edu.gpa && <span class="text-neon-rose">GPA: {edu.gpa}</span>}
-                    {edu.location && <span>{edu.location}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+
+        <EducationCards compact />
       </div>
     </section>
 
@@ -288,7 +275,7 @@ const companyBrand: Record<string, string> = {
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact" class="btn-neon-fill">Get in Touch</a>
             <a href="https://github.com/dhairyamishra" target="_blank" rel="noopener noreferrer" class="btn-neon">
-              <svg class="inline-block w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              <Icon name="simple-icons:github" class="inline-block w-4 h-4 mr-2" aria-hidden="true" />
               View GitHub
             </a>
           </div>

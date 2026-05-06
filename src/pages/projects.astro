@@ -3,12 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type ProjectEntry = CollectionEntry<'projects'>;
 
 const allProjects = await getCollection('projects');
-const projects = allProjects.sort((a, b) => b.data.date.localeCompare(a.data.date));
+const projects = allProjects.sort(
+  (a: ProjectEntry, b: ProjectEntry) => b.data.date.localeCompare(a.data.date)
+);
 
-const categories = ['all', ...new Set(projects.map(p => p.data.category))];
+const categorySet = new Set<string>(
+  projects.map((p: ProjectEntry) => p.data.category as string)
+);
+const categories: string[] = ['all', ...categorySet];
 
 const categoryLabels: Record<string, string> = {
   'all': 'All',
@@ -54,7 +61,7 @@ const categoryLabels: Record<string, string> = {
       
       <!-- Project Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
-        {projects.map((project, i) => (
+        {projects.map((project: ProjectEntry, i: number) => (
           <ProjectCard
             project={project}
             maxTags={5}

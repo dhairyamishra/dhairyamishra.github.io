@@ -1,3 +1,8 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -304,5 +309,82 @@
 
   .media-lightbox__counter {
     @apply mt-2 text-xs text-muted font-mono;
+  }
+
+  /* --- Markdown prose (used by project bodies and experience timeline) --- */
+  .prose-neon h2 {
+    @apply text-2xl font-heading font-bold text-text-bright mt-10 mb-4;
+  }
+  .prose-neon h3 {
+    @apply text-xl font-heading font-semibold text-text-bright mt-8 mb-3;
+  }
+  .prose-neon p {
+    @apply text-sm text-muted-light leading-relaxed mb-4;
+  }
+  .prose-neon ul {
+    @apply space-y-2 mb-6;
+  }
+  .prose-neon li {
+    @apply text-sm text-muted-light leading-relaxed pl-4 relative;
+  }
+  .prose-neon li::before {
+    content: '';
+    @apply absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-neon-rose/50;
+  }
+  .prose-neon ol {
+    @apply space-y-2 mb-6 list-decimal list-inside;
+  }
+  .prose-neon ol li {
+    @apply pl-0;
+  }
+  .prose-neon ol li::before {
+    content: none;
+  }
+  .prose-neon strong {
+    @apply text-text-bright font-semibold;
+  }
+  .prose-neon a {
+    @apply text-neon-rose/80 hover:text-neon-rose underline decoration-neon-rose/20 underline-offset-4 hover:decoration-neon-rose/60 transition-all;
+  }
+  .prose-neon code {
+    @apply text-neon-gold bg-neon-gold/10 px-1.5 py-0.5 rounded text-xs font-mono;
+  }
+  .prose-neon pre {
+    @apply bg-surface border border-white/5 rounded-lg p-4 mb-6 overflow-x-auto;
+  }
+  .prose-neon pre code {
+    @apply bg-transparent text-text p-0;
+  }
+  .prose-neon table {
+    @apply w-full mb-6 text-sm;
+  }
+  .prose-neon thead th {
+    @apply text-left text-neon-rose/80 font-heading font-semibold py-2 px-3 border-b border-white/10;
+  }
+  .prose-neon tbody td {
+    @apply py-2 px-3 text-muted-light border-b border-white/5;
+  }
+  .prose-neon hr {
+    @apply border-white/5 my-8;
+  }
+  .prose-neon blockquote {
+    @apply border-l-2 border-neon-rose/30 pl-4 italic text-muted my-4;
+  }
+
+  /* Compact variant for embedded contexts (e.g. timeline cards) */
+  .prose-neon-sm h2 {
+    @apply text-base mt-4 mb-2;
+  }
+  .prose-neon-sm h3 {
+    @apply text-sm mt-3 mb-2;
+  }
+  .prose-neon-sm p {
+    @apply text-sm mb-2;
+  }
+  .prose-neon-sm ul {
+    @apply mb-2 space-y-1;
+  }
+  .prose-neon-sm li {
+    @apply text-sm leading-relaxed;
   }
 }

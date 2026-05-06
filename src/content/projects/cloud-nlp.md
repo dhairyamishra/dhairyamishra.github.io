@@ -1,8 +1,8 @@
 ---
-title: "Cloud NLP Classification Service"
-description: "Production-ready multi-model text classification service with zero-downtime model switching, deployed on GCP. DistilBERT achieves 96.57% accuracy."
+title: "Cloud NLP Classification on GCP"
+description: "Production-ready multi-model text classification service with zero-downtime model switching, deployed on GCP Compute Engine. DistilBERT trained to 96.57% accuracy on a 24,783-sample dataset; 326+ test suite at 100% pass rate."
 date: "2025-11"
-tags: ["NLP", "DistilBERT", "FastAPI", "Docker", "GCP", "PyTorch"]
+tags: ["NLP", "DistilBERT", "FastAPI", "Docker", "GCP", "PyTorch", "scikit-learn"]
 featured: true
 category: "full-stack"
 github: "https://github.com/dhairyamishra"

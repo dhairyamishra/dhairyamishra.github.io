@@ -37,6 +37,7 @@ const experience = defineCollection({
     startDate: z.string(),
     endDate: z.string(),
     order: z.number(),
+    brand: z.string().optional(),
     media: mediaSchema,
   }),
 });
