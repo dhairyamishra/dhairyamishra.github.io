@@ -9,19 +9,18 @@ github: "https://github.com/dhairyamishra"
 metric: "91.3%"
 metricLabel: "Accuracy"
 thumbnail: "/images/projects/mri-brain-tumor/thumbnail.svg"
-media:
-  - type: "diagram"
-    src: "/images/projects/mri-brain-tumor/architecture.svg"
-    alt: "Shared encoder architecture diagram"
-    caption: "Shared encoder architecture — single backbone for classification and segmentation"
-  - type: "image"
-    src: "/images/projects/mri-brain-tumor/results.svg"
-    alt: "Model performance metrics chart"
-    caption: "Performance benchmarks across classification, sensitivity, dice score, and inference speed"
-  - type: "mermaid"
-    code: "flowchart LR\n  A[MRI Input] --> B[Preprocessing]\n  B --> C[Shared Encoder]\n  C --> D{Tumor?}\n  D -->|Yes| E[Segmentation Head]\n  D -->|No| F[No Tumor]\n  E --> G[Pixel Mask]\n  C --> H[Classification Head]\n  H --> D"
-    caption: "Inference pipeline — conditional segmentation activated only when tumor is detected"
 ---
+
+import Hero from '../../components/mdx/Hero.astro';
+import Figure from '../../components/mdx/Figure.astro';
+import MermaidBlock from '../../components/MermaidBlock.astro';
+
+<Hero
+  src="/images/projects/mri-brain-tumor/architecture.svg"
+  alt="Shared encoder architecture diagram"
+  eyebrow="Architecture"
+  caption="Shared encoder architecture — single backbone for classification and segmentation"
+/>
 
 ## Overview
 
@@ -37,12 +36,33 @@ Built a production-ready multimodal MRI classification and segmentation pipeline
 | Model Parameters | **31.7M** |
 | Inference Speedup | **~40% faster** vs separate models |
 
+<Figure
+  src="/images/projects/mri-brain-tumor/results.svg"
+  alt="Model performance metrics chart"
+  caption="Performance benchmarks across classification, sensitivity, dice score, and inference speed"
+  width="wide"
+/>
+
 ## Key Features
 
 - **Shared Encoder Architecture**: Single backbone for both classification and segmentation reduces parameter count and inference time
 - **Conditional Segmentation**: Segmentation head activates only when tumor is detected, optimizing inference
 - **One-Command Pipeline**: Productized training-to-demo pipeline with automation across 6 stages, 4 smart prompts, and 25/25 passing tests
 - **API Endpoints**: 11 FastAPI endpoints for model inference, health checks, and data management
+
+## Inference Pipeline
+
+<MermaidBlock code={`flowchart LR
+  A[MRI Input] --> B[Preprocessing]
+  B --> C[Shared Encoder]
+  C --> D{Tumor?}
+  D -->|Yes| E[Segmentation Head]
+  D -->|No| F[No Tumor]
+  E --> G[Pixel Mask]
+  C --> H[Classification Head]
+  H --> D`} />
+
+Conditional segmentation activates only when tumor is detected, avoiding unnecessary compute on negative cases.
 
 ## Tech Stack
 

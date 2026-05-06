@@ -3,7 +3,6 @@ import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
-import MediaGallery from '../../components/MediaGallery.astro';
 import MediaLightbox from '../../components/MediaLightbox.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -114,18 +113,12 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
 
       <div class="divider-neon mb-12"></div>
 
-      {project.data.media && project.data.media.length > 0 && (
-        <div class="max-w-4xl mb-12">
-          <MediaGallery media={project.data.media} />
-        </div>
-      )}
-
-      <!-- Markdown / MDX Content (figures inline) -->
+      <!-- MDX Content (Hero / Figure / FigureGrid / VideoEmbed embedded inline) -->
       <div class="max-w-3xl prose-neon">
         <Content />
       </div>
 
-      <!-- Mounted once for both legacy gallery triggers and inline <Figure> triggers -->
+      <!-- Drives click-to-zoom for any inline <Figure> on this page -->
       <MediaLightbox />
 
       <!-- Related Projects -->

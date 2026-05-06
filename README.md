@@ -64,8 +64,8 @@ npm run build:og
 `npm run build` runs this step automatically before the Astro build.
 
 ## 📝 Recent Additions
-- **Media Lightbox & Galleries**: Added `MediaLightbox.astro` and `ProjectGallery.astro` to showcase project images seamlessly.
-- **Mermaid Markdown**: Added `MermaidBlock.astro` to render Mermaid diagrams directly inside markdown entries.
+- **Inline MDX Media**: All project and experience content lives in `.mdx` files. Drop `<Hero>`, `<Figure>`, `<FigureGrid>`, `<VideoEmbed>` (in `src/components/mdx/`) directly inside the prose to interweave images and video with the narrative. Click-to-zoom is wired through `MediaLightbox.astro`.
+- **Mermaid in MDX**: Use `<MermaidBlock code={`...`} />` from any `.mdx` file to render Mermaid diagrams inline.
 
 ## 📄 License
 This repository is primarily for my personal portfolio, but feel free to explore the code.

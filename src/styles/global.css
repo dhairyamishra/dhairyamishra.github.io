@@ -219,23 +219,7 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
   .reveal-delay-5 { transition-delay: 0.5s; }
 
-  /* --- Media Gallery --- */
-  .media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-
-  .media-grid-item--wide {
-    grid-column: 1 / -1;
-  }
-
-  @media (min-width: 640px) {
-    .media-grid-item--wide {
-      grid-column: span 2;
-    }
-  }
-
+  /* --- Media trigger (used by inline <Figure> click-to-zoom) --- */
   .media-trigger {
     @apply block cursor-zoom-in bg-transparent border-0 p-0;
   }
