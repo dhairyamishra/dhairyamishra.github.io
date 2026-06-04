@@ -10,12 +10,12 @@ export interface Publication {
 
 export const publications: Publication[] = [
   {
-    title: 'Solaris: Multi-Agent Video World Models',
-    venue: 'ICML 2026 (Submission)',
-    role: 'Researcher/Developer',
+    title: 'Solaris: Building a Multiplayer Video World Model in Minecraft',
+    venue: 'NeurIPS 2026 (Submission)',
+    role: 'Co-author / Researcher',
     institution: 'NYU Courant',
-    date: 'Aug 2025 – Present',
-    venueBrand: 'icml',
+    date: 'Aug 2025 – Feb 2026',
+    venueBrand: 'neurips',
     url: 'https://arxiv.org/abs/2602.22208',
   },
   {

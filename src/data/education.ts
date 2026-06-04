@@ -15,7 +15,7 @@ export const education: Education[] = [
     subtitle: 'Courant Institute',
     degree: 'M.S. Computer Science (AI)',
     date: 'May 2026',
-    gpa: '3.7',
+    gpa: '3.63',
     brand: 'nyu',
     brandBgClass: 'bg-neon-violet/10 border-neon-violet/20',
   },

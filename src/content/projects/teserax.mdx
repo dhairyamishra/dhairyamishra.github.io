@@ -1,8 +1,8 @@
 ---
 title: "Teserax.io — Agentic Knowledge-Graph Application"
-description: "Built from 0 to 1 as a live deployed agentic knowledge-graph application. A DAG-safe agentic workflow engine auto-orchestrates tool-based pipelines on a React Flow canvas. Brave Search Auto-RAG grounds every response in real-time cited sources. Multi-model support with fallback routing between local and cloud models, MCP integration for tool connectivity, Hono/TypeScript backend with Zod validation, 226 Vitest tests and Playwright E2E coverage — deployed on EC2 and Cloudflare."
+description: "Built from 0 to 1 as a live deployed agentic knowledge-graph application. A DAG-safe agentic workflow engine auto-orchestrates tool-based pipelines on a React Flow canvas. Brave Search Auto-RAG grounds every response in real-time cited sources. Multi-model support with fallback routing between local and cloud models, MCP integration for tool connectivity, FastAPI backend with TypeScript and Zod validation, 226 Playwright E2E tests — deployed on EC2 and Cloudflare."
 date: "2026-02"
-tags: ["React", "React Flow", "Hono", "Zustand", "Supabase", "LLM", "GPT-4", "Grok", "Playwright", "Docker", "MCP", "Brave Search"]
+tags: ["React", "React Flow", "FastAPI", "TypeScript", "Zod", "Zustand", "Supabase", "LLM", "GPT-4", "Grok", "Playwright", "Docker", "MCP", "Brave Search"]
 featured: true
 category: "full-stack"
 github: "https://github.com/dhairyamishra/teserax"
@@ -51,16 +51,16 @@ The AI orchestrator adds a second path: when auto-analyze is enabled, the `orche
 
 ## Infrastructure & Quality
 
-- **API Server**: Hono framework (TypeScript) proxying LLM calls (keys stay server-side), with Zod-validated structured output, ES256/HS256 JWT auth, sliding-window rate limiting (100 req/hr), CSP/HSTS security headers, audit logging, and 5MB body / 100k character input limits
+- **API Server**: FastAPI backend (TypeScript/Python) proxying LLM calls (keys stay server-side), with Zod-validated structured output, ES256/HS256 JWT auth, sliding-window rate limiting (100 req/hr), CSP/HSTS security headers, audit logging, and 5MB body / 100k character input limits
 - **Hosting**: Deployed on EC2 behind Cloudflare with Origin Certificate SSL, Nginx TLS 1.2/1.3, real IP restoration, Docker multi-stage builds, and a 7-step SSH deploy pipeline with swap management and health checks
-- **Testing**: 226 Vitest tests across 22 files (API, component, prompt, stress, golden set) and Playwright end-to-end spec files covering a11y, auth, BYOK, canvas interaction, cloud persistence, export/import, keyboard shortcuts, and more — with mock LLM server, Stripe/Supabase stubs, and JWT factory
+- **Testing**: 226 Playwright end-to-end tests covering a11y, auth, BYOK, canvas interaction, cloud persistence, export/import, keyboard shortcuts, and more — with mock LLM server, Stripe/Supabase stubs, and JWT factory
 - **CI/CD**: GitHub Actions quality gate (lint, typecheck, build, unit tests, E2E, security audit) plus deploy workflow with Cloudflare Origin Cert install and concurrency groups
 - **Observability**: In-memory execution trace collector, metrics API, Sentry error tracking (frontend + backend), and privacy-respecting Plausible analytics
 
 ## Tech Stack
 
 - **Frontend**: React 18, React Flow v12 (`@xyflow/react`), Zustand + Immer, Tailwind CSS + shadcn/ui, Framer Motion, react-markdown + remark-gfm, cmdk, sonner
-- **Backend**: Hono (Node.js/TypeScript), OpenAI SDK + xAI/Grok via `OpenAICompatAdapter`, Zod (validation + structured output schemas), tiktoken, Drizzle ORM, Supabase PostgreSQL, AES-256-GCM encryption
+- **Backend**: FastAPI, TypeScript, OpenAI SDK + xAI/Grok via `OpenAICompatAdapter`, Zod (validation + structured output schemas), tiktoken, Drizzle ORM, Supabase PostgreSQL, AES-256-GCM encryption
 - **Integrations**: Brave Search API (Auto-RAG), MCP (tool connectivity), Grok Imagine (image generation), pdfjs-dist (client-side PDF parsing)
-- **Testing**: Vitest (226 unit/integration tests across 22 files), Playwright (multi-browser E2E + mobile)
+- **Testing**: Playwright (226 E2E tests, multi-browser + mobile)
 - **Infra**: Docker + Docker Compose, Nginx, Cloudflare, EC2, GitHub Actions CI/CD, Supabase Auth + RLS
