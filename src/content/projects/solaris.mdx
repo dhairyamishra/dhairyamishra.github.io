@@ -1,14 +1,14 @@
 ---
 title: "Solaris — Multiplayer Video World Model in Minecraft"
-description: "First multiplayer video world model generating consistent first-person observations for two players simultaneously, trained on 12.6M frames of coordinated Minecraft gameplay. Published on arXiv, NYU."
+description: "First multiplayer video world model generating consistent first-person observations for two players simultaneously. NeurIPS 2026 submission. SolarisEngine data collection system captures 12.64M synchronized multiplayer frames. Checkpointed Self Forcing enables long-horizon training at reduced memory cost with 36% FID improvement. Multi-agent evaluation framework using VLM-as-Judge methodology. arXiv:2602.22208, NYU."
 date: "2026-02"
-tags: ["JAX", "Diffusion Transformer", "Multiplayer", "Minecraft", "Computer Vision", "World Models"]
+tags: ["JAX", "Diffusion Transformer", "Multiplayer", "Minecraft", "Computer Vision", "World Models", "NeurIPS"]
 featured: true
 category: "research"
 paperUrl: "https://arxiv.org/abs/2602.22208"
 liveUrl: "https://solaris-wm.github.io/"
-metric: "12.6M"
-metricLabel: "Multiplayer Frames"
+metric: "12.64M"
+metricLabel: "Synchronized Frames"
 ---
 
 import Hero from '../../components/mdx/Hero.astro';
@@ -24,7 +24,7 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
 ## Overview
 
-Solaris is the **first multiplayer video world model**, generating consistent first-person observations for two players simultaneously in Minecraft. We trained it on **12.6M frames** of coordinated gameplay collected through SolarisEngine, a scalable data collection framework we built from scratch. I authored the episode creation logic and action-based gameplay routines — carefully curated to cover the full distribution of multiplayer interactions the model needed to learn, from cooperative building to adversarial combat, movement, and mining. The system uses a staged training pipeline combining bidirectional, causal, and Self Forcing objectives, and outperforms existing baselines across all evaluation categories. Everything is open-sourced: engine, models, datasets, and evaluation benchmarks.
+Solaris is the **first multiplayer video world model**, generating consistent first-person observations for two players simultaneously in Minecraft. A **NeurIPS 2026 submission**, it was trained on **12.64M synchronized frames** of coordinated gameplay collected through SolarisEngine — a purpose-built multiplayer data collection system. I authored the episode creation logic and action-based gameplay routines, carefully curated to cover the full distribution of multiplayer interactions the model needed to learn, from cooperative building to adversarial combat, movement, and mining. The system uses a staged training pipeline combining bidirectional, causal, and Self Forcing objectives, and outperforms existing baselines across all evaluation categories. Everything is open-sourced: engine, models, datasets, and evaluation benchmarks. Paper: [arXiv:2602.22208](https://arxiv.org/abs/2602.22208).
 
 ## Key Contributions
 
@@ -37,8 +37,8 @@ Solaris is the **first multiplayer video world model**, generating consistent fi
 
 - **SolarisEngine**: A scalable multiplayer data collection system built on Mineflayer with Docker-based parallel orchestration, producing **9,240 episodes** and **12.64M action-annotated frames** at 20 FPS — establishing the world's first open-source multiplayer world-model dataset. I designed and implemented the episode creation logic — highly curated gameplay routines purpose-built to satisfy each training requirement of the model, covering cooperative building, adversarial PvP/PvE combat, coordinated movement, and mining with varied terrain, weather, and time-of-day conditions to maximize visual diversity. Authored 30 episode types with deterministic YAML specs and automated QC (visibility %, distance, FPS) achieving a **92% QC pass rate**.
 - **Multiplayer Architecture**: Modified Diffusion Transformer blocks with interleaved multiplayer self-attention, per-player 3D rotary position embeddings, and zero-init learned player ID gating. Built on MatrixGame 2.0. **Reduced cross-view mismatch by 22%** over all baselines.
-- **Checkpointed Self Forcing**: A memory-efficient Self Forcing variant that decouples autoregressive rollout from backpropagation via cached frame recomputation, cutting training memory from O(Lt·Ls) to O(Lt) and enabling long-horizon video generation at scale. I contributed to the training pipeline supporting this stage by curating targeted evaluation episodes used to diagnose and eliminate visual artifacts during Self Forcing training, helping dial in stable long-horizon generation.
-- **Solaris Eval**: A multiplayer evaluation framework testing 5 capabilities — movement, grounding, memory, building, and consistency — using VLM-as-judge scoring across 7 held-out ground-truth episodes, **achieving ≥92% ground-truth accuracy**. Proposes new metrics beyond PSNR/LPIPS/FID: temporal-LPIPS, Identity Consistency, Cross-View Consistency, Semantic Causality, and Reappearance Latency.
+- **Checkpointed Self Forcing**: A memory-efficient Self Forcing variant for long-horizon training at reduced memory cost — decouples autoregressive rollout from backpropagation via cached frame recomputation, cutting training memory from O(Lt·Ls) to O(Lt) and enabling long-horizon video generation at scale, achieving a **36% FID improvement** over baselines. I contributed to the training pipeline supporting this stage by curating targeted evaluation episodes used to diagnose and eliminate visual artifacts during Self Forcing training, helping dial in stable long-horizon generation.
+- **Solaris Eval**: A multi-agent evaluation framework using **VLM-as-Judge methodology**, testing 5 capabilities — movement consistency, spatial memory grounding, building, and cross-view coherence — scored by a VLM across 7 held-out ground-truth episodes, **achieving ≥92% ground-truth accuracy**. Proposes new metrics beyond PSNR/LPIPS/FID: temporal-LPIPS, Identity Consistency, Cross-View Consistency, Semantic Causality, and Reappearance Latency.
 
 ## Architecture
 
