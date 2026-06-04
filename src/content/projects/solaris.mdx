@@ -16,7 +16,7 @@ import Figure from '../../components/mdx/Figure.astro';
 import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
 <Hero
-  src="https://solaris-wm.github.io/static/img/solaris-system-outer.png"
+  src="/images/projects/solaris/solaris-diagram.png"
   alt="SolarisEngine framework architecture overview"
   eyebrow="System Overview"
   caption="SolarisEngine — end-to-end multiplayer data, training, and evaluation framework"
@@ -26,11 +26,22 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
 Solaris is the **first multiplayer video world model**, generating consistent first-person observations for two players simultaneously in Minecraft. A **NeurIPS 2026 submission**, it was trained on **12.64M synchronized frames** of coordinated gameplay collected through SolarisEngine — a purpose-built multiplayer data collection system. I authored the episode creation logic and action-based gameplay routines, carefully curated to cover the full distribution of multiplayer interactions the model needed to learn, from cooperative building to adversarial combat, movement, and mining. The system uses a staged training pipeline combining bidirectional, causal, and Self Forcing objectives, and outperforms existing baselines across all evaluation categories. Everything is open-sourced: engine, models, datasets, and evaluation benchmarks. Paper: [arXiv:2602.22208](https://arxiv.org/abs/2602.22208).
 
+<FigureGrid cols={2} width="wide" caption="Solaris generating synchronized first-person observations for two players simultaneously in Minecraft.">
+  <Figure
+    src="/images/projects/solaris/solaris-demo-1.gif"
+    alt="Solaris multiplayer world model demo — player one perspective"
+  />
+  <Figure
+    src="/images/projects/solaris/solaris-demo-2.gif"
+    alt="Solaris multiplayer world model demo — player two perspective"
+  />
+</FigureGrid>
+
 ## Key Contributions
 
 <Figure
-  src="https://solaris-wm.github.io/static/img/dataset-plots.png"
-  alt="Dataset statistics across 12.6M frames broken down by task category, episode type, and length"
+  src="/images/projects/solaris/solaris-frames.png"
+  alt="Dataset statistics across 12.64M frames broken down by task category, episode type, and length"
   align="right"
   caption="Dataset breakdown — 9,240 episodes across 30 episode types, 92% QC pass rate"
 />
@@ -51,11 +62,11 @@ The system uses a Diffusion Transformer (DiT) with flow matching, initialized fr
 
 <FigureGrid cols={2} width="wide" caption="Left: DiT block modified for multiplayer visual interleaving. Right: peak HBM memory for naive Self Forcing vs the Checkpointed variant.">
   <Figure
-    src="https://solaris-wm.github.io/static/img/arch.png"
+    src="/images/projects/solaris/solaris-ml-diagram.png"
     alt="Solaris model architecture diagram showing modified DiT block with multiplayer interleaving"
   />
   <Figure
-    src="https://solaris-wm.github.io/static/img/memory_plot.png"
+    src="/images/projects/solaris/memory-plot.png"
     alt="Peak HBM memory usage comparing naive Self Forcing to Checkpointed Self Forcing"
   />
 </FigureGrid>
