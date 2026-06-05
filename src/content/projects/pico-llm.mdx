@@ -10,6 +10,9 @@ metric: "73.21%"
 metricLabel: "Token Accuracy"
 ---
 
+import Figure from '../../components/mdx/Figure.astro';
+import FigureGrid from '../../components/mdx/FigureGrid.astro';
+
 ## Overview
 
 A modular research pipeline for training and evaluating small-scale language model architectures, built for NYU's CSCI-GA 2565 Machine Learning course. The pipeline supports K-Gram MLP, LSTM, and KV-cache Transformer models with systematic cross-run analysis across 22+ experiment configurations.
@@ -23,6 +26,64 @@ A modular research pipeline for training and evaluating small-scale language mod
 | Token Accuracy | **73.21%** |
 
 [See full result interpretation in the README →](https://github.com/dhairyamishra/NYU-PICO-LLM-ML-CSCI-GA2565?tab=readme-ov-file#-example-how-to-interpret-results)
+
+## Model Comparisons
+
+<FigureGrid cols={2} width="wide" caption="Left: Token accuracy vs validation loss across all runs — KV-cache Transformers dominate the high-accuracy region. Right: Pareto frontier overlay identifying the 10 optimal runs.">
+  <Figure
+    src="/images/projects/pico-llm/jointplot_tokenacc_valloss.png"
+    alt="Scatter plot of token accuracy vs validation loss for all experiment runs, colored by model type"
+  />
+  <Figure
+    src="/images/projects/pico-llm/pareto_frontier_overlay.png"
+    alt="Pareto frontier overlay on token accuracy vs validation loss, highlighting the 10 Pareto-optimal runs"
+  />
+</FigureGrid>
+
+<Figure
+  src="/images/projects/pico-llm/perplexity_vs_accuracy_log.png"
+  alt="Perplexity vs token accuracy on a log scale, showing exponential drop in perplexity as accuracy improves"
+  width="wide"
+  caption="Perplexity vs token accuracy (log scale) — the KV-cache Transformer achieves the lowest perplexity at highest accuracy, with LSTM and K-Gram MLP trailing significantly."
+/>
+
+## Hyperparameter Analysis
+
+<Figure
+  src="/images/projects/pico-llm/correlation_matrix.png"
+  alt="Correlation matrix of hyperparameters vs metrics — token_accuracy strongly anti-correlates with val_loss and perplexity"
+  width="wide"
+  caption="Hyperparameter correlation matrix — token_accuracy (−0.80 with val_loss) is the strongest signal; embed_size and block_size show meaningful positive correlation with inner_layers and batch_size."
+/>
+
+<FigureGrid cols={2} width="wide" caption="Validation loss heatmaps (Embed Size vs k) per model type — larger embedding sizes consistently dominate for both K-Gram MLP and KV-cache Transformer.">
+  <Figure
+    src="/images/projects/pico-llm/val_loss_heatmap_kgram_mlp_seq_embed_k.png"
+    alt="Heatmap of validation loss by embedding size and k for K-Gram MLP — embed=256 achieves lowest loss"
+  />
+  <Figure
+    src="/images/projects/pico-llm/val_loss_heatmap_kvcache_transformer_embed_k.png"
+    alt="Heatmap of validation loss by embedding size and k for KV-cache Transformer — embed=64 with high k achieves 1.97"
+  />
+</FigureGrid>
+
+<FigureGrid cols={2} width="wide" caption="Left: LSTM validation loss heatmap — higher k and embed size reduce loss but performance lags behind the Transformer. Right: Validation loss vs embed size by activation function — GELU consistently outperforms ReLU across all model types.">
+  <Figure
+    src="/images/projects/pico-llm/val_loss_heatmap_lstm_seq_embed_k.png"
+    alt="Heatmap of validation loss by embedding size and k for LSTM — more noisy than Transformer or MLP"
+  />
+  <Figure
+    src="/images/projects/pico-llm/val_loss_vs_embed_size_by_activation.png"
+    alt="Validation loss vs embedding size split by activation function (GELU vs ReLU) for each model type"
+  />
+</FigureGrid>
+
+<Figure
+  src="/images/projects/pico-llm/regression_residuals.png"
+  alt="Residuals vs predicted validation loss — LSTM shows the most systematic over-prediction at low loss values"
+  width="wide"
+  caption="Regression residuals vs predicted validation loss — LSTM runs show the largest systematic bias; KV-cache Transformer residuals are tightest around zero, confirming better predictability."
+/>
 
 ## Key Features
 
