@@ -13,6 +13,7 @@ thumbnail: "/images/projects/mri-brain-tumor/thumbnail.svg"
 
 import Hero from '../../components/mdx/Hero.astro';
 import Figure from '../../components/mdx/Figure.astro';
+import FigureGrid from '../../components/mdx/FigureGrid.astro';
 import MermaidBlock from '../../components/MermaidBlock.astro';
 
 <Hero
@@ -37,18 +38,31 @@ Built a production-ready multimodal MRI classification and segmentation pipeline
 | Inference Speedup | **~40% faster** vs separate models |
 
 <Figure
-  src="/images/projects/mri-brain-tumor/results.svg"
-  alt="Model performance metrics chart"
-  caption="Performance benchmarks across classification, sensitivity, dice score, and inference speed"
+  src="/images/projects/mri-brain-tumor/multitask-training-phases.png"
+  alt="Bar chart showing classification accuracy and segmentation Dice score across three training phases: P2.1 Seg Only, P2.2 Cls Only, P2.3 Multi-Task"
   width="wide"
+  caption="Multi-task training progression — P2.3 (joint classification + segmentation) achieves the best classification accuracy while maintaining competitive Dice score."
 />
 
-## Key Features
+## Live App — Detection & Segmentation
 
-- **Shared Encoder Architecture**: Single backbone for both classification and segmentation reduces parameter count and inference time
-- **Conditional Segmentation**: Segmentation head activates only when tumor is detected, optimizing inference
-- **One-Command Pipeline**: Productized training-to-demo pipeline with automation across 6 stages, 4 smart prompts, and 25/25 passing tests
-- **API Endpoints**: 11 FastAPI endpoints for model inference, health checks, and data management
+<FigureGrid cols={2} width="wide" caption="SliceWise Streamlit app — real-time tumor detection with binary mask, probability map, and overlay outputs from a single MRI slice.">
+  <Figure
+    src="/images/projects/mri-brain-tumor/app-brats-overlay-full.png"
+    alt="SliceWise app showing tumor Detected at 100% probability with Original, Binary Mask, Probability Map, and Overlay panels"
+  />
+  <Figure
+    src="/images/projects/mri-brain-tumor/app-brats-overlay.png"
+    alt="SliceWise results panel showing detection confidence, binary mask, and probability map side-by-side"
+  />
+</FigureGrid>
+
+<Figure
+  src="/images/projects/mri-brain-tumor/app-all-results.png"
+  alt="Comprehensive view in SliceWise app showing Binary Mask, Probability Map, Overlay, Grad-CAM heatmap, and Segmentation output"
+  width="wide"
+  caption="Comprehensive visualization mode — Binary Mask, Probability Map, Overlay, Grad-CAM attention heatmap, and pixel-level Segmentation mask rendered simultaneously."
+/>
 
 ## Inference Pipeline
 
@@ -64,9 +78,59 @@ Built a production-ready multimodal MRI classification and segmentation pipeline
 
 Conditional segmentation activates only when tumor is detected, avoiding unnecessary compute on negative cases.
 
+## Grad-CAM Explainability
+
+<FigureGrid cols={2} width="wide" caption="Grad-CAM visualization — the heatmap shows which regions drove the classification decision. Red/Yellow = high importance, Blue = low importance.">
+  <Figure
+    src="/images/projects/mri-brain-tumor/gradcam-demo.png"
+    alt="SliceWise Grad-CAM UI showing original MRI slice alongside the Grad-CAM heatmap overlay"
+  />
+  <Figure
+    src="/images/projects/mri-brain-tumor/gradcam-heatmap-closeup.png"
+    alt="Close-up Grad-CAM heatmap showing high-intensity red region precisely over the tumor mass"
+  />
+</FigureGrid>
+
+<FigureGrid cols={2} width="wide" caption="Effect of brain masking on Grad-CAM focus — masking removes skull/background signal and tightens attention to the tumor region. Top: without masking. Bottom: with masking.">
+  <Figure
+    src="/images/projects/mri-brain-tumor/gradcam-kaggle-masking.png"
+    alt="Grad-CAM brain masking comparison on Kaggle dataset — top row without masking, bottom row with masking applied"
+  />
+  <Figure
+    src="/images/projects/mri-brain-tumor/gradcam-brats-masking.png"
+    alt="Grad-CAM brain masking comparison on BraTS dataset — masking sharpens heatmap focus on tumor sub-regions"
+  />
+</FigureGrid>
+
+<Figure
+  src="/images/projects/mri-brain-tumor/gradcam-cross-dataset-inaccuracy.png"
+  alt="Grad-CAM masking comparison on Kaggle showing inaccuracy when intercrossing datasets — attention leaks outside brain boundary"
+  width="wide"
+  caption="Cross-dataset inaccuracy — when a model trained on BraTS is evaluated on Kaggle slices without re-masking, Grad-CAM attention leaks outside the brain boundary, highlighting the importance of dataset-aligned preprocessing."
+/>
+
+## Brain Masking Quality Control
+
+<Figure
+  src="/images/projects/mri-brain-tumor/robust-masking-qc.png"
+  alt="Robust masking QC sheet showing 4 passed and 4 failed cases with area percentage, border touch metrics, and pass/fail status"
+  width="wide"
+  caption="Automated masking QC pipeline — each slice is evaluated on brain area coverage and border-touch thresholds. Cases failing the quality gate (area too large, border intrusion) are flagged and excluded from model input."
+/>
+
+## Key Features
+
+- **Shared Encoder Architecture**: Single backbone for both classification and segmentation reduces parameter count and inference time
+- **Conditional Segmentation**: Segmentation head activates only when tumor is detected, optimizing inference
+- **Grad-CAM Explainability**: Per-prediction attention heatmaps with brain-mask-aware focus, rendered live in the Streamlit app
+- **Robust Brain Masking**: Automated QC pipeline filters slices on area coverage and border-touch thresholds before model input
+- **One-Command Pipeline**: Productized training-to-demo pipeline with automation across 6 stages, 4 smart prompts, and 25/25 passing tests
+- **API Endpoints**: 11 FastAPI endpoints for model inference, health checks, and data management
+
 ## Tech Stack
 
-- **ML**: PyTorch, torchvision, BraTS dataset
-- **API**: FastAPI, Uvicorn, Pydantic
+- **ML**: PyTorch, EfficientNet, U-Net, BraTS dataset
+- **Explainability**: Grad-CAM with brain-mask-aware preprocessing
+- **App**: Streamlit frontend, FastAPI backend, Uvicorn, Pydantic
 - **Testing**: pytest with 25/25 test coverage
 - **Optimization**: Conditional inference, shared encoder, mixed precision
