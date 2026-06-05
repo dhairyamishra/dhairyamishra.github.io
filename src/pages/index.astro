@@ -6,32 +6,17 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import MediaLightbox from '../components/MediaLightbox.astro';
-import EducationCards from '../components/EducationCards.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { skills } from '../data/skills';
 import profileImg from '../assets/profile.jpg';
 
 type ProjectEntry = CollectionEntry<'projects'>;
-type ExperienceEntry = CollectionEntry<'experience'>;
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
   .filter((p: ProjectEntry) => p.data.featured)
   .sort((a: ProjectEntry, b: ProjectEntry) => b.data.date.localeCompare(a.data.date))
   .slice(0, 4);
-
-const allExperience = await getCollection('experience');
-const sortedExperience = allExperience.sort(
-  (a: ExperienceEntry, b: ExperienceEntry) => a.data.order - b.data.order
-);
-const experience = await Promise.all(
-  sortedExperience.map(async (exp: ExperienceEntry) => ({
-    slug: exp.slug,
-    data: exp.data,
-    Content: (await exp.render()).Content,
-  }))
-);
 
 const stats = [
   { value: '5+', label: 'Years Experience' },
@@ -94,6 +79,10 @@ const affiliations = [
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/projects" class="btn-neon-fill">
             View Projects
+            <svg class="inline-block w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="/experience" class="btn-neon">
+            Experience
             <svg class="inline-block w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
           </a>
           <a href="/contact" class="btn-neon">Get in Touch</a>
@@ -193,66 +182,6 @@ const affiliations = [
             </div>
           ))}
         </div>
-      </div>
-    </section>
-
-    <div class="divider-neon-animated"></div>
-
-    <!-- Experience Timeline -->
-    <section class="py-20 md:py-28">
-      <div class="section-container">
-        <div class="reveal text-center mb-14">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Experience <span class="text-gradient-rose">Timeline</span>
-          </h2>
-        </div>
-        
-        <div class="relative max-w-3xl mx-auto">
-          <!-- Vertical thread line -->
-          <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-rose/40 via-neon-violet/30 to-transparent"></div>
-          
-          {experience.map((exp, i) => (
-            <div class={`reveal reveal-delay-${i + 1} relative pl-12 md:pl-20 pb-12 last:pb-0`}>
-              <div class="absolute left-[11px] md:left-[27px] top-1 w-3 h-3 rounded-full bg-neon-rose shadow-neon-sm border-2 border-base"></div>
-              
-              <div class="card-neon group">
-                <div class="flex items-start gap-3 mb-2">
-                  {exp.data.brand && (
-                    <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <BrandLogo brand={exp.data.brand} size="sm" />
-                    </div>
-                  )}
-                  <div class="flex-1">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                      <h3 class="text-lg font-heading font-semibold text-text-bright">{exp.data.role}</h3>
-                      <span class="text-xs text-muted font-mono">{exp.data.startDate} — {exp.data.endDate}</span>
-                    </div>
-                    <p class="text-sm text-neon-rose/70">{exp.data.company} &middot; {exp.data.location}</p>
-                  </div>
-                </div>
-                <div class="prose-neon prose-neon-sm mt-3">
-                  <exp.Content />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <MediaLightbox />
-      </div>
-    </section>
-
-    <div class="divider-neon-animated"></div>
-
-    <!-- Education -->
-    <section class="py-20 md:py-28">
-      <div class="section-container">
-        <div class="reveal text-center mb-14">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            <span class="text-gradient-rose">Education</span>
-          </h2>
-        </div>
-
-        <EducationCards compact />
       </div>
     </section>
 
