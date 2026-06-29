@@ -195,9 +195,9 @@ Use this as the live execution checklist. We will mark items complete as we proc
 
 ### Experience
 
-- [ ] Add a summary panel to `src/pages/experience.astro`
-- [ ] Improve timeline content scanability
-- [ ] Surface strongest outcomes and domains above the timeline
+- [x] Add a summary panel to `src/pages/experience.astro`
+- [x] Improve timeline content scanability
+- [x] Surface strongest outcomes and domains above the timeline
 
 ### Copy and Positioning
 
