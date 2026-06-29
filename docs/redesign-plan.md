@@ -187,11 +187,11 @@ Use this as the live execution checklist. We will mark items complete as we proc
 
 ### Projects
 
-- [ ] Redesign `src/components/ProjectCard.astro`
-- [ ] Add stronger project filters on `src/pages/projects.astro`
+- [x] Redesign `src/components/ProjectCard.astro`
+- [x] Add stronger project filters on `src/pages/projects.astro`
 - [ ] Define and apply a standard narrative structure for project MDX pages
-- [ ] Highlight top flagship projects visually and structurally
-- [ ] Surface metrics and role ownership more prominently
+- [x] Highlight top flagship projects visually and structurally
+- [x] Surface metrics and role ownership more prominently
 
 ### Experience
 

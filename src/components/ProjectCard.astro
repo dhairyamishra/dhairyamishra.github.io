@@ -12,6 +12,12 @@ interface Props {
       metricLabel?: string;
     };
   };
+  signal?: {
+    role: string;
+    proof: string;
+    filters: string[];
+    featuredLabel?: string;
+  };
   maxTags?: number;
   showReadMore?: boolean;
   revealClass?: string;
@@ -26,18 +32,24 @@ const categoryLabels: Record<string, string> = {
   'open-source': 'Open Source',
 };
 
-const { project, maxTags = 4, showReadMore = false, revealClass = '', extraClass = '' } = Astro.props;
+const { project, signal, maxTags = 4, showReadMore = false, revealClass = '', extraClass = '' } = Astro.props;
 ---
 
 <a
   href={`/projects/${project.slug}`}
   data-category={project.data.category}
+  data-filters={signal?.filters.join(' ') ?? project.data.category}
   class={`${revealClass} group card-neon-interactive flex flex-col ${extraClass}`.trim()}
 >
   <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold mb-4 opacity-50 group-hover:opacity-100 transition-opacity"></div>
   
-  <div class="flex items-start justify-between mb-3">
-    <span class="badge-neon text-[10px]">{categoryLabels[project.data.category] || project.data.category}</span>
+  <div class="flex items-start justify-between gap-3 mb-3">
+    <div class="flex flex-wrap gap-2">
+      <span class="badge-neon text-[10px]">{categoryLabels[project.data.category] || project.data.category}</span>
+      {signal?.featuredLabel && (
+        <span class="badge-neon-gold text-[10px]">{signal.featuredLabel}</span>
+      )}
+    </div>
     <div class="flex items-start gap-3">
       {project.data.metric && (
         <div class="text-right">
@@ -63,6 +75,14 @@ const { project, maxTags = 4, showReadMore = false, revealClass = '', extraClass
   <p class="text-sm text-muted leading-relaxed mb-4 flex-grow">
     {project.data.description}
   </p>
+
+  {signal?.role && (
+    <div class="mb-3 rounded-xl border border-black/5 bg-base px-3 py-3">
+      <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Ownership</p>
+      <p class="mt-1 text-sm font-medium text-text">{signal.role}</p>
+      <p class="mt-2 text-xs leading-relaxed text-muted">{signal.proof}</p>
+    </div>
+  )}
   
   <div class={`flex flex-wrap gap-1.5 mt-auto ${showReadMore ? 'mb-3' : ''}`}>
     {project.data.tags.slice(0, maxTags).map(tag => (
