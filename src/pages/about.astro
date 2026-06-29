@@ -10,39 +10,38 @@ import profileImg from '../assets/profile.jpg';
 
 ---
 
-<Layout title="About — Dhairya Mishra" description="My story, engineering philosophy, and research background." ogType="profile">
+<Layout title="About — Dhairya Mishra" description="Engineering philosophy, research interests, and the operating principles behind my work." ogType="profile">
   <Navigation />
   
   <main id="main-content" class="py-20 md:py-28">
-    <!-- Hero & Introduction -->
-    <section class="section-container mb-16 relative">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-neon-rose/5 rounded-full blur-3xl -z-10"></div>
+    <section class="section-container relative mb-16">
+      <div class="absolute top-0 right-0 -z-10 h-64 w-64 rounded-full bg-neon-rose/5 blur-3xl"></div>
       
       <div class="max-w-4xl flex flex-col md:flex-row md:items-center md:gap-16">
-        <div class="flex-shrink-0 mb-10 md:mb-0 md:order-2">
+        <div class="mb-10 flex-shrink-0 md:order-2 md:mb-0">
           <Image
             src={profileImg}
             alt="Dhairya Mishra"
             width={576}
             height={576}
             loading="eager"
-            class="w-56 h-56 md:w-72 md:h-72 rounded-xl object-cover border-2 border-neon-rose/20 shadow-[0_20px_48px_rgba(36,26,20,0.12)] mx-auto transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(36,26,20,0.16)]"
+            class="mx-auto h-56 w-56 rounded-xl border-2 border-neon-rose/20 object-cover shadow-[0_20px_48px_rgba(36,26,20,0.12)] transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(36,26,20,0.16)] md:h-72 md:w-72"
           />
         </div>
         <div class="flex-1">
-          <p class="text-neon-rose font-mono text-sm tracking-widest uppercase mb-4 animate-fade-in">My Story</p>
-          <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">
-            Building systems that <span class="text-gradient-neon">learn</span> and <span class="text-gradient-rose">scale</span>.
+          <p class="mb-4 font-mono text-sm uppercase tracking-widest text-neon-rose animate-fade-in">About</p>
+          <h1 class="mb-6 text-4xl font-heading font-bold leading-tight md:text-5xl">
+            I care about systems that are technically ambitious, operationally credible, and useful under real-world constraints.
           </h1>
-          <div class="space-y-4 text-base md:text-lg text-muted-light leading-relaxed font-body">
+          <div class="space-y-4 font-body text-base leading-relaxed text-muted-light md:text-lg">
             <p>
-              I'm Dhairya, a Software Engineer and ML Researcher deeply fascinated by the intersection of distributed computing and artificial intelligence. My journey started with a simple curiosity about how machines understand the world, which eventually led me to NYU Courant to dive deep into AI.
+              I am a software engineer and ML researcher working at the intersection of distributed systems, applied AI, and developer infrastructure. The common thread in my work is building systems that need to be both technically strong and operationally defensible.
             </p>
             <p>
-              Over the last 5+ years, I've had the privilege of building pipelines that serve millions at companies like CVS Health and Aetna. But beyond the sheer scale, what I truly care about is <strong>reliability and impact</strong>. I believe that the best ML architectures are those invisible to the user—quietly fast, undeniably robust, and gracefully degrading when the unexpected happens.
+              Over the last 5+ years, I have built pipelines and platforms used at enterprise scale, including customer-facing reliability work, accessibility infrastructure, RAG tooling, and research systems. I value <strong>reliability, observability, and clear evidence of impact</strong> more than novelty for its own sake.
             </p>
             <p>
-              When I'm not orchestrating cloud-native backfills or fine-tuning language models, you can find me exploring new coffee shops, reading up on the latest multi-agent world models, or simply walking my dog while thinking through an architecture problem.
+              My strongest work tends to sit in the messy middle: where product needs, infrastructure constraints, and model behavior all have to be handled at once without hand-waving.
             </p>
           </div>
         </div>
@@ -51,54 +50,53 @@ import profileImg from '../assets/profile.jpg';
 
     <div class="divider-neon-animated"></div>
 
-    <!-- Engineering Philosophy -->
     <section class="section-container py-20">
-      <div class="max-w-4xl mx-auto">
-        <div class="reveal text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+      <div class="mx-auto max-w-4xl">
+        <div class="reveal mb-12 text-center">
+          <h2 class="mb-4 text-3xl font-heading font-bold md:text-4xl">
             Engineering <span class="text-gradient-rose">Philosophy</span>
           </h2>
-          <p class="text-muted text-lg">Principles that guide my day-to-day work.</p>
+          <p class="text-lg text-muted">Principles that shape how I design, ship, and evaluate systems.</p>
         </div>
         
         <div class="grid gap-8 md:grid-cols-2">
           <div class="card-neon reveal reveal-delay-1">
-            <h3 class="text-xl font-heading font-bold text-text-bright mb-3 flex items-center gap-3">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-neon-rose/10 text-neon-rose text-sm font-mono border border-neon-rose/20">01</span>
-              Empathy for the User
+            <h3 class="mb-3 flex items-center gap-3 text-xl font-heading font-bold text-text-bright">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full border border-neon-rose/20 bg-neon-rose/10 font-mono text-sm text-neon-rose">01</span>
+              User impact is an engineering metric
             </h3>
-            <p class="text-muted leading-relaxed">
-              Every millisecond of latency or skewed prediction is a degraded experience for someone. I build with an empathy-first mindset, ensuring the end-user feels the magic of AI without the friction.
+            <p class="leading-relaxed text-muted">
+              Product quality is the final test of technical work. Latency, failure modes, confusing outputs, and inaccessible interfaces are engineering problems, not downstream concerns.
             </p>
           </div>
           
           <div class="card-neon reveal reveal-delay-2">
-            <h3 class="text-xl font-heading font-bold text-text-bright mb-3 flex items-center gap-3">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-neon-gold/10 text-neon-gold text-sm font-mono border border-neon-gold/20">02</span>
-              Pragmatism over Hype
+            <h3 class="mb-3 flex items-center gap-3 text-xl font-heading font-bold text-text-bright">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full border border-neon-gold/20 bg-neon-gold/10 font-mono text-sm text-neon-gold">02</span>
+              Rigor beats hype
             </h3>
-            <p class="text-muted leading-relaxed">
-              While I love experimenting with state-of-the-art models, production demands stability. I prefer robust, well-tested architectures that deliver consistent value over the newest, untested paradigm.
+            <p class="leading-relaxed text-muted">
+              I like ambitious systems, but I do not confuse ambition with rigor. I prefer architectures that can be reasoned about, tested, observed, and defended in front of users and teammates.
             </p>
           </div>
           
           <div class="card-neon reveal reveal-delay-3">
-            <h3 class="text-xl font-heading font-bold text-text-bright mb-3 flex items-center gap-3">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-neon-violet/10 text-neon-violet text-sm font-mono border border-neon-violet/20">03</span>
-              Observability is a Feature
+            <h3 class="mb-3 flex items-center gap-3 text-xl font-heading font-bold text-text-bright">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full border border-neon-violet/20 bg-neon-violet/10 font-mono text-sm text-neon-violet">03</span>
+              Observability is part of the product
             </h3>
-            <p class="text-muted leading-relaxed">
-              If it isn't monitored, it isn't in production. I embed telemetry, structured logging, and robust alerting from day one, treating observability as a core requirement rather than an afterthought.
+            <p class="leading-relaxed text-muted">
+              If a system cannot be inspected, it cannot be trusted. I treat telemetry, structured logs, and failure visibility as part of the product surface.
             </p>
           </div>
           
           <div class="card-neon reveal reveal-delay-4">
-            <h3 class="text-xl font-heading font-bold text-text-bright mb-3 flex items-center gap-3">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-neon-rose/10 text-neon-rose text-sm font-mono border border-neon-rose/20">04</span>
-              Continuous Learning
+            <h3 class="mb-3 flex items-center gap-3 text-xl font-heading font-bold text-text-bright">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full border border-neon-rose/20 bg-neon-rose/10 font-mono text-sm text-neon-rose">04</span>
+              Curiosity needs discipline
             </h3>
-            <p class="text-muted leading-relaxed">
-              The AI landscape shifts weekly. I maintain a researcher's curiosity alongside an engineer's discipline, constantly reading papers, prototyping new ideas, and learning from past failures.
+            <p class="leading-relaxed text-muted">
+              I try to keep a researcher's curiosity without losing an engineer's discipline. New ideas matter, but only when they survive contact with data, implementation details, and edge cases.
             </p>
           </div>
         </div>
@@ -107,44 +105,42 @@ import profileImg from '../assets/profile.jpg';
 
     <div class="divider-neon-animated"></div>
 
-    <!-- Publications & Talks -->
     <section class="section-container py-20">
-      <div class="reveal text-center mb-14">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+      <div class="reveal mb-14 text-center">
+        <h2 class="mb-4 text-3xl font-heading font-bold md:text-4xl">
           Publications & <span class="text-gradient-rose">Research</span>
         </h2>
-        <p class="text-muted max-w-2xl mx-auto text-lg">
-          I'm passionate about contributing back to the academic community. My core research interests lie in <strong>multi-agent reinforcement learning</strong>, <strong>video world models</strong>, and <strong>robust ML infrastructure</strong>.
+        <p class="mx-auto max-w-2xl text-lg text-muted">
+          My research interests are strongest where systems and learning interact: <strong>multi-agent reinforcement learning</strong>, <strong>video world models</strong>, and <strong>evaluation-heavy ML infrastructure</strong>.
         </p>
       </div>
       
-      <div class="grid gap-6 max-w-3xl mx-auto">
+      <div class="mx-auto grid max-w-3xl gap-6">
         {publications.map((pub, i) => (
           <div class={`reveal reveal-delay-${i + 1} card-neon group relative overflow-hidden`}>
-            <!-- Subtle gradient hover effect -->
-            <div class="absolute inset-0 bg-gradient-to-r from-neon-violet/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-neon-violet/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
             <div class="relative z-10">
-              <div class="flex items-start gap-4 mb-3">
-                <div class="w-12 h-12 rounded-lg bg-neon-violet/10 border border-neon-violet/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+              <div class="mb-3 flex items-start gap-4">
+                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-neon-violet/20 bg-neon-violet/10 shadow-inner">
                   <BrandLogo brand={pub.venueBrand} size="sm" />
                 </div>
                 <div class="flex-1">
-                  <h3 class="font-heading font-semibold text-text-bright text-lg leading-tight">{pub.title}</h3>
-                  <p class="text-sm text-neon-rose/80 mt-1 font-medium">{pub.venue}</p>
+                  <h3 class="text-lg font-heading font-semibold leading-tight text-text-bright">{pub.title}</h3>
+                  <p class="mt-1 text-sm font-medium text-neon-rose/80">{pub.venue}</p>
                 </div>
               </div>
 
               <div class="mt-4 pl-16">
-                <div class="flex flex-wrap items-center gap-2 mb-3">
-                  <span class="px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-full bg-base text-muted border border-black/10">{pub.role}</span>
-                  <span class="text-black/10 text-xs">|</span>
+                <div class="mb-3 flex flex-wrap items-center gap-2">
+                  <span class="rounded-full border border-black/10 bg-base px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted">{pub.role}</span>
+                  <span class="text-xs text-black/10">|</span>
                   <span class="text-sm text-muted">{pub.institution}</span>
-                  <span class="text-black/10 text-xs">|</span>
-                  <span class="text-sm text-muted font-mono">{pub.date}</span>
+                  <span class="text-xs text-black/10">|</span>
+                  <span class="text-sm font-mono text-muted">{pub.date}</span>
                   {pub.url && (
                     <>
-                      <span class="text-black/10 text-xs">|</span>
+                      <span class="text-xs text-black/10">|</span>
                       <a
                         href={pub.url}
                         target="_blank"
@@ -165,10 +161,9 @@ import profileImg from '../assets/profile.jpg';
 
     <div class="divider-neon-animated"></div>
 
-    <!-- Education -->
     <section class="section-container py-20 md:pb-28">
-      <div class="reveal text-center mb-14">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+      <div class="reveal mb-14 text-center">
+        <h2 class="mb-4 text-3xl font-heading font-bold md:text-4xl">
           Academic <span class="text-gradient-rose">Background</span>
         </h2>
       </div>

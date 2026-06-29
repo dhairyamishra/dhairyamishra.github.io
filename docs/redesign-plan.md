@@ -201,17 +201,17 @@ Use this as the live execution checklist. We will mark items complete as we proc
 
 ### Copy and Positioning
 
-- [ ] Tighten homepage positioning statement
-- [ ] Normalize project descriptions for clarity and rigor
-- [ ] Ensure language emphasizes engineering judgment, scale, and outcomes
+- [x] Tighten homepage positioning statement
+- [x] Normalize project descriptions for clarity and rigor
+- [x] Ensure language emphasizes engineering judgment, scale, and outcomes
 
 ### QA
 
-- [ ] Review desktop readability
-- [ ] Review mobile readability
-- [ ] Check color contrast accessibility
-- [ ] Check consistency of buttons, badges, and section headers
-- [ ] Run build and verify no regressions
+- [x] Review desktop readability
+- [x] Review mobile readability
+- [x] Check color contrast accessibility
+- [x] Check consistency of buttons, badges, and section headers
+- [x] Run build and verify no regressions
 
 ## Recommended Execution Order
 
