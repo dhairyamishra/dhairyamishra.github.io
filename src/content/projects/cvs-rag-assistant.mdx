@@ -11,7 +11,22 @@ metricLabel: "Faster Resolution"
 
 ## Overview
 
-Built an internal Retrieval-Augmented Generation (RAG) support assistant at CVS Health that integrates with Slack to provide self-serve troubleshooting for engineering teams. The system uses OpenAI for generation and ChromaDB for vector storage, with secured governance, and is hosted on CVS Enterprise GCP clusters via Terraform and ArgoCD.
+Built an internal Retrieval-Augmented Generation support assistant at CVS Health that integrates directly with Slack to provide self-serve troubleshooting for engineering teams. The system combines **OpenAI generation**, **ChromaDB retrieval**, enterprise governance controls, and deployment on CVS-managed **GCP infrastructure** via Terraform and ArgoCD.
+
+The important part of this work is not simply “used RAG.” The real value was turning internal knowledge into an operational support surface that reduced manual ticket load while fitting enterprise platform constraints around deployment, governance, and trust.
+
+## What I Owned
+
+- Built the internal support-assistant workflow and retrieval stack
+- Integrated the assistant into Slack where teams already worked
+- Shaped the retrieval + generation loop around internal documentation and past resolutions
+- Deployed the system through enterprise GCP infrastructure and CI/CD controls
+
+## Hard Problems Solved
+
+- **Knowledge access in the flow of work**: instead of another portal, the assistant had to live inside Slack and answer in a way that was immediately useful during troubleshooting
+- **Grounded generation**: answers had to be tied to retrieved internal sources rather than free-form model responses
+- **Enterprise controls**: the product needed governance, auditability, and safe deployment characteristics appropriate for internal engineering use
 
 ## Key Features
 
@@ -27,6 +42,10 @@ Built an internal Retrieval-Augmented Generation (RAG) support assistant at CVS 
 - Accelerated onboarding for new team members
 - Reduced load on platform support teams
 - Improved knowledge discoverability across the engineering organization
+
+## Why It Matters
+
+This project shows applied ML system design in a real enterprise environment: retrieval quality, integration ergonomics, governance, and platform deployment all matter at the same time.
 
 ## Tech Stack
 

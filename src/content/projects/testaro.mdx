@@ -12,13 +12,27 @@ metricLabel: "ASSETS 2023"
 
 ## Overview
 
-Testaro is a comprehensive web accessibility testing framework that aggregates results from multiple accessibility evaluation tools into a unified reporting pipeline. Presented at the **25th ACM SIGACCESS ASSETS conference** representing CVS Health.
+Testaro is a web accessibility testing framework that aggregates results from multiple evaluation tools into one unified reporting pipeline. I presented this work at the **25th ACM SIGACCESS ASSETS conference** representing CVS Health.
+
+The key value of the project is not just “ran more tools.” It created a single reporting layer over fragmented accessibility signals, which is what makes automated enforcement and organization-wide adoption possible.
+
+## What I Owned
+
+- Contributed to the multi-tool evaluation and unified reporting workflow
+- Helped frame the system around practical accessibility enforcement rather than isolated audits
+- Presented the work publicly at ASSETS 2023 as part of the CVS Health effort
 
 ## Conference Presentation
 
 - **Venue**: 25th ACM International Conference on Computers and Accessibility (ASSETS 2023)
 - **Role**: Speaker/Contributor representing CVS Health
 - **Focus**: Multi-tool compliance rule evaluation and unified reporting
+
+## Hard Problems Solved
+
+- **Normalize fragmented outputs**: accessibility tools disagree in structure, coverage, and terminology; a usable pipeline needs one coherent reporting layer
+- **Make accessibility CI-friendly**: results had to be usable inside development workflows rather than existing as one-off audits
+- **Create reporting teams can act on**: the goal was not more raw findings, but clearer, consolidated signals for engineers and reviewers
 
 ## Key Features
 
@@ -33,6 +47,10 @@ Testaro is a comprehensive web accessibility testing framework that aggregates r
 - Enabled automated accessibility compliance checking across CVS Health's web properties
 - Shifted accessibility validation left in the development lifecycle
 - Reduced production accessibility issues by integrating with CI pipelines
+
+## Why It Matters
+
+This project shows platform-style thinking: consolidate noisy inputs, create one reliable output surface, and make quality enforcement easier to operationalize across many teams.
 
 ## Tech Stack
 

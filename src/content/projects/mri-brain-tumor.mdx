@@ -27,6 +27,8 @@ import MermaidBlock from '../../components/MermaidBlock.astro';
 
 Built a production-ready multimodal MRI classification and segmentation pipeline trained on the **BraTS dataset**. The model uses a shared encoder architecture for both tumor classification and pixel-level segmentation, achieving strong performance across both tasks simultaneously.
 
+This project is strongest as an example of **end-to-end applied ML system design**: model architecture, preprocessing, inference optimization, explainability, quality control, and productized delivery all had to work together.
+
 ## Results
 
 | Metric | Score |
@@ -36,6 +38,13 @@ Built a production-ready multimodal MRI classification and segmentation pipeline
 | Dice Score (Segmentation) | **76.5%** |
 | Model Parameters | **31.7M** |
 | Inference Speedup | **~40% faster** vs separate models |
+
+## What I Owned
+
+- Designed the shared-encoder multitask architecture
+- Built the training and evaluation pipeline around the BraTS dataset
+- Added conditional inference so segmentation only runs when classification indicates tumor presence
+- Productized the work into a demo/application workflow with testing and explainability tooling
 
 <Figure
   src="/images/projects/mri-brain-tumor/multitask-training-phases.png"
@@ -77,6 +86,12 @@ Built a production-ready multimodal MRI classification and segmentation pipeline
   H --> D`} />
 
 Conditional segmentation activates only when tumor is detected, avoiding unnecessary compute on negative cases.
+
+## Hard Problems Solved
+
+- **Unify two tasks without doubling system cost**: the architecture needed to support both classification and segmentation without separate full models
+- **Keep explanations clinically interpretable**: Grad-CAM attention and masking quality controls were necessary to make model behavior more inspectable
+- **Turn research output into a usable tool**: the work had to move beyond offline metrics into a reproducible, demoable inference workflow
 
 ## Grad-CAM Explainability
 
@@ -126,6 +141,10 @@ Conditional segmentation activates only when tumor is detected, avoiding unneces
 - **Robust Brain Masking**: Automated QC pipeline filters slices on area coverage and border-touch thresholds before model input
 - **One-Command Pipeline**: Productized training-to-demo pipeline with automation across 6 stages, 4 smart prompts, and 25/25 passing tests
 - **API Endpoints**: 11 FastAPI endpoints for model inference, health checks, and data management
+
+## Why It Matters
+
+This project shows I can bridge research-grade model development and product-minded delivery: architecture design, evaluation rigor, inference behavior, and user-facing tooling all reinforce each other.
 
 ## Tech Stack
 

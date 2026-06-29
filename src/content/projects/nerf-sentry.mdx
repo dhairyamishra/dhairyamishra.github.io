@@ -11,7 +11,23 @@ metricLabel: "Trine Senior Design"
 
 ## Overview
 
-Designed and built a fully autonomous Nerf turret as part of Trine University's Robotics Senior Design capstone. The system uses OpenCV for real-time target tracking on a Raspberry Pi 4 (4 GB) with a custom power supply, gyroscopic aiming, and motion-prediction logic for moving targets.
+Designed and built a fully autonomous Nerf turret as part of Trine University's Robotics Senior Design capstone. The system uses OpenCV for real-time target tracking on a Raspberry Pi 4 with gyroscopic aiming, motion prediction, and a multithreaded control architecture that keeps perception and actuation responsive on constrained hardware.
+
+This project matters because it is a complete embedded vision system, not just a perception demo. Sensing, prediction, aiming, power delivery, and operator override all had to work together under real latency constraints.
+
+## What I Owned
+
+- Built the target-tracking and motion-prediction logic
+- Designed the multithreaded control architecture
+- Integrated the gyroscopic aiming system and servo-control path
+- Helped deliver the hardware + software system as a functional capstone artifact
+
+## Hard Problems Solved
+
+- **Low-latency CV on weak hardware**: perception had to stay responsive on a Raspberry Pi instead of lab-grade hardware
+- **Prediction instead of reaction**: simply chasing the previous frame is not enough for moving targets, so the system needed anticipatory aiming
+- **Concurrency across sensing and control**: vision, prediction, remote I/O, and servo motion had to coexist without blocking each other
+- **Hardware/software reliability**: custom power and control integration had to be stable enough to support the autonomous behavior
 
 ## Key Features
 
@@ -21,6 +37,10 @@ Designed and built a fully autonomous Nerf turret as part of Trine University's 
 - **Multithreaded Architecture**: Splits video processing, prediction, remote control, and servo motion across threads to keep latency low on a low-end device.
 - **Remote / Cloud Control**: Operator can override or monitor remotely; the same threading model handles network I/O without blocking the CV loop.
 - **Custom Power Supply**: In-house power-delivery design to drive the servos and Pi reliably from a single battery.
+
+## Why It Matters
+
+This project shows practical computer vision under physical and compute constraints: not just detecting objects, but building a full autonomous loop that reacts in real time.
 
 ## Tech Stack
 

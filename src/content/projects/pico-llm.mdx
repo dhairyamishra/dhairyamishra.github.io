@@ -17,6 +17,15 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
 A modular research pipeline for training and evaluating small-scale language model architectures, built for NYU's CSCI-GA 2565 Machine Learning course. The pipeline supports K-Gram MLP, LSTM, and KV-cache Transformer models with systematic cross-run analysis across 22+ experiment configurations.
 
+The value of this project is not just that it trained several models. It created a reusable **experimentation and evaluation pipeline** for comparing architectures under the same dataset, metrics, and analysis framework.
+
+## What I Owned
+
+- Built the modular training and evaluation pipeline
+- Implemented support for K-Gram MLP, LSTM, and KV-cache Transformer variants
+- Added experiment tracking and structured cross-run analysis
+- Produced the comparison tooling used to interpret tradeoffs across architectures and hyperparameters
+
 ## Best Results (KV-Cache Transformer)
 
 | Metric | Score |
@@ -26,6 +35,12 @@ A modular research pipeline for training and evaluating small-scale language mod
 | Token Accuracy | **73.21%** |
 
 [See full result interpretation in the README →](https://github.com/dhairyamishra/NYU-PICO-LLM-ML-CSCI-GA2565?tab=readme-ov-file#-example-how-to-interpret-results)
+
+## Hard Problems Solved
+
+- **Compare unlike architectures fairly**: the pipeline needed a common harness across MLP, recurrent, and Transformer-style models
+- **Make experiment results legible**: raw training logs are not enough; the project adds Pareto frontiers, heatmaps, residual analysis, and correlation views
+- **Preserve reproducibility**: deterministic config-driven experimentation is what makes the conclusions useful rather than anecdotal
 
 ## Model Comparisons
 
@@ -93,6 +108,10 @@ A modular research pipeline for training and evaluating small-scale language mod
 - **Advanced Evaluation**: Pareto frontier analysis, embedding similarity metrics, regression insights, and cross-run statistical analysis.
 - **Configurable Sampling**: Greedy, top-p, and repetition-penalty decoding; monosemantic token probing; configurable generation pipelines.
 - **Reproducible**: Deterministic seeding and config-driven experimentation throughout.
+
+## Why It Matters
+
+This project shows research engineering discipline: not just training a model once, but building the tooling needed to compare architectures rigorously and understand why one setup wins.
 
 ## Tech Stack
 

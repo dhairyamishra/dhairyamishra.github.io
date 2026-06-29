@@ -12,7 +12,22 @@ metricLabel: "Accuracy"
 
 ## Overview
 
-A production-grade multi-model text classification service built with FastAPI and Docker, featuring zero-downtime model switching between DistilBERT, TF-IDF + LogReg, and TF-IDF + SVM. Deployed live on **GCP Compute Engine** using an e2-standard-2 instance.
+A production-grade text-classification service built to compare accuracy, latency, and operating cost across multiple model backends under one deployable API. I designed the service so teams could switch between **DistilBERT**, **TF-IDF + Logistic Regression**, and **TF-IDF + SVM** without downtime, then deployed the system on **GCP Compute Engine** with Dockerized packaging and a large automated test suite.
+
+This project is strongest as a proof of **production ML service engineering**: model quality was only one requirement. The harder part was giving the system operational flexibility — preserving one interface while making model swaps safe, testable, and cheap to run.
+
+## What I Owned
+
+- Designed the multi-model API surface and switching behavior
+- Built the inference service and containerized deployment path
+- Trained and benchmarked the model variants against the same dataset
+- Added automated validation to catch regressions before rollout
+
+## Hard Problems Solved
+
+- **Zero-downtime model switching**: all model variants sit behind the same API contract, so the service can change inference backends without breaking consumers
+- **Serving for tradeoff, not just accuracy**: DistilBERT leads on quality, but TF-IDF models dramatically reduce latency and compute cost; the service was built so those tradeoffs are explicit and operable
+- **Validation discipline**: model behavior, service behavior, and integration behavior are all covered by automated testing rather than relying on ad hoc manual checks
 
 ## Model Benchmarks
 
@@ -22,7 +37,11 @@ A production-grade multi-model text classification service built with FastAPI an
 | LogReg (TF-IDF) | 85–88% | 5ms (21× faster) | — |
 | SVM (TF-IDF) | 85–88% | 2ms (44× faster) | — |
 
-Trained and benchmarked on a **24,783-sample dataset** with comprehensive E2E validation.
+Trained and benchmarked on a **24,783-sample dataset** with comprehensive end-to-end validation.
+
+## Why It Matters
+
+This project shows I can build ML systems that are usable in production, not just accurate in notebooks. It balances **model performance**, **latency**, **cost**, and **service stability**, which is the real engineering problem in deployed inference systems.
 
 ## Key Features
 
