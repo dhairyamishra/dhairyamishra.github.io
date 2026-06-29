@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
 import MediaLightbox from '../../components/MediaLightbox.astro';
+import { projectSignals } from '../../data/projectSignals';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 type ProjectEntry = CollectionEntry<'projects'>;
@@ -20,6 +21,7 @@ type Props = { project: ProjectEntry };
 
 const { project } = Astro.props as Props;
 const { Content } = await project.render();
+const signal = projectSignals[project.slug];
 
 const allProjects = await getCollection('projects');
 const related = allProjects
@@ -34,7 +36,16 @@ const categoryLabels: Record<string, string> = {
   'open-source': 'Open Source',
 };
 
-// Normalize partial ISO dates (e.g. "2026-02") to full ISO so og article:published_time validates.
+const filterLabels: Record<string, string> = {
+  'production-systems': 'Production Systems',
+  'llms': 'LLMs',
+  'computer-vision': 'Computer Vision',
+  'accessibility': 'Accessibility',
+  'data-infrastructure': 'Data Infrastructure',
+  'research': 'Research',
+  'leadership': 'Leadership / Ownership',
+};
+
 const rawDate = project.data.date;
 const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
 ---
@@ -49,92 +60,126 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
   
   <main id="main-content" class="py-20 md:py-28">
     <article class="section-container">
-      <!-- Back link -->
-      <a href="/projects" class="inline-flex items-center text-sm text-muted hover:text-neon-rose transition-colors mb-8 font-mono">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+      <a href="/projects" class="mb-8 inline-flex items-center font-mono text-sm text-muted transition-colors hover:text-neon-rose">
+        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
         Back to Projects
       </a>
 
-      <!-- Header -->
-      <header class="max-w-3xl mb-12">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
+      <header class="mb-12 max-w-4xl">
+        <div class="mb-4 flex flex-wrap items-center gap-3">
           <span class="badge-neon">{categoryLabels[project.data.category] || project.data.category}</span>
-          <span class="text-xs text-muted font-mono">{project.data.date}</span>
-          {project.data.featured && (
-            <span class="badge-neon-violet">Featured</span>
-          )}
+          <span class="text-xs font-mono text-muted">{project.data.date}</span>
+          {signal?.featuredLabel && <span class="badge-neon-gold">{signal.featuredLabel}</span>}
         </div>
         
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 text-text-bright">
+        <h1 class="mb-4 text-3xl font-heading font-bold text-text-bright md:text-4xl lg:text-5xl">
           {project.data.title}
         </h1>
         
-        <p class="text-lg text-muted-light leading-relaxed mb-6">
+        <p class="mb-6 text-lg leading-relaxed text-muted-light">
           {project.data.description}
         </p>
 
-        <!-- Metric highlight -->
         {project.data.metric && (
-          <div class="inline-flex items-center gap-3 card-neon px-5 py-3 mb-6">
+          <div class="mb-6 inline-flex items-center gap-3 rounded-2xl border border-neon-gold/20 bg-neon-gold/5 px-5 py-3">
             <span class="text-2xl font-heading font-bold text-neon-rose">{project.data.metric}</span>
             {project.data.metricLabel && <span class="text-sm text-muted">{project.data.metricLabel}</span>}
           </div>
         )}
 
-        <!-- Links -->
         <div class="flex flex-wrap gap-3">
           {project.data.github && (
             <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="btn-neon text-sm inline-flex items-center gap-2">
-              <Icon name="simple-icons:github" class="w-4 h-4" aria-hidden="true" />
+              <Icon name="simple-icons:github" class="h-4 w-4" aria-hidden="true" />
               GitHub
             </a>
           )}
           {project.data.liveUrl && (
             <a href={project.data.liveUrl} target="_blank" rel="noopener noreferrer" class="btn-neon-fill text-sm inline-flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
               Live Demo
             </a>
           )}
           {project.data.paperUrl && (
             <a href={project.data.paperUrl} target="_blank" rel="noopener noreferrer" class="btn-neon-gold text-sm inline-flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
               Paper
             </a>
           )}
         </div>
 
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-2 mt-6">
+        <div class="mt-6 flex flex-wrap gap-2">
           {project.data.tags.map((tag: string) => (
             <span class="badge-neon text-[10px]">{tag}</span>
           ))}
         </div>
       </header>
 
+      {signal && (
+        <section class="mb-12 grid gap-4 lg:grid-cols-4">
+          <div class="card-neon lg:col-span-2">
+            <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">What this project proves</p>
+            <h2 class="mt-2 text-xl font-heading font-semibold text-text-bright">{signal.role}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-muted">{signal.proof}</p>
+          </div>
+          <div class="card-neon">
+            <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Core challenge</p>
+            <p class="mt-2 text-sm leading-relaxed text-text">{signal.challenge}</p>
+          </div>
+          <div class="card-neon">
+            <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Evaluation lens</p>
+            <p class="mt-2 text-sm leading-relaxed text-text">{signal.focus}</p>
+            <p class="mt-4 text-xs leading-relaxed text-muted">{signal.outcome}</p>
+          </div>
+        </section>
+      )}
+
+      {signal && (
+        <section class="mb-12 rounded-2xl border border-black/5 bg-surface p-6 shadow-neon-sm">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div class="max-w-2xl">
+              <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Standard review frame</p>
+              <p class="mt-2 text-sm leading-relaxed text-muted">
+                Every project writeup is being standardized around the same questions: what problem was being solved, what system was built, what I owned, what tradeoffs mattered, and what measurable outcome justified the work.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {signal.filters.map((filter) => (
+                <span class="rounded-full border border-black/5 bg-base px-2.5 py-1 text-xs text-muted-light">
+                  {filterLabels[filter] || filter}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <div class="divider-neon mb-12"></div>
 
-      <!-- MDX Content (Hero / Figure / FigureGrid / VideoEmbed embedded inline) -->
       <div class="max-w-3xl prose-neon">
         <Content />
       </div>
 
-      <!-- Drives click-to-zoom for any inline <Figure> on this page -->
       <MediaLightbox />
 
-      <!-- Related Projects -->
       {related.length > 0 && (
         <div class="mt-20">
           <div class="divider-neon-animated mb-12"></div>
-          <h2 class="text-2xl font-heading font-bold mb-8 text-center">
+          <h2 class="mb-8 text-center text-2xl font-heading font-bold">
             Related <span class="text-gradient-rose">Projects</span>
           </h2>
-          <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
             {related.map((rel: ProjectEntry) => (
               <a href={`/projects/${rel.slug}`} class="group card-neon-interactive flex flex-col">
-                <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold mb-3 opacity-40 group-hover:opacity-100 transition-opacity"></div>
-                <span class="badge-neon text-[10px] w-fit mb-2">{categoryLabels[rel.data.category] || rel.data.category}</span>
-                <h3 class="text-base font-heading font-semibold text-text-bright group-hover:text-neon-rose transition-colors mb-1">{rel.data.title}</h3>
-                <p class="text-xs text-muted leading-relaxed">{rel.data.description}</p>
+                <div class="mb-3 h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold opacity-40 transition-opacity group-hover:opacity-100"></div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="badge-neon text-[10px] w-fit">{categoryLabels[rel.data.category] || rel.data.category}</span>
+                  {projectSignals[rel.slug]?.featuredLabel && (
+                    <span class="badge-neon-gold text-[10px]">{projectSignals[rel.slug].featuredLabel}</span>
+                  )}
+                </div>
+                <h3 class="mb-1 mt-3 text-base font-heading font-semibold text-text-bright transition-colors group-hover:text-neon-rose">{rel.data.title}</h3>
+                <p class="text-xs leading-relaxed text-muted">{projectSignals[rel.slug]?.role ?? rel.data.description}</p>
               </a>
             ))}
           </div>
@@ -142,6 +187,6 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
       )}
     </article>
   </main>
-
+ 
   <Footer />
 </Layout>
