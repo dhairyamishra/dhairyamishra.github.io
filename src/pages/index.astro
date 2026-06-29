@@ -7,7 +7,6 @@ import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { skills } from '../data/skills';
 import profileImg from '../assets/profile.jpg';
 
 type ProjectEntry = CollectionEntry<'projects'>;
@@ -18,11 +17,74 @@ const featuredProjects = allProjects
   .sort((a: ProjectEntry, b: ProjectEntry) => b.data.date.localeCompare(a.data.date))
   .slice(0, 4);
 
-const stats = [
-  { value: '5+', label: 'Years Experience' },
-  { value: '8+', label: 'Projects Shipped' },
-  { value: 'NYU', label: 'Courant M.S. CS' },
-  { value: 'NeurIPS', label: '2026 Submission' },
+const proofPoints = [
+  { value: '125+', label: 'PRs shipped & reviewed', detail: 'CVS Health platform ownership' },
+  { value: '60–90%', label: 'Fewer production a11y issues', detail: 'Shift-left Playwright + axe-core automation' },
+  { value: '12.64M', label: 'Synchronized multiplayer frames', detail: 'Solaris world-model research dataset' },
+  { value: '226', label: 'Playwright E2E tests', detail: 'Teserax production workflow coverage' },
+];
+
+const quickPaths = [
+  { label: 'Best for recruiters', href: '/experience', description: 'Timeline, ownership, and outcomes' },
+  { label: 'Best for engineers', href: '#technical-wins', description: 'Architecture and systems proof' },
+  { label: 'Best for research', href: '/projects/solaris', description: 'World models, evaluation, and publication work' },
+];
+
+const technicalWins = [
+  {
+    eyebrow: 'Production Systems',
+    title: 'Owned customer-facing platform reliability at CVS Health',
+    metric: 'Millions served daily',
+    summary:
+      'Shipped and reviewed 125+ PRs, owned on-call, improved MTTR by 25–30%, and reduced customer-facing downtime by 12% across core web systems.',
+    links: [
+      { label: 'Experience', href: '/experience' },
+      { label: 'RAG Assistant', href: '/projects/cvs-rag-assistant' },
+    ],
+  },
+  {
+    eyebrow: 'Accessibility Infrastructure',
+    title: 'Turned accessibility from manual review into automated enforcement',
+    metric: '60–90% fewer prod issues',
+    summary:
+      'Built CI-based accessibility automation, reporting pipelines, and internal quality systems that cut production issues, shortened defect resolution time, and improved org throughput.',
+    links: [
+      { label: 'Testaro', href: '/projects/testaro' },
+      { label: 'Experience', href: '/experience' },
+    ],
+  },
+  {
+    eyebrow: 'Research + Applied ML',
+    title: 'Built systems spanning world models, LLM pipelines, and multimodal tooling',
+    metric: 'NeurIPS + production',
+    summary:
+      'Contributed to multiplayer world-model research, trained and evaluated custom LLM pipelines, and productionized applied AI systems from hackathon prototype to enterprise rollout.',
+    links: [
+      { label: 'Solaris', href: '/projects/solaris' },
+      { label: 'PICO-LLM', href: '/projects/pico-llm' },
+    ],
+  },
+];
+
+const capabilities = [
+  {
+    title: 'Production AI / ML Systems',
+    evidence:
+      'Built RAG assistants, alt-text compliance tooling, and model-backed internal platforms with governance, deployment, and operational ownership.',
+    tools: ['OpenAI', 'ChromaDB', 'Hugging Face', 'Terraform', 'ArgoCD'],
+  },
+  {
+    title: 'Distributed Platform Engineering',
+    evidence:
+      'Provisioned microservices, observability pipelines, storage, databases, and CI/CD migrations for teams supporting large-scale internal and customer-facing systems.',
+    tools: ['GCP', 'Postgres', 'MongoDB', 'OpenTelemetry', 'Grafana'],
+  },
+  {
+    title: 'Evaluation and Research Discipline',
+    evidence:
+      'Designed reproducible experiment pipelines, multi-agent evaluation frameworks, and cross-run analysis for LLM and world-model research.',
+    tools: ['PyTorch', 'JAX', 'wandb', 'VLM-as-Judge', 'Playwright'],
+  },
 ];
 
 const affiliations = [
@@ -39,144 +101,128 @@ const affiliations = [
 
 <Layout title="Dhairya Mishra — Software Engineer & ML Researcher" ogType="profile">
   <Navigation />
-  
+
   <main id="main-content">
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      <!-- Grid background -->
+    <section class="relative overflow-hidden py-20 md:py-28">
       <div class="absolute inset-0 grid-bg opacity-40"></div>
-      <!-- Gradient orbs -->
-      <div class="absolute top-1/4 -left-32 w-96 h-96 bg-neon-rose/5 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-neon-gold/5 rounded-full blur-3xl"></div>
+      <div class="absolute top-12 left-0 h-64 w-64 rounded-full bg-neon-gold/5 blur-3xl"></div>
+      <div class="absolute right-0 top-32 h-72 w-72 rounded-full bg-neon-rose/5 blur-3xl"></div>
 
-      <div class="section-container relative z-10 text-center py-20">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-center md:gap-10 mb-6">
-          <div class="animate-fade-in md:order-2 flex-shrink-0 mb-6 md:mb-0">
-            <Image
-              src={profileImg}
-              alt="Dhairya Mishra"
-              width={352}
-              height={352}
-              loading="eager"
-              class="w-36 h-36 md:w-44 md:h-44 rounded-2xl object-cover border-2 border-neon-rose/20 shadow-[0_18px_40px_rgba(36,26,20,0.10)] mx-auto"
-            />
-          </div>
-          <div class="animate-fade-in md:text-left">
-            <p class="text-neon-rose font-mono text-sm tracking-widest uppercase mb-6">Software Engineer &middot; ML Researcher</p>
-            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold leading-tight">
-              <span class="text-gradient-neon">Dhairya</span>
-              <br />
-              <span class="text-text-bright">Mishra</span>
+      <div class="section-container relative z-10">
+        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,420px)]">
+          <div class="reveal">
+            <p class="mb-5 font-mono text-sm uppercase tracking-[0.24em] text-neon-rose">
+              Software Engineer · ML Researcher
+            </p>
+            <h1 class="max-w-4xl text-5xl font-heading font-bold leading-[0.96] text-text-bright sm:text-6xl lg:text-7xl">
+              I build production AI systems, developer infrastructure, and research-grade ML pipelines that hold up under real constraints.
             </h1>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-light md:text-xl">
+              My work spans customer-facing platform reliability, accessibility automation, RAG systems, and world-model research — from internal enterprise tooling to NeurIPS-scale experiments.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a href="/projects" class="btn-neon-fill">
+                Review flagship work
+                <svg class="ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+              </a>
+              <a href="/experience" class="btn-neon">
+                Review experience
+                <svg class="ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+              </a>
+            </div>
+
+            <div class="mt-10 grid gap-3 md:grid-cols-3">
+              {quickPaths.map((path, index) => (
+                <a
+                  href={path.href}
+                  class={`reveal reveal-delay-${index + 1} card-neon-interactive p-4`}
+                >
+                  <p class="text-xs font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">{path.label}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-muted">{path.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2">
+            <div class="card-neon p-5 md:p-6">
+              <div class="flex items-start gap-5">
+                <Image
+                  src={profileImg}
+                  alt="Dhairya Mishra"
+                  width={352}
+                  height={352}
+                  loading="eager"
+                  class="h-28 w-28 rounded-2xl border-2 border-neon-rose/20 object-cover shadow-[0_18px_40px_rgba(36,26,20,0.10)]"
+                />
+                <div class="flex-1">
+                  <p class="text-xs font-mono uppercase tracking-[0.16em] text-muted">Current focus</p>
+                  <h2 class="mt-2 text-xl font-heading font-semibold text-text-bright">Applied ML with production judgment</h2>
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Engineering systems where model quality, reliability, observability, and operator experience all matter at the same time.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-6 space-y-3 border-t border-black/5 pt-5">
+                <div class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-muted">Primary domains</span>
+                  <span class="text-right text-sm font-medium text-text">LLMs · accessibility · platform infra</span>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-muted">Recent signal</span>
+                  <span class="text-right text-sm font-medium text-text">NeurIPS 2026 submission + live shipped systems</span>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-muted">Operating style</span>
+                  <span class="text-right text-sm font-medium text-text">Own architecture, delivery, and outcomes</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <p class="text-lg md:text-xl text-muted-light max-w-2xl mx-auto mb-10 leading-relaxed">
-          Building and deploying AI/ML production systems at scale — multimodal pipelines, LLM tooling, and distributed data infrastructure. 
-          5+ years shipping computer vision, NLP, and cloud-native services.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/projects" class="btn-neon-fill">
-            View Projects
-            <svg class="inline-block w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-          </a>
-          <a href="/experience" class="btn-neon">
-            Experience
-            <svg class="inline-block w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-          </a>
-          <a href="/contact" class="btn-neon">Get in Touch</a>
-        </div>
       </div>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="relative py-12 border-y border-black/5">
+    <section class="border-y border-black/5 py-10 md:py-12">
       <div class="section-container">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <div class={`reveal reveal-delay-${i + 1} text-center`}>
-              <div class="text-3xl md:text-4xl font-heading font-bold text-gradient-rose mb-1">{stat.value}</div>
-              <div class="text-sm text-muted">{stat.label}</div>
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {proofPoints.map((item, index) => (
+            <div class={`reveal reveal-delay-${(index % 4) + 1} rounded-2xl border border-black/5 bg-surface p-5 shadow-neon-sm`}>
+              <p class="text-3xl font-heading font-bold text-gradient-rose">{item.value}</p>
+              <p class="mt-2 text-sm font-medium text-text">{item.label}</p>
+              <p class="mt-1 text-sm leading-relaxed text-muted">{item.detail}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Affiliations Strip -->
-    <section class="py-10 border-b border-black/5">
+    <section id="technical-wins" class="py-20 md:py-24">
       <div class="section-container">
-        <p class="reveal text-center text-[10px] text-muted uppercase tracking-[0.2em] mb-6">Affiliated With</p>
-        <div class="brand-strip">
-          {affiliations.map((item, i) => (
-            <div class={`brand-strip-item reveal reveal-delay-${(i % 5) + 1}`}>
-              <BrandLogo brand={item.brand} size="md" />
-              <span class="text-[10px] text-muted/70">{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section class="py-20 md:py-28">
-      <div class="section-container">
-        <div class="reveal text-center mb-14">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Featured <span class="text-gradient-rose">Projects</span>
+        <div class="reveal mb-12 max-w-3xl">
+          <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Selected technical wins</p>
+          <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright md:text-4xl">
+            The strongest signal is shipped work under real constraints.
           </h2>
-          <p class="text-muted max-w-lg mx-auto">Research and production work spanning ML, full-stack, and cloud systems.</p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProjects.map((project: ProjectEntry, i: number) => (
-            <ProjectCard
-              project={project}
-              maxTags={4}
-              revealClass={`reveal reveal-delay-${i + 1}`}
-            />
-          ))}
+          <p class="mt-4 text-lg leading-relaxed text-muted">
+            These are representative examples of ownership across production systems, accessibility infrastructure, and research-intensive ML work.
+          </p>
         </div>
 
-        <div class="reveal text-center mt-10">
-          <a href="/projects" class="btn-neon text-sm">
-            View All Projects
-            <svg class="inline-block w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider-neon-animated"></div>
-
-    <!-- Skills Section -->
-    <section class="py-20 md:py-28">
-      <div class="section-container">
-        <div class="reveal text-center mb-14">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Skills & <span class="text-gradient-rose">Technologies</span>
-          </h2>
-          <p class="text-muted max-w-lg mx-auto">Full-stack proficiency across ML/AI, cloud infrastructure, and modern web frameworks.</p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((group, i) => (
-            <div class={`reveal reveal-delay-${(i % 5) + 1} card-neon`}>
-              <h3 class={`text-sm font-heading font-semibold uppercase tracking-wider mb-3 ${
-                group.color === 'rose' ? 'text-neon-rose' : group.color === 'gold' ? 'text-neon-gold' : 'text-neon-violet'
-              }`}>
-                {group.category}
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {group.items.map(item => (
-                  <span class={`text-xs px-2.5 py-1 rounded-full border ${
-                    group.color === 'rose' ? 'bg-neon-rose/5 text-neon-rose/80 border-neon-rose/15' :
-                    group.color === 'gold' ? 'bg-neon-gold/5 text-neon-gold/80 border-neon-gold/15' :
-                    'bg-neon-violet/5 text-neon-violet/80 border-neon-violet/15'
-                  }`}>
-                    {item}
-                  </span>
+        <div class="grid gap-6 lg:grid-cols-3">
+          {technicalWins.map((win, index) => (
+            <div class={`reveal reveal-delay-${(index % 3) + 1} card-neon flex flex-col`}>
+              <p class="text-xs font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">{win.eyebrow}</p>
+              <h3 class="mt-3 text-2xl font-heading font-semibold text-text-bright">{win.title}</h3>
+              <p class="mt-3 text-sm font-medium uppercase tracking-[0.12em] text-neon-gold">{win.metric}</p>
+              <p class="mt-4 flex-grow text-sm leading-relaxed text-muted">{win.summary}</p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                {win.links.map((link) => (
+                  <a href={link.href} class="link-neon text-sm font-medium">
+                    {link.label}
+                  </a>
                 ))}
               </div>
             </div>
@@ -185,21 +231,96 @@ const affiliations = [
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 md:py-28">
-      <div class="section-container text-center">
-        <div class="reveal card-neon max-w-2xl mx-auto py-12 px-8">
-          <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">
-            Let's <span class="text-gradient-rose">Build</span> Something
-          </h2>
-          <p class="text-muted mb-8 max-w-md mx-auto">
-            Interested in collaborating on ML research, full-stack systems, or production AI? I'd love to hear from you.
+    <section class="py-20 md:py-24">
+      <div class="section-container">
+        <div class="reveal mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-2xl">
+            <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Flagship work</p>
+            <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright md:text-4xl">
+              Projects that best represent technical depth and execution range.
+            </h2>
+          </div>
+          <p class="max-w-xl text-sm leading-relaxed text-muted">
+            A mix of shipped enterprise systems, agentic product work, and research pipelines. Each project includes architecture, decisions, and results.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" class="btn-neon-fill">Get in Touch</a>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {featuredProjects.map((project: ProjectEntry, index: number) => (
+            <ProjectCard
+              project={project}
+              maxTags={4}
+              showReadMore
+              revealClass={`reveal reveal-delay-${(index % 4) + 1}`}
+            />
+          ))}
+        </div>
+
+        <div class="reveal mt-10">
+          <a href="/projects" class="btn-neon text-sm">
+            View all projects
+            <svg class="ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-neon-animated"></div>
+
+    <section class="py-20 md:py-24">
+      <div class="section-container">
+        <div class="reveal mb-12 max-w-3xl">
+          <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Capabilities</p>
+          <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright md:text-4xl">
+            Broad tool coverage matters less than where the tools have already been proven.
+          </h2>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          {capabilities.map((capability, index) => (
+            <div class={`reveal reveal-delay-${(index % 3) + 1} card-neon`}>
+              <h3 class="text-xl font-heading font-semibold text-text-bright">{capability.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{capability.evidence}</p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {capability.tools.map((tool) => (
+                  <span class="rounded-full border border-black/5 bg-base px-2.5 py-1 text-xs text-muted-light">{tool}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-black/5 py-10">
+      <div class="section-container">
+        <p class="reveal mb-6 text-center text-[10px] uppercase tracking-[0.2em] text-muted">Affiliated with</p>
+        <div class="brand-strip">
+          {affiliations.map((item, index) => (
+            <div class={`brand-strip-item reveal reveal-delay-${(index % 5) + 1}`}>
+              <BrandLogo brand={item.brand} size="md" />
+              <span class="text-[10px] text-muted/70">{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-24">
+      <div class="section-container text-center">
+        <div class="reveal card-neon mx-auto max-w-3xl py-12 px-8">
+          <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Next step</p>
+          <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright">
+            If you need someone who can own both the model and the system around it, start here.
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-muted">
+            I am most useful on teams building production AI products, internal engineering platforms, accessibility infrastructure, and research systems that need to survive contact with real users.
+          </p>
+          <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+            <a href="/contact" class="btn-neon-fill">Start a conversation</a>
             <a href="https://github.com/dhairyamishra" target="_blank" rel="noopener noreferrer" class="btn-neon">
-              <Icon name="simple-icons:github" class="inline-block w-4 h-4 mr-2" aria-hidden="true" />
-              View GitHub
+              <Icon name="simple-icons:github" class="mr-2 inline-block h-4 w-4" aria-hidden="true" />
+              Review GitHub
             </a>
           </div>
         </div>
