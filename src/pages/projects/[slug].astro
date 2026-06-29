@@ -36,16 +36,6 @@ const categoryLabels: Record<string, string> = {
   'open-source': 'Open Source',
 };
 
-const filterLabels: Record<string, string> = {
-  'production-systems': 'Production Systems',
-  'llms': 'LLMs',
-  'computer-vision': 'Computer Vision',
-  'accessibility': 'Accessibility',
-  'data-infrastructure': 'Data Infrastructure',
-  'research': 'Research',
-  'leadership': 'Leadership / Ownership',
-};
-
 const rawDate = project.data.date;
 const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
 ---
@@ -130,26 +120,6 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
             <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Evaluation lens</p>
             <p class="mt-2 text-sm leading-relaxed text-text">{signal.focus}</p>
             <p class="mt-4 text-xs leading-relaxed text-muted">{signal.outcome}</p>
-          </div>
-        </section>
-      )}
-
-      {signal && (
-        <section class="mb-12 rounded-2xl border border-black/5 bg-surface p-6 shadow-neon-sm">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div class="max-w-2xl">
-              <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Best read as</p>
-              <p class="mt-2 text-sm leading-relaxed text-muted">
-                Use these review angles to evaluate the work quickly: ownership, system depth, research rigor, or production engineering.
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              {signal.filters.map((filter) => (
-                <span class="rounded-full border border-black/5 bg-base px-2.5 py-1 text-xs text-muted-light">
-                  {filterLabels[filter] || filter}
-                </span>
-              ))}
-            </div>
           </div>
         </section>
       )}
