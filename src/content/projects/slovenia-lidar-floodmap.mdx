@@ -1,0 +1,60 @@
+---
+title: "Slovenia CLSS LiDAR — Flood Susceptibility & Forest Health Map"
+description: "A static geospatial web application and analysis pipeline built from Slovenia's national airborne LiDAR dataset. Processes 81 Ljubljana-area tiles into flood-susceptibility, NDVI-health, land-classification, and ranked risk overlays, then publishes the results as a no-backend interactive map on GitHub Pages."
+date: "2026-06"
+tags: ["Python", "LiDAR", "GIS", "Remote Sensing", "NDVI", "GeoJSON", "NumPy", "SciPy", "GitHub Pages"]
+featured: false
+category: "research"
+github: "https://github.com/dhairyamishra/slovenia-lidar-floodmap"
+liveUrl: "https://dhairyamishra.github.io/slovenia-lidar-floodmap/"
+metric: "81"
+metricLabel: "LiDAR Tiles"
+---
+
+## Overview
+
+This project turns a large raw LiDAR dataset from Slovenia's CLSS programme into a deployable flood-analysis product. I built both the **analysis pipeline** and the **interactive delivery layer**: downloading region tiles, calibrating global factor ranges, processing every tile into derived overlays, ranking the highest-risk cells, and publishing the results as a static web map with no backend.
+
+The portfolio value here is not only the visualization. The harder engineering work is in transforming roughly **15 GB of raw `.laz` data** into lightweight web assets that remain spatially consistent, comparable across tiles, and cheap to host. The final output overlays flood susceptibility, forest NDVI, land classification, and ranked risk markers across a contiguous **9 × 9 km block over Ljubljana**.
+
+## What It Shows
+
+- **Flood susceptibility overlay** built from a weighted composite of topographic wetness, canopy interception, NDVI health, plan curvature, and terrain roughness
+- **Forest health layer** derived from per-cell NDVI using 16-bit NIR and red channels
+- **Land classification layer** highlighting ground, vegetation bands, and building returns
+- **Ranked risk markers** for the top globally scored susceptibility cells across the processed area
+
+## Technical Depth
+
+The core technical problem was making flood-risk scores **comparable across the entire dataset**, not just visually plausible within one tile. I solved that by introducing a calibration stage that derives dataset-wide normalization ranges once, stores them with a dataset fingerprint, and warns when the underlying tile set changes and recalibration is needed.
+
+The canonical `pipeline.py` then processes all `GKOT_*.laz` files into deployable assets:
+
+- per-tile susceptibility rasters
+- per-tile NDVI rasters
+- per-tile land-classification rasters
+- a manifest consumed by the web app
+- a globally ranked candidate list
+- a GeoJSON file for top flood-risk points
+
+That separation between **raw source data** and **committed derived outputs** matters. The heavyweight LiDAR tiles stay local and gitignored, while the smaller analysis products in `web/data/` are versioned and deployed, which keeps the project reproducible without making the repository impractical.
+
+## Architecture
+
+The system is intentionally simple at runtime:
+
+- **Python pipeline** for acquisition, calibration, raster generation, candidate ranking, and GeoJSON export
+- **Static web frontend** for rendering overlays and interaction
+- **GitHub Pages deployment** from the `web/` directory on every push
+
+This is a strong example of picking the right architecture for the problem. Instead of introducing unnecessary services, I kept the runtime fully static and moved complexity into the offline data-processing layer where it belongs.
+
+## Why It Matters
+
+This project shows that I can work comfortably at the intersection of **geospatial data engineering, analysis design, and product delivery**. I did not just compute one metric on one file; I built a repeatable pipeline that scales across many tiles, preserves comparability at dataset scope, and ships the results in a form that is immediately inspectable by a user in the browser.
+
+## Tech Stack
+
+- **Data processing**: Python, `laspy`, `lazrs`, `numpy`, `scipy`, `pyproj`, `Pillow`
+- **Geospatial outputs**: PNG overlays, manifest-driven tile loading, GeoJSON risk points
+- **Frontend / deployment**: Static web app, GitHub Pages

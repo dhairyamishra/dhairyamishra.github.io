@@ -1,12 +1,12 @@
 ---
-title: "Teserax.io — Agentic Knowledge-Graph Application"
-description: "Built from 0 to 1 as a live deployed agentic knowledge-graph application. A DAG-safe agentic workflow engine auto-orchestrates tool-based pipelines on a React Flow canvas. Brave Search Auto-RAG grounds every response in real-time cited sources. Multi-model support with fallback routing between local and cloud models, MCP integration for tool connectivity, FastAPI backend with TypeScript and Zod validation, 226 Playwright E2E tests — deployed on EC2 and Cloudflare."
+title: "Teserax.io — Solo-Built Agentic Reasoning Product"
+description: "Designed, built, and shipped solo: Teserax is a production-grade agentic reasoning product that turns linear LLM chat into a visual graph users can branch, merge, prune, cross-link, and rewrite. It demonstrates end-to-end product ownership across interaction design, graph architecture, streaming AI infrastructure, multi-model orchestration, persistence, deployment, and quality."
 date: "2026-02"
-tags: ["React", "React Flow", "FastAPI", "TypeScript", "Zod", "Zustand", "Supabase", "LLM", "GPT-4", "Grok", "Playwright", "Docker", "MCP", "Brave Search"]
+tags: ["React", "React Flow", "Hono", "TypeScript", "Zod", "Zustand", "Supabase", "LLM", "OpenAI", "Grok", "Playwright", "Vitest", "Docker", "MCP", "Brave Search"]
 featured: true
 category: "full-stack"
-github: "https://github.com/dhairyamishra/teserax"
-liveUrl: "https://www.teserax.io"
+github: "https://github.com/dhairyamishra/Teserax"
+liveUrl: "https://teserax.vercel.app/"
 metric: "v2.0"
 metricLabel: "Shipped"
 ---
@@ -22,45 +22,64 @@ import VideoEmbed from '../../components/mdx/VideoEmbed.astro';
 
 ## Overview
 
-Teserax is an **agentic knowledge-graph application** built from 0 to 1 as a fully live, deployed product. It transforms linear LLM chat into a visual, non-linear exploration space — users ask questions in a persistent chat lane, watch responses decompose into structured graph nodes on a React Flow canvas, branch into parallel threads, merge insights, cross-link between reasoning paths, and summarize — all with cloud persistence, multi-model LLM support, and bring-your-own-key for any provider.
+Teserax is a **solo-built agentic reasoning product** that I designed, implemented, and shipped end-to-end. The product turns linear LLM chat into a persistent visual graph that users can branch, merge, prune, cross-link, summarize, and rewrite. Instead of building another chat wrapper, I defined the core interaction model, the graph behavior, the AI orchestration layer, the persistence model, and the deployment architecture myself.
 
-The application matured through five development phases and a post-phase monetization sprint into a **dual-lane, chat-first exploration tool** with a versioned prompt registry, DAG-safe crosslink architecture, glassmorphism UI, deterministic tree layout with swim lanes, and production hosting on EC2 behind Cloudflare. At its core is a **DAG-safe agentic workflow engine** that auto-orchestrates tool-based pipelines from natural language — decomposing queries into multi-step execution plans and running them in parallel with dependency tracking. **Brave Search Auto-RAG** grounds every LLM call in real-time web retrieval, with results deduplicated, cited, and injected as structured XML context. **MCP integration** provides extensible tool connectivity. 64 issues closed, 1 deferred (real-time CRDT collaboration).
+What makes Teserax a strong representation of my work is not just that it works — it is that I owned the full problem alone: product definition, UX model, graph architecture, streaming backend, multi-model support, BYOK, persistence, auth, deployment, testing, and operational guardrails. The result is a live system that demonstrates both **product ownership** and **deep technical range** across frontend, backend, AI orchestration, infrastructure, and quality engineering.
+
+## What I Owned
+
+- **Product definition**: Chose to solve non-linear reasoning and analysis work as a graph-native AI product rather than a conventional chat interface
+- **Core interaction model**: Designed the Global Panel as the single control surface for graph creation and mutation
+- **Graph system design**: Built the node model, structural/cross-link edge system, deterministic layout behavior, and reversible graph operations
+- **AI orchestration**: Implemented the planner/executor pipeline that classifies natural-language intent, previews edits, and executes graph mutations
+- **Platform architecture**: Designed the split deployment across Vercel, Railway, and Supabase with same-origin API routing and local-only fallback mode
+- **Quality and operations**: Added auth, validation, rate limits, metrics, observability, and automated test coverage across critical user flows
+
+## Hard Problems Solved
+
+- **Inventing a graph-native AI interaction model**: The product had to feel more powerful than chat without becoming harder to use. I solved that by centralizing control in one Global Panel while projecting results into a visual graph.
+- **Executing graph edits safely**: Natural-language instructions can create, mutate, merge, or remove graph structures. I built a DAG-aware planner/executor that previews non-trivial edits, respects dependencies, and keeps the full action reversible through a single undo transaction.
+- **Keeping conversation and graph state synchronized**: Teserax uses a dual-lane model linking chat messages to graph mutations through `projectedNodeIds`, so users can move between conversational intent and graph artifact without losing context.
+- **Supporting real deployment constraints**: The system needed streaming responses, longer-lived requests, auth, persistence, and reliable routing. I split the architecture across Vercel, Railway, and Supabase so each layer matched the operational constraints of the workload.
+- **Balancing flexibility with reliability**: I added multi-model support, BYOK, optional Brave Search augmentation, structured validation, rate limiting, security headers, and observability so the product is not just interesting, but operable.
 
 ## Key Features
 
-- **Dual-Lane UI**: Three-panel layout — ChatPanel (persistent conversation, auto-analyze toggle), GraphCanvas (React Flow canvas as the visual workflow interface with swim lanes, crosslinks, viewport virtualization), and a slim Context Strip sidebar with ancestry chain and quick actions
-- **DAG-Safe Agentic Workflow Engine**: LLM planner decomposes any natural-language query into a 3–7 step structured execution plan, then a DAG pipeline engine auto-orchestrates all tool-based pipeline steps in parallel with dependency tracking and per-step progress visualization
-- **Brave Search Auto-RAG**: Every LLM call is automatically augmented with real-time web retrieval — the prompt is distilled into 3–4 parallel Brave Search queries, results are deduplicated and injected as cited XML context, grounding responses in live sources with exponential backoff retry
-- **Multi-Model Support with Fallback Routing**: OpenAI (GPT-4o, GPT-4o-mini) and Grok/xAI (Grok-4.1, Grok-3, Grok-3-mini) via a universal `OpenAICompatAdapter`, with fallback routing between local and cloud models on validation or connection failure, plus bring-your-own-key for 8+ providers with AES-256-GCM encryption at rest
-- **MCP Integration**: Model Context Protocol support for extensible tool connectivity, enabling external tool invocation within agentic pipelines
-- **Node Chat Modal**: Click any node to open a streaming chat modal for in-place iteration — apply changes to the node or spawn a child node, with ancestry-aware conversation context, file attachments (PDF/image/text), and integrated Brave Search Auto-RAG
-- **Four-Handle Crosslinks**: DAG-safe architecture with structural edges (top/bottom, DFS cycle detection) and non-structural annotation crosslinks (left/right side tabs) with type, strength, and auto-detection via tag/topic Jaccard overlap
-- **Prompt Registry**: 19 versioned templates with `renderTemplate()` interpolation, canonical Zod schemas for structured output, corrective retry that feeds validation errors back to the LLM, and crosslink context injection into prompts with token budgeting
-- **Glassmorphism Design**: `backdrop-blur` nodes with dynamic sizing, branch-colored borders, compact operator pills, shimmer skeletons, and hover-expand — plus LLM-generated titles and summaries via a debounced background sidecar
-- **Cloud Persistence**: Supabase PostgreSQL with 11 RLS-protected tables, email/Google OAuth, dashboard with search and templates, `Ctrl+S` cloud save, named version history snapshots, and shareable read-only links
-- **Pipeline Templates**: 3 auto-executing templates — Financial Analysis (6-step bull/bear framework), Pros & Cons (3-step balanced assessment), and Decision Matrix (4-step comparison merge)
-- **Chunk Review**: Accept, reject, or inline-edit individual response chunks (9 typed chunk kinds: claim, step, example, definition, table, code, data_point, question, analysis) before they join the graph
+- **Global Panel + Visual Graph**: One chat-driven control surface reshapes a persistent graph of typed nodes, with every message linked to the nodes it created or changed
+- **DAG-Aware Planner/Executor**: Teserax classifies instructions, previews multi-step graph edits, and executes dependency-aware plans in parallel where possible, all wrapped in a single undo transaction
+- **Graph Operations**: Supports branching, merging, summarization, cross-linking, pruning, and in-place node rewriting from natural-language commands
+- **Deterministic Canvas System**: React Flow canvas with swim lanes, collision-aware tree layout, structural DAG edges, and non-structural relationship links
+- **Multi-Model + BYOK**: OpenAI and xAI/Grok through one OpenAI-compatible adapter, plus bring-your-own-key support for additional providers with encrypted key storage
+- **Brave Search Auto-RAG**: Optional web augmentation distills each prompt into parallel Brave Search queries and injects cited live context into the model call
+- **Media-Aware Reasoning**: Auto-spawns media satellite nodes for images, tables, video, charts, code, data, and PDFs; supports PDF ingestion for "chat with PDF" workflows
+- **Cloud and Local Persistence**: Supabase-backed auth, storage, sharing, and history when configured, with a full local-only mode when cloud services are absent
+- **Import / Export + Templates**: JSON, PNG, Markdown export; imports from Teserax JSON, ChatGPT exports, Markdown, and plain text, plus built-in analysis templates
+- **Operational UX**: Undo/redo, command palette, onboarding, dark/light theme, mobile bottom-sheet panel, and a Main Thread workspace for assembling final outputs
 
 ## Architecture
 
-Teserax uses a **dual-lane response model**. Every LLM operation emits immutable chat messages (Lane A) in parallel with graph nodes (Lane B), linked via `projectedNodeIds`. The graph stores both raw provider responses and derived `StructuredProjection` data (Zod-validated typed blocks).
+Teserax uses a **dual-lane response model**. Every LLM operation emits immutable chat messages in parallel with graph nodes, linked via `projectedNodeIds`. The graph stores both raw provider responses and derived structured projections, so users can move between the conversational history and the graph artifact without losing context.
 
-**Core loop**: user sends a message in the ChatPanel → LLM responds via SSE streaming (server key or BYOK) → response is projected into a `StructuredProjection` with typed blocks → each block becomes a node on the graph canvas with structural DAG edges → user can branch (new swim lane thread), merge (converge), summarize (compress), or cross-link (annotate) — with full context lineage and token budget management trimming oldest messages at 80% capacity.
+**Core loop**: user sends an instruction in the Global Panel → the planner classifies intent and proposes a graph action plan → Teserax previews non-trivial edits → the execution pipeline runs graph mutations with SSE-backed model responses → changed nodes are focused on the canvas and the whole action remains reversible through one undo.
 
-The AI orchestrator adds a second path: when auto-analyze is enabled, the `orchestrator.plan.v1` prompt asks the LLM to decompose the query into a multi-step JSON plan, then `templatePipeline.ts` executes it as a DAG with dependency-aware parallel step execution and a fallback 3-step plan on planner failure.
+The deployed architecture is split intentionally: **Vercel** serves the React/Vite frontend, **Railway** runs the persistent Hono backend for SSE streaming and longer-lived LLM requests, and **Supabase** provides Postgres, auth, and row-level security. The frontend calls relative `/api/*`, which Vercel rewrites to Railway so the browser still sees a same-origin API. That architecture choice reflects product judgment as much as implementation detail: each layer is chosen to fit the actual workload rather than forcing everything into one generic hosting model.
 
 ## Infrastructure & Quality
 
-- **API Server**: FastAPI backend (TypeScript/Python) proxying LLM calls (keys stay server-side), with Zod-validated structured output, ES256/HS256 JWT auth, sliding-window rate limiting (100 req/hr), CSP/HSTS security headers, audit logging, and 5MB body / 100k character input limits
-- **Hosting**: Deployed on EC2 behind Cloudflare with Origin Certificate SSL, Nginx TLS 1.2/1.3, real IP restoration, Docker multi-stage builds, and a 7-step SSH deploy pipeline with swap management and health checks
-- **Testing**: 226 Playwright end-to-end tests covering a11y, auth, BYOK, canvas interaction, cloud persistence, export/import, keyboard shortcuts, and more — with mock LLM server, Stripe/Supabase stubs, and JWT factory
-- **CI/CD**: GitHub Actions quality gate (lint, typecheck, build, unit tests, E2E, security audit) plus deploy workflow with Cloudflare Origin Cert install and concurrency groups
-- **Observability**: In-memory execution trace collector, metrics API, Sentry error tracking (frontend + backend), and privacy-respecting Plausible analytics
+- **API Server**: Hono on Node, with structured output validation, ES256/HS256 JWT auth, rate limiting, budget controls, security headers, audit logging, and health/metrics endpoints
+- **Hosting**: Frontend on Vercel, backend on Railway, and data/auth on Supabase; local development runs as Vite + Hono with proxying between the two processes
+- **Testing**: Vitest for unit/integration coverage plus Playwright for core journeys, auth, BYOK, canvas behavior, export/import, keyboard shortcuts, responsive flows, and mobile use cases
+- **CI/CD**: GitHub Actions quality gates, frontend build validation, and deployment wiring across managed hosting services
+- **Observability**: In-memory execution tracing, metrics APIs, Sentry on frontend and backend, and optional Plausible analytics
+
+## What This Proves
+
+Teserax is the clearest proof in my portfolio that I can operate as a **solo product engineer on technically difficult AI systems**. I can originate the product idea, turn it into a coherent UX, make the architecture decisions, implement the full stack, and ship a system that holds up under real operational constraints. The technical depth matters, but the stronger signal is that I can convert that depth into a complete working product.
 
 ## Tech Stack
 
 - **Frontend**: React 18, React Flow v12 (`@xyflow/react`), Zustand + Immer, Tailwind CSS + shadcn/ui, Framer Motion, react-markdown + remark-gfm, cmdk, sonner
-- **Backend**: FastAPI, TypeScript, OpenAI SDK + xAI/Grok via `OpenAICompatAdapter`, Zod (validation + structured output schemas), tiktoken, Drizzle ORM, Supabase PostgreSQL, AES-256-GCM encryption
-- **Integrations**: Brave Search API (Auto-RAG), MCP (tool connectivity), Grok Imagine (image generation), pdfjs-dist (client-side PDF parsing)
-- **Testing**: Playwright (226 E2E tests, multi-browser + mobile)
-- **Infra**: Docker + Docker Compose, Nginx, Cloudflare, EC2, GitHub Actions CI/CD, Supabase Auth + RLS
+- **Backend**: Hono on Node, OpenAI-compatible model adapter for OpenAI + xAI/Grok, Zod validation, tiktoken, Drizzle ORM, Supabase PostgreSQL, AES-256-GCM encryption
+- **Integrations**: Brave Search API, MCP tool connectivity, image generation, pdfjs-dist, and BYOK provider support
+- **Testing**: Vitest plus Playwright across desktop, multi-browser, and mobile flows
+- **Infra**: Vercel, Railway, Supabase, Docker, GitHub Actions, and managed auth/storage primitives

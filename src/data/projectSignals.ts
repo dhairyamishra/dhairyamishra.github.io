@@ -11,12 +11,12 @@ export interface ProjectSignal {
 export const projectSignals: Record<string, ProjectSignal> = {
   'teserax': {
     role: 'Built 0→1 product, architecture, and deployment',
-    proof: 'Live deployed agentic workflow product with 226 Playwright E2E tests, MCP integrations, and cloud + local model routing.',
+    proof: 'Live deployed agentic reasoning canvas with DAG-aware graph editing, multi-model + BYOK support, and managed Vercel/Railway/Supabase delivery.',
     filters: ['production-systems', 'llms', 'data-infrastructure', 'leadership'],
     featuredLabel: 'Flagship Product',
-    challenge: 'Turn linear chat into a controllable, DAG-safe agentic product with real deployment constraints.',
-    focus: 'Workflow orchestration, model routing, validation, and production reliability.',
-    outcome: 'A live multi-model product shipped end-to-end with strong testing and deployment discipline.',
+    challenge: 'Turn linear chat into a controllable graph-based reasoning system without losing clarity, reversibility, or production operability.',
+    focus: 'Planner/executor design, graph UX, model orchestration, and deployment architecture.',
+    outcome: 'A live multi-model product shipped end-to-end with cloud and local modes, structured graph operations, and strong operational discipline.',
   },
   'solaris': {
     role: 'Research engineering on data + evaluation systems',
@@ -90,6 +90,14 @@ export const projectSignals: Record<string, ProjectSignal> = {
     challenge: 'Keep sensing, prediction, and physical actuation responsive on constrained hardware.',
     focus: 'Embedded concurrency, prediction logic, and low-latency control.',
     outcome: 'A complete autonomous system that demonstrates practical CV on low-cost hardware.',
+  },
+  'slovenia-lidar-floodmap': {
+    role: 'Geospatial data pipeline and visualization builder',
+    proof: 'Processed 81 national LiDAR tiles into deployable flood-susceptibility, NDVI, and ranked-risk map overlays for Ljubljana.',
+    filters: ['research', 'data-infrastructure'],
+    challenge: 'Turn raw multi-tile LiDAR data into web-deliverable risk analysis while keeping scores comparable across the full dataset.',
+    focus: 'Offline data processing, dataset-wide calibration, raster export, and static delivery architecture.',
+    outcome: 'A reproducible LiDAR-to-web pipeline that turns heavy geospatial source data into a usable interactive analysis product.',
   },
 };
 
