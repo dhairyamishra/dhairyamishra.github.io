@@ -79,10 +79,11 @@ const projects = allProjects.sort(
   const viewButtons = document.querySelectorAll('.project-view');
   const cards = document.querySelectorAll('.project-card');
 
-  const applyFilter = (filter) => {
+  const applyFilter = (filter: string | null) => {
+    const activeFilter = filter ?? 'all';
     cards.forEach(card => {
       const filters = (card.getAttribute('data-filters') || '').split(' ').filter(Boolean);
-      if (filter === 'all' || filters.includes(filter)) {
+      if (activeFilter === 'all' || filters.includes(activeFilter)) {
         (card as HTMLElement).style.display = '';
       } else {
         (card as HTMLElement).style.display = 'none';
