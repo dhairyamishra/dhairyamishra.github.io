@@ -6,7 +6,7 @@ interface Props {
 const { code } = Astro.props;
 ---
 
-<div class="mermaid-container rounded-lg border border-white/5 bg-surface/80 p-4 overflow-x-auto">
+<div class="mermaid-container rounded-lg border border-black/5 bg-surface p-4 overflow-x-auto">
   <pre class="mermaid">{code}</pre>
 </div>
 
@@ -15,24 +15,24 @@ const { code } = Astro.props;
     const { default: mermaid } = await import('mermaid');
     mermaid.initialize({
       startOnLoad: false,
-      theme: 'dark',
+      theme: 'base',
       themeVariables: {
-        primaryColor: '#D45060',
-        primaryTextColor: '#F5F0EB',
-        primaryBorderColor: '#B8648A',
-        lineColor: '#B8648A',
-        secondaryColor: '#211D1F',
-        tertiaryColor: '#151315',
-        background: '#0A0A0B',
-        mainBkg: '#151315',
-        nodeBorder: '#D45060',
-        clusterBkg: '#151315',
-        clusterBorder: '#B8648A',
-        titleColor: '#F5F0EB',
-        edgeLabelBackground: '#151315',
-        actorTextColor: '#F5F0EB',
-        actorBorder: '#D45060',
-        signalColor: '#F5F0EB',
+        primaryColor: '#A63A3D',
+        primaryTextColor: '#241A14',
+        primaryBorderColor: '#7F2F33',
+        lineColor: '#7F2F33',
+        secondaryColor: '#F8F1E7',
+        tertiaryColor: '#FFFFFF',
+        background: '#FFFFFF',
+        mainBkg: '#FFFFFF',
+        nodeBorder: '#A63A3D',
+        clusterBkg: '#F8F1E7',
+        clusterBorder: '#B8891E',
+        titleColor: '#241A14',
+        edgeLabelBackground: '#FFFFFF',
+        actorTextColor: '#241A14',
+        actorBorder: '#A63A3D',
+        signalColor: '#241A14',
         fontFamily: 'Inter, sans-serif',
       },
       securityLevel: 'loose',

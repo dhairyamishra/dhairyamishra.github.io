@@ -26,7 +26,7 @@ import profileImg from '../assets/profile.jpg';
             width={576}
             height={576}
             loading="eager"
-            class="w-56 h-56 md:w-72 md:h-72 rounded-xl object-cover border-2 border-neon-rose/20 shadow-[0_0_30px_rgba(212,80,96,0.15)] mx-auto transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,80,96,0.3)]"
+            class="w-56 h-56 md:w-72 md:h-72 rounded-xl object-cover border-2 border-neon-rose/20 shadow-[0_20px_48px_rgba(36,26,20,0.12)] mx-auto transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(36,26,20,0.16)]"
           />
         </div>
         <div class="flex-1">
@@ -137,14 +137,14 @@ import profileImg from '../assets/profile.jpg';
 
               <div class="mt-4 pl-16">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                  <span class="px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-full bg-white/5 text-muted border border-white/10">{pub.role}</span>
-                  <span class="text-white/10 text-xs">|</span>
+                  <span class="px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-full bg-base text-muted border border-black/10">{pub.role}</span>
+                  <span class="text-black/10 text-xs">|</span>
                   <span class="text-sm text-muted">{pub.institution}</span>
-                  <span class="text-white/10 text-xs">|</span>
+                  <span class="text-black/10 text-xs">|</span>
                   <span class="text-sm text-muted font-mono">{pub.date}</span>
                   {pub.url && (
                     <>
-                      <span class="text-white/10 text-xs">|</span>
+                      <span class="text-black/10 text-xs">|</span>
                       <a
                         href={pub.url}
                         target="_blank"

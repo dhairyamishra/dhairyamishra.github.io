@@ -7,7 +7,7 @@ interface FormData {
   honeypot: string; // Anti-spam field
 }
 
-const inputClasses = "w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-white/10 text-[#F5F0EB] placeholder-[#6B6560] focus:outline-none focus:border-[#D45060]/50 focus:shadow-[0_0_10px_rgba(212,80,96,0.15)] transition-all duration-300 text-sm";
+const inputClasses = "w-full px-4 py-3 rounded-lg bg-[#FFFFFF] border border-black/10 text-[#241A14] placeholder-[#8B7D6E] focus:outline-none focus:border-[#A63A3D]/40 focus:shadow-[0_10px_24px_rgba(36,26,20,0.08)] transition-all duration-300 text-sm";
 
 const ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
 
@@ -84,7 +84,7 @@ export default function ContactForm() {
       
       {/* Name */}
       <div>
-        <label htmlFor="name" className="block text-xs font-medium text-[#B5A99A] uppercase tracking-wider mb-2">
+        <label htmlFor="name" className="block text-xs font-medium text-[#6F6254] uppercase tracking-wider mb-2">
           Name
         </label>
         <input
@@ -100,7 +100,7 @@ export default function ContactForm() {
       
       {/* Email */}
       <div>
-        <label htmlFor="email" className="block text-xs font-medium text-[#B5A99A] uppercase tracking-wider mb-2">
+        <label htmlFor="email" className="block text-xs font-medium text-[#6F6254] uppercase tracking-wider mb-2">
           Email
         </label>
         <input
@@ -116,7 +116,7 @@ export default function ContactForm() {
       
       {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-xs font-medium text-[#B5A99A] uppercase tracking-wider mb-2">
+        <label htmlFor="message" className="block text-xs font-medium text-[#6F6254] uppercase tracking-wider mb-2">
           Message
         </label>
         <textarea
@@ -134,7 +134,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full px-6 py-3 rounded-lg font-medium text-sm tracking-wide bg-gradient-to-r from-[#D45060]/40 to-[#B8648A]/35 border border-[#D45060]/50 text-[#FAF7F2] hover:from-[#D45060]/55 hover:to-[#B8648A]/50 hover:border-[#D45060] hover:shadow-[0_0_10px_rgba(212,80,96,0.4),0_0_30px_rgba(212,80,96,0.15)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
+        className="w-full px-6 py-3 rounded-lg font-medium text-sm tracking-wide bg-[#A63A3D] border border-[#A63A3D] text-[#FFFFFF] hover:bg-[#7F2F33] hover:border-[#7F2F33] hover:shadow-[0_14px_32px_rgba(36,26,20,0.12)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
       >
         {status === 'loading' ? (
           <span className="inline-flex items-center gap-2">
@@ -146,13 +146,13 @@ export default function ContactForm() {
       
       {/* Status Messages */}
       {status === 'success' && (
-        <div className="p-4 rounded-lg border border-[#6B8F71]/20 bg-[#6B8F71]/5 text-[#6B8F71] text-sm">
+        <div className="p-4 rounded-lg border border-[#5F7A57]/20 bg-[#5F7A57]/5 text-[#5F7A57] text-sm">
           Message sent successfully! I'll get back to you soon.
         </div>
       )}
       
       {status === 'error' && (
-        <div className="p-4 rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[#D4AF37] text-sm">
+        <div className="p-4 rounded-lg border border-[#B8891E]/20 bg-[#B8891E]/5 text-[#8A6612] text-sm">
           {errorMessage}
         </div>
       )}

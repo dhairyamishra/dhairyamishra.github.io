@@ -9,15 +9,15 @@
 
 @layer base {
   :root {
-    --neon-rose: #D45060;
-    --neon-gold: #D4AF37;
-    --neon-violet: #B8648A;
-    --neon-lime: #6B8F71;
-    --bg-base: #0A0A0B;
-    --bg-surface: #151315;
-    --bg-surface-light: #211D1F;
-    --text-primary: #F5F0EB;
-    --text-muted: #B5A99A;
+    --neon-rose: #A63A3D;
+    --neon-gold: #B8891E;
+    --neon-violet: #7F2F33;
+    --neon-lime: #5F7A57;
+    --bg-base: #F8F4EE;
+    --bg-surface: #FFFFFF;
+    --bg-surface-light: #F8F1E7;
+    --text-primary: #241A14;
+    --text-muted: #6F6254;
   }
 
   html {
@@ -27,16 +27,16 @@
   body {
     @apply bg-base text-text font-body;
     background-image:
-      radial-gradient(ellipse at 20% 0%, rgba(212,80,96,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(184,100,138,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.04) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 0%, rgba(166,58,61,0.05) 0%, transparent 48%),
+      radial-gradient(ellipse at 80% 20%, rgba(184,137,30,0.05) 0%, transparent 46%),
+      radial-gradient(ellipse at 50% 80%, rgba(127,47,51,0.03) 0%, transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   ::selection {
-    background: rgba(212, 80, 96, 0.25);
-    color: #FAF7F2;
+    background: rgba(166, 58, 61, 0.18);
+    color: #130E0B;
   }
 
   ::-webkit-scrollbar {
@@ -44,16 +44,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0A0A0B;
+    background: #F8F1E7;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(212, 80, 96, 0.2);
+    background: rgba(166, 58, 61, 0.2);
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(212, 80, 96, 0.4);
+    background: rgba(166, 58, 61, 0.35);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -77,41 +77,40 @@
 @layer components {
   .btn-neon {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply border border-neon-rose/40 text-neon-rose;
-    @apply hover:border-neon-rose hover:shadow-neon-md;
+    @apply border border-neon-rose/20 text-neon-rose bg-surface;
+    @apply hover:border-neon-rose/50 hover:bg-base hover:shadow-neon-sm;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
   }
 
   .btn-neon-fill {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply bg-gradient-to-r from-neon-rose/40 to-neon-violet/35;
-    @apply border border-neon-rose/50 text-text-bright;
-    @apply hover:from-neon-rose/55 hover:to-neon-violet/50;
-    @apply hover:border-neon-rose hover:shadow-neon-md;
+    @apply bg-neon-rose text-white;
+    @apply border border-neon-rose/90;
+    @apply hover:bg-neon-violet hover:border-neon-violet hover:shadow-neon-sm;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
   }
 
   .btn-neon-gold {
     @apply relative px-6 py-3 rounded-lg font-medium font-heading tracking-wide;
-    @apply border border-neon-gold/40 text-neon-gold;
-    @apply hover:border-neon-gold hover:shadow-neon-gold-md;
+    @apply border border-neon-gold/30 text-neon-gold bg-surface;
+    @apply hover:border-neon-gold/60 hover:bg-base hover:shadow-neon-gold-sm;
     @apply transition-all duration-300 ease-out;
     @apply active:scale-95;
   }
 
   .card-neon {
     @apply relative rounded-xl p-6;
-    @apply bg-surface/80 backdrop-blur-sm;
-    @apply border border-white/5;
-    @apply hover:border-neon-rose/20 hover:shadow-neon-sm;
+    @apply bg-surface;
+    @apply border border-black/5 shadow-neon-sm;
+    @apply hover:border-neon-rose/15 hover:shadow-neon-md;
     @apply transition-all duration-300 ease-out;
   }
 
   .card-neon-interactive {
     @apply card-neon;
-    @apply hover:bg-surface-light/80 hover:-translate-y-1;
+    @apply hover:bg-surface-light hover:-translate-y-1;
     @apply cursor-pointer;
   }
 
@@ -132,33 +131,33 @@
 
   .divider-neon {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent, var(--neon-rose), transparent);
-    opacity: 0.3;
+    background: linear-gradient(90deg, transparent, rgba(166,58,61,0.3), transparent);
+    opacity: 1;
   }
 
   .divider-neon-animated {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent, var(--neon-rose), var(--neon-violet), transparent);
+    background: linear-gradient(90deg, transparent, rgba(166,58,61,0.22), rgba(184,137,30,0.28), transparent);
     background-size: 200% 100%;
     animation: thread-flow 3s linear infinite;
-    opacity: 0.4;
+    opacity: 1;
   }
 
   .link-neon {
     @apply text-neon-rose/80 hover:text-neon-rose;
-    @apply underline decoration-neon-rose/20 underline-offset-4;
-    @apply hover:decoration-neon-rose/60;
+    @apply underline decoration-neon-rose/25 underline-offset-4;
+    @apply hover:decoration-neon-rose/70;
     @apply transition-all duration-200;
   }
 
   .text-gradient-neon {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #D45060, #B8648A, #D4AF37);
+    background-image: linear-gradient(135deg, #A63A3D, #7F2F33, #B8891E);
   }
 
   .text-gradient-rose {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #D45060, #B8648A);
+    background-image: linear-gradient(135deg, #A63A3D, #7F2F33);
   }
 
   .section-container {
@@ -166,13 +165,13 @@
   }
 
   .neon-glow-text {
-    text-shadow: 0 0 10px rgba(212, 80, 96, 0.5), 0 0 40px rgba(212, 80, 96, 0.2);
+    text-shadow: none;
   }
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(212,80,96,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212,80,96,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(166,58,61,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(166,58,61,0.035) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
@@ -226,7 +225,7 @@
 
   /* --- Mermaid --- */
   .mermaid-container {
-    @apply bg-surface/80 backdrop-blur-sm;
+    @apply bg-surface shadow-neon-sm;
   }
 
   .mermaid-container .mermaid {
@@ -254,7 +253,7 @@
 
   .media-lightbox__backdrop {
     @apply absolute inset-0;
-    background: rgba(10, 10, 11, 0.92);
+    background: rgba(36, 26, 20, 0.82);
     backdrop-filter: blur(8px);
   }
 
@@ -266,21 +265,21 @@
     max-width: 90vw;
     max-height: 80vh;
     object-fit: contain;
-    @apply rounded-lg border border-white/10;
-    box-shadow: 0 0 40px rgba(212, 80, 96, 0.15);
+    @apply rounded-lg border border-black/10;
+    box-shadow: 0 24px 56px rgba(36, 26, 20, 0.18);
   }
 
   .media-lightbox__close {
     @apply absolute top-4 right-4 z-10 p-2 rounded-full;
     @apply text-muted hover:text-neon-rose;
-    @apply bg-surface/80 border border-white/10 hover:border-neon-rose/40;
+    @apply bg-surface border border-black/10 hover:border-neon-rose/30;
     @apply transition-all duration-200;
   }
 
   .media-lightbox__nav {
     @apply absolute top-1/2 -translate-y-1/2 z-10 p-3 rounded-full;
     @apply text-muted hover:text-neon-rose;
-    @apply bg-surface/80 border border-white/10 hover:border-neon-rose/40;
+    @apply bg-surface border border-black/10 hover:border-neon-rose/30;
     @apply transition-all duration-200;
   }
 
@@ -334,7 +333,7 @@
     @apply text-neon-gold bg-neon-gold/10 px-1.5 py-0.5 rounded text-xs font-mono;
   }
   .prose-neon pre {
-    @apply bg-surface border border-white/5 rounded-lg p-4 mb-6 overflow-x-auto;
+    @apply bg-surface-light border border-black/5 rounded-lg p-4 mb-6 overflow-x-auto;
   }
   .prose-neon pre code {
     @apply bg-transparent text-text p-0;
@@ -343,13 +342,13 @@
     @apply w-full mb-6 text-sm;
   }
   .prose-neon thead th {
-    @apply text-left text-neon-rose/80 font-heading font-semibold py-2 px-3 border-b border-white/10;
+    @apply text-left text-neon-rose/80 font-heading font-semibold py-2 px-3 border-b border-black/10;
   }
   .prose-neon tbody td {
-    @apply py-2 px-3 text-muted-light border-b border-white/5;
+    @apply py-2 px-3 text-muted-light border-b border-black/5;
   }
   .prose-neon hr {
-    @apply border-white/5 my-8;
+    @apply border-black/5 my-8;
   }
   .prose-neon blockquote {
     @apply border-l-2 border-neon-rose/30 pl-4 italic text-muted my-4;
@@ -386,8 +385,8 @@
     }
   }
   .hero-neon__frame {
-    @apply relative overflow-hidden rounded-xl border border-neon-rose/20;
-    box-shadow: 0 0 60px rgba(212, 80, 96, 0.12);
+    @apply relative overflow-hidden rounded-xl border border-neon-rose/15;
+    box-shadow: 0 24px 56px rgba(36, 26, 20, 0.10);
   }
   .hero-neon__img {
     @apply w-full h-auto block;
@@ -398,14 +397,14 @@
     @apply absolute inset-0 pointer-events-none;
     background: linear-gradient(
       180deg,
-      rgba(10, 10, 11, 0) 50%,
-      rgba(10, 10, 11, 0.55) 100%
+      rgba(255, 255, 255, 0) 50%,
+      rgba(36, 26, 20, 0.42) 100%
     );
   }
   .hero-neon__eyebrow {
     @apply absolute top-4 left-4 inline-flex items-center px-3 py-1;
     @apply rounded-full text-xs font-mono tracking-wider uppercase;
-    @apply bg-base/70 text-neon-rose border border-neon-rose/30;
+    @apply bg-surface text-neon-rose border border-neon-rose/20;
     backdrop-filter: blur(6px);
   }
   .hero-neon__caption {
@@ -421,11 +420,11 @@
     line-height: 0;
   }
   .figure-neon__img {
-    @apply w-full h-auto block rounded-lg border border-white/10;
+    @apply w-full h-auto block rounded-lg border border-black/10;
     transition: border-color 0.3s ease, transform 0.5s ease;
   }
   .figure-neon__img--static {
-    @apply rounded-lg border border-white/10;
+    @apply rounded-lg border border-black/10;
   }
   .figure-neon__trigger:hover .figure-neon__img {
     @apply border-neon-rose/40;
@@ -433,7 +432,7 @@
   .figure-neon__zoom-hint {
     @apply absolute top-3 right-3 w-9 h-9 rounded-full;
     @apply flex items-center justify-center;
-    @apply bg-base/60 text-white border border-white/10;
+    @apply bg-surface text-text border border-black/10;
     @apply opacity-0 transition-opacity duration-300;
     backdrop-filter: blur(6px);
   }
@@ -541,7 +540,7 @@
     @apply my-8;
   }
   .video-embed__frame {
-    @apply relative overflow-hidden rounded-lg border border-white/10;
+    @apply relative overflow-hidden rounded-lg border border-black/10 shadow-neon-sm;
     aspect-ratio: 16 / 9;
   }
   .video-embed__iframe {
