@@ -14,6 +14,18 @@ metricLabel: "Synchronized Frames"
 import Hero from '../../components/mdx/Hero.astro';
 import Figure from '../../components/mdx/Figure.astro';
 import FigureGrid from '../../components/mdx/FigureGrid.astro';
+import VideoEmbed from '../../components/mdx/VideoEmbed.astro';
+
+<VideoEmbed
+  src="https://www.youtube.com/watch?v=jGMLS88_Voo"
+  title="Solaris: Building a Multiplayer Video World Model in Minecraft"
+  caption="Project walkthrough and research overview for Solaris."
+  width="wide"
+/>
+
+## Overview
+
+Solaris is the **first multiplayer video world model**, generating consistent first-person observations for two players simultaneously in Minecraft. A **NeurIPS 2026 submission**, it was trained on **12.64M synchronized frames** of coordinated gameplay collected through SolarisEngine — a purpose-built multiplayer data collection system. I authored the episode creation logic and action-based gameplay routines, carefully curated to cover the full distribution of multiplayer interactions the model needed to learn, from cooperative building to adversarial combat, movement, and mining. The system uses a staged training pipeline combining bidirectional, causal, and Self Forcing objectives, and outperforms existing baselines across all evaluation categories. Everything is open-sourced: engine, models, datasets, and evaluation benchmarks. Paper: [arXiv:2602.22208](https://arxiv.org/abs/2602.22208).
 
 <Hero
   src="/images/projects/solaris/solaris-diagram.png"
@@ -21,10 +33,6 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
   eyebrow="System Overview"
   caption="SolarisEngine — end-to-end multiplayer data, training, and evaluation framework"
 />
-
-## Overview
-
-Solaris is the **first multiplayer video world model**, generating consistent first-person observations for two players simultaneously in Minecraft. A **NeurIPS 2026 submission**, it was trained on **12.64M synchronized frames** of coordinated gameplay collected through SolarisEngine — a purpose-built multiplayer data collection system. I authored the episode creation logic and action-based gameplay routines, carefully curated to cover the full distribution of multiplayer interactions the model needed to learn, from cooperative building to adversarial combat, movement, and mining. The system uses a staged training pipeline combining bidirectional, causal, and Self Forcing objectives, and outperforms existing baselines across all evaluation categories. Everything is open-sourced: engine, models, datasets, and evaluation benchmarks. Paper: [arXiv:2602.22208](https://arxiv.org/abs/2602.22208).
 
 <FigureGrid cols={2} width="wide" caption="Solaris generating synchronized first-person observations for two players simultaneously in Minecraft.">
   <Figure
