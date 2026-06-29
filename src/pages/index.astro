@@ -146,16 +146,17 @@ const affiliations = [
           </div>
 
           <div class="reveal reveal-delay-2">
-            <div class="card-neon p-5 md:p-6">
-              <div class="flex items-start gap-5">
-                <Image
-                  src={profileImg}
-                  alt="Dhairya Mishra"
-                  width={352}
-                  height={352}
-                  loading="eager"
-                  class="h-28 w-28 rounded-2xl border-2 border-neon-rose/20 object-cover shadow-[0_18px_40px_rgba(36,26,20,0.10)]"
-                />
+            <div class="flex flex-col items-start gap-6">
+              <Image
+                src={profileImg}
+                alt="Dhairya Mishra"
+                width={448}
+                height={448}
+                loading="eager"
+                class="h-44 w-44 rounded-3xl border-2 border-neon-rose/20 object-cover shadow-[0_24px_56px_rgba(36,26,20,0.14)] md:h-56 md:w-56"
+              />
+
+              <div class="card-neon w-full p-5 md:p-6">
                 <div class="flex-1">
                   <p class="text-xs font-mono uppercase tracking-[0.16em] text-muted">Current focus</p>
                   <h2 class="mt-2 text-xl font-heading font-semibold text-text-bright">Applied ML with production judgment</h2>
@@ -163,20 +164,20 @@ const affiliations = [
                     Engineering systems where model quality, reliability, observability, and operator experience all matter at the same time.
                   </p>
                 </div>
-              </div>
 
-              <div class="mt-6 space-y-3 border-t border-black/5 pt-5">
-                <div class="flex items-center justify-between gap-4">
-                  <span class="text-sm text-muted">Primary domains</span>
-                  <span class="text-right text-sm font-medium text-text">LLMs · accessibility · platform infra</span>
-                </div>
-                <div class="flex items-center justify-between gap-4">
-                  <span class="text-sm text-muted">Recent signal</span>
-                  <span class="text-right text-sm font-medium text-text">NeurIPS 2026 submission + live shipped systems</span>
-                </div>
-                <div class="flex items-center justify-between gap-4">
-                  <span class="text-sm text-muted">Operating style</span>
-                  <span class="text-right text-sm font-medium text-text">Own architecture, delivery, and outcomes</span>
+                <div class="mt-6 space-y-3 border-t border-black/5 pt-5">
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="text-sm text-muted">Primary domains</span>
+                    <span class="text-right text-sm font-medium text-text">LLMs · accessibility · platform infra</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="text-sm text-muted">Recent signal</span>
+                    <span class="text-right text-sm font-medium text-text">NeurIPS 2026 submission + live shipped systems</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="text-sm text-muted">Operating style</span>
+                    <span class="text-right text-sm font-medium text-text">Own architecture, delivery, and outcomes</span>
+                  </div>
                 </div>
               </div>
             </div>
