@@ -295,27 +295,47 @@
   }
 
   /* --- Markdown prose (used by project bodies and experience timeline) --- */
+  .project-article-shell {
+    @apply relative;
+  }
+  @media (min-width: 64rem) {
+    .project-article-shell {
+      padding-left: 1.5rem;
+      border-left: 1px solid rgba(36, 26, 20, 0.08);
+    }
+  }
+  .project-metric-card {
+    box-shadow: 0 12px 28px rgba(184, 137, 30, 0.08);
+  }
+  .prose-neon {
+    @apply text-base;
+  }
+  .prose-neon > p:first-of-type {
+    @apply text-lg leading-8 text-text mb-8;
+  }
   .prose-neon h2 {
-    @apply text-2xl font-heading font-bold text-text-bright mt-10 mb-4;
+    @apply text-3xl md:text-4xl font-heading font-bold text-text-bright mt-14 mb-5 leading-tight;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(36, 26, 20, 0.08);
   }
   .prose-neon h3 {
-    @apply text-xl font-heading font-semibold text-text-bright mt-8 mb-3;
+    @apply text-2xl md:text-3xl font-heading font-semibold text-text-bright mt-10 mb-4 leading-tight;
   }
   .prose-neon p {
-    @apply text-sm text-muted-light leading-relaxed mb-4;
+    @apply text-base text-muted-light leading-8 mb-5;
   }
   .prose-neon ul {
-    @apply space-y-2 mb-6;
+    @apply space-y-3 mb-8;
   }
   .prose-neon li {
-    @apply text-sm text-muted-light leading-relaxed pl-4 relative;
+    @apply text-base text-muted-light leading-8 pl-5 relative;
   }
   .prose-neon li::before {
     content: '';
     @apply absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-neon-rose/50;
   }
   .prose-neon ol {
-    @apply space-y-2 mb-6 list-decimal list-inside;
+    @apply space-y-3 mb-8 list-decimal list-inside;
   }
   .prose-neon ol li {
     @apply pl-0;
@@ -334,6 +354,9 @@
   }
   .prose-neon pre {
     @apply bg-surface-light border border-black/5 rounded-lg p-4 mb-6 overflow-x-auto;
+  }
+  .prose-neon figure {
+    @apply my-10;
   }
   .prose-neon pre code {
     @apply bg-transparent text-text p-0;

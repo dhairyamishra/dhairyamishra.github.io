@@ -65,7 +65,7 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
         Back to Projects
       </a>
 
-      <header class="mb-12 max-w-4xl">
+      <header class="mb-14 max-w-5xl">
         <div class="mb-4 flex flex-wrap items-center gap-3">
           <span class="badge-neon">{categoryLabels[project.data.category] || project.data.category}</span>
           <span class="text-xs font-mono text-muted">{project.data.date}</span>
@@ -81,9 +81,9 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
         </p>
 
         {project.data.metric && (
-          <div class="mb-6 inline-flex items-center gap-3 rounded-2xl border border-neon-gold/20 bg-neon-gold/5 px-5 py-3">
-            <span class="text-2xl font-heading font-bold text-neon-rose">{project.data.metric}</span>
-            {project.data.metricLabel && <span class="text-sm text-muted">{project.data.metricLabel}</span>}
+          <div class="project-metric-card mb-8 inline-flex flex-col rounded-2xl border border-neon-gold/20 bg-neon-gold/5 px-5 py-4">
+            {project.data.metricLabel && <span class="text-[10px] font-heading uppercase tracking-[0.18em] text-muted">{project.data.metricLabel}</span>}
+            <span class="mt-1 text-3xl font-heading font-bold leading-none text-neon-rose md:text-4xl">{project.data.metric}</span>
           </div>
         )}
 
@@ -136,11 +136,11 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
 
       {signal && (
         <section class="mb-12 rounded-2xl border border-black/5 bg-surface p-6 shadow-neon-sm">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div class="max-w-2xl">
-              <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Standard review frame</p>
+              <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Best read as</p>
               <p class="mt-2 text-sm leading-relaxed text-muted">
-                Every project writeup is being standardized around the same questions: what problem was being solved, what system was built, what I owned, what tradeoffs mattered, and what measurable outcome justified the work.
+                Use these review angles to evaluate the work quickly: ownership, system depth, research rigor, or production engineering.
               </p>
             </div>
             <div class="flex flex-wrap gap-2">
@@ -156,7 +156,7 @@ const publishedTime = /^\d{4}-\d{2}$/.test(rawDate) ? `${rawDate}-01` : rawDate;
 
       <div class="divider-neon mb-12"></div>
 
-      <div class="max-w-3xl prose-neon">
+      <div class="project-article-shell max-w-4xl prose-neon">
         <Content />
       </div>
 
