@@ -1,56 +1,46 @@
 ---
-title: "RAG Support Assistant"
-description: "Internal RAG-powered support assistant with Slack integration, OpenAI, and ChromaDB. Hosted on CVS Enterprise GCP via Terraform + ArgoCD; reduced manual ticket resolution time by 20%."
+title: "RAG Support Assistant at CVS Health"
+description: "Self-service RAG assistant over ticket history and internal documentation. The assistant deflected 16% of tickets and cut resolution time by 20% while fitting CVS enterprise platform constraints."
 date: "2024-03"
-tags: ["RAG", "OpenAI", "ChromaDB", "Slack", "Terraform", "ArgoCD", "GCP", "LLM", "Python"]
+tags: ["RAG", "GCP", "Terraform", "ArgoCD", "LLM", "Internal Tools", "Python"]
 featured: false
 category: "ml-ai"
-metric: "20%"
-metricLabel: "Faster Resolution"
+metric: "16%"
+metricLabel: "Ticket Deflection"
 ---
 
 ## Overview
 
-Built an internal Retrieval-Augmented Generation support assistant at CVS Health that integrates directly with Slack to provide self-serve troubleshooting for engineering teams. The system combines **OpenAI generation**, **ChromaDB retrieval**, enterprise governance controls, and deployment on CVS-managed **GCP infrastructure** via Terraform and ArgoCD.
+At CVS Health, I built a self-service RAG assistant over ticket history and internal documentation. The goal was to make recurring troubleshooting knowledge available directly to engineering teams instead of routing every question through manual support.
 
-The important part of this work is not simply “used RAG.” The real value was turning internal knowledge into an operational support surface that reduced manual ticket load while fitting enterprise platform constraints around deployment, governance, and trust.
+The current resume reports two measured outcomes: the assistant deflected **16% of tickets** and reduced resolution time by **20%**. It also fits the broader CVS platform environment: GCP, Terraform, ArgoCD, governance constraints, and internal documentation workflows.
 
 ## What I Owned
 
-- Built the internal support-assistant workflow and retrieval stack
-- Integrated the assistant into Slack where teams already worked
-- Shaped the retrieval + generation loop around internal documentation and past resolutions
-- Deployed the system through enterprise GCP infrastructure and CI/CD controls
+- Built the retrieval and generation workflow over ticket history and internal docs.
+- Shaped the assistant around self-service troubleshooting rather than generic chat.
+- Integrated the workflow with enterprise deployment and governance expectations.
+- Used the system to reduce repeat manual support work for engineering teams.
 
 ## Hard Problems Solved
 
-- **Knowledge access in the flow of work**: instead of another portal, the assistant had to live inside Slack and answer in a way that was immediately useful during troubleshooting
-- **Grounded generation**: answers had to be tied to retrieved internal sources rather than free-form model responses
-- **Enterprise controls**: the product needed governance, auditability, and safe deployment characteristics appropriate for internal engineering use
-
-## Key Features
-
-- **Slack Integration**: Native Slack bot for seamless team interaction
-- **RAG Architecture**: ChromaDB vector store for document retrieval, OpenAI for answer generation
-- **Self-Serve Troubleshooting**: Teams can resolve common issues without filing tickets
-- **Context-Aware Responses**: Retrieves relevant documentation and past solutions
-- **Secured Governance**: Enterprise auth, request audit logs, and content guardrails
+- **Ground answers in internal evidence**: support answers needed to be based on retrieved historical tickets and documentation.
+- **Reduce support load without hiding risk**: the assistant had to resolve common issues while preserving a path for unresolved cases.
+- **Fit enterprise platform constraints**: deployment and operations needed to align with CVS cloud and infrastructure practices.
 
 ## Impact
 
-- **20% reduction** in manual ticket resolution time
-- Accelerated onboarding for new team members
-- Reduced load on platform support teams
-- Improved knowledge discoverability across the engineering organization
+- Deflected **16% of tickets**.
+- Cut resolution time by **20%**.
+- Improved knowledge discoverability across recurring troubleshooting workflows.
 
 ## Why It Matters
 
-This project shows applied ML system design in a real enterprise environment: retrieval quality, integration ergonomics, governance, and platform deployment all matter at the same time.
+This project shows RAG as an operational support system rather than a demo: retrieval quality, deployment fit, and measurable support outcomes all mattered.
 
 ## Tech Stack
 
-- **AI/ML**: OpenAI API, ChromaDB (vector database), RAG pipeline
-- **Integration**: Slack Bot API
-- **Backend**: Python, FastAPI
-- **Infrastructure**: GCP (CVS Enterprise clusters), Terraform, ArgoCD
-- **Data**: Internal documentation corpus, runbook collection
+- **AI/ML**: Retrieval-Augmented Generation, LLM answer generation
+- **Infrastructure**: GCP, Terraform, ArgoCD
+- **Backend**: Python
+- **Data**: Ticket history, internal documentation, runbooks

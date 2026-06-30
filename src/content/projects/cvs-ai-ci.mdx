@@ -1,60 +1,46 @@
 ---
-title: "AI-Driven Image-to-Alt-Text CI Automation"
-description: "Hugging Face transformer-powered image alt-text compliance system at CVS Health. Won 1st Prize at the CVS GenAI Hackathon (Aug 2023), then productionized for enterprise rollout — boosted accessibility conformance by 35% and reduced downstream defects by 15%."
+title: "Closed-Loop Alt-Text Automation at CVS Health"
+description: "Transformer-based alt-text pipeline that generated captions with a Hugging Face vision-language model and used an LLM judge prompted for CVS brand framing to write back only captions that improved on existing alt text, raising catalog coverage by 18%."
 date: "2024-06"
-tags: ["Hugging Face", "Computer Vision", "Transformers", "CI/CD", "GitHub Actions", "Accessibility", "Python"]
+tags: ["Hugging Face", "Computer Vision", "VLM", "LLM-as-Judge", "Accessibility", "Python", "CI/CD"]
 featured: false
 category: "ml-ai"
-metric: "1st Prize"
-metricLabel: "CVS GenAI Hackathon"
+metric: "18%"
+metricLabel: "Coverage Lift"
 ---
 
 ## Overview
 
-A transformer-powered image alt-text compliance system that automatically generates and validates accessible alt-text for images at CVS Health. The work started as a hackathon prototype, then evolved into a production CI workflow that pushed accessibility validation earlier into the engineering lifecycle.
+At CVS Health, I built a closed-loop alt-text pipeline for accessibility quality. The system generated candidate captions with a Hugging Face vision-language model, evaluated them with an LLM judge prompted for CVS brand framing, and wrote back only captions that beat the existing alt text.
 
-This is a strong ownership story because the real achievement was not winning the hackathon — it was converting a promising demo into a system teams could actually use in pull requests, with feedback loops, compliance logic, and rollout discipline.
+The current resume frames this as a production-oriented accessibility and applied-AI system: it improved catalog coverage by **18%** while preserving a review boundary around brand fit and caption quality.
 
 ## What I Owned
 
-- Built the initial vision-language proof of concept for the hackathon
-- Framed the product around accessibility compliance, not generic captioning
-- Helped productionize the workflow for CI/CD use under enterprise standards
-- Shaped reporting and feedback into GitHub Actions and Slack so teams could act on it
-
-## Origin: 1st Prize at CVS GenAI Hackathon (Aug 2023)
-
-Won 1st Prize for a proof-of-concept that used Hugging Face vision-language models to **generate and compare alt-text for images and test them for accessibility compliance**. Combined transformer-based caption generation with sentiment analysis to flag tone issues alongside coverage gaps.
-
-## Productionization
-
-After the hackathon, established production-grade pipelines for enterprise rollout under the CPE web-core CI/CD standards. The system runs on every pull request and:
-
-- **Generates candidate alt-text** for new images using vision-language transformers
-- **Compares against existing alt-text** to flag missing or inaccurate copy
-- **Scores compliance** against WCAG/ADA requirements with sentiment-aware checks
-- **Reports inline** in GitHub Actions and Slack to keep accessibility shifted left
+- Built the transformer-based caption generation pipeline.
+- Designed the LLM-judge step for comparing generated captions against existing alt text.
+- Framed evaluation around CVS brand fit and accessibility quality rather than generic image captioning.
+- Connected the workflow to production-grade accessibility automation.
 
 ## Hard Problems Solved
 
-- **Move from prototype to workflow**: hackathon demos can be impressive but operationally irrelevant; this needed to become trustworthy enough for repeated CI use
-- **Catch issues earlier**: the system had to surface accessibility problems before release instead of after manual review or production audits
-- **Bridge model output and policy**: generated alt text is only useful if it is evaluated against accessibility rules and reporting standards teams understand
+- **Avoid blind replacement**: the system only wrote back captions that improved on the existing alt text.
+- **Balance accessibility and brand voice**: captions needed to be useful, compliant, and consistent with CVS framing.
+- **Turn model output into workflow output**: the value came from closing the loop between generation, evaluation, and controlled update behavior.
 
 ## Impact
 
-- **35% boost** in accessibility conformance after hackathon prototype rollout (per A11yScore baseline)
-- **15% reduction** in downstream defects after productionization for enterprise rollout
-- Catches visual/copy regressions traditional snapshot testing misses
-- Foundation for the CVS accessibility org's automated CI quality gates
+- Raised catalog coverage by **18%**.
+- Created a repeatable applied-AI workflow for accessibility content quality.
+- Demonstrated a practical pattern for using VLM generation with an LLM quality gate.
 
 ## Why It Matters
 
-This project shows I can take an applied-ML idea, tie it to a real engineering quality problem, and ship it into the development workflow where it creates measurable value.
+This project shows applied ML in a real enterprise workflow: model generation, policy-aware evaluation, and production update behavior all had to work together.
 
 ## Tech Stack
 
-- **AI/ML**: Hugging Face Transformers, vision-language models, sentiment analysis
-- **CI/CD**: GitHub Actions, custom pipeline orchestration, Slack reporting
+- **AI/ML**: Hugging Face vision-language models, LLM-as-judge evaluation
+- **Accessibility**: Alt-text quality automation, WCAG-oriented review
 - **Backend**: Python
-- **Validation**: WCAG/ADA rule evaluation, A11yScore baseline metrics
+- **Delivery**: Enterprise production pipeline integration

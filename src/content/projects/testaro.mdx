@@ -1,60 +1,54 @@
 ---
-title: "Testaro — Web Accessibility Testing"
-description: "Multi-tool web accessibility compliance evaluation and unified reporting pipeline. Presented at ACM SIGACCESS ASSETS 2023 representing CVS Health."
+title: "Testaro - Web Accessibility Ensemble Testing"
+description: "Open-source ensemble web accessibility testing work associated with CVS Health and published at ACM SIGACCESS ASSETS 2023. Testaro checks about 650 rules across 8 tools and generates unified reports across fragmented accessibility signals."
 date: "2023-10"
-tags: ["Accessibility", "Node.js", "CI/CD", "Playwright", "ACM"]
+tags: ["Accessibility", "Node.js", "Playwright", "axe-core", "ACM", "WCAG"]
 featured: false
 category: "open-source"
 paperUrl: "https://arxiv.org/abs/2309.10167"
-metric: "ACM"
-metricLabel: "ASSETS 2023"
+metric: "650"
+metricLabel: "Approx. Rules"
 ---
 
 ## Overview
 
-Testaro is a web accessibility testing framework that aggregates results from multiple evaluation tools into one unified reporting pipeline. I presented this work at the **25th ACM SIGACCESS ASSETS conference** representing CVS Health.
+Testaro is an open-source NPM package for ensemble web accessibility testing. The public arXiv record describes it as checking compliance with about **650 rules** across **8 tools**: alfa, Axe, Equal Access, HTML CodeSniffer, Nu Html Checker, QualWeb, Testaro, and WAVE.
 
-The key value of the project is not just “ran more tools.” It created a single reporting layer over fragmented accessibility signals, which is what makes automated enforcement and organization-wide adoption possible.
+My current public profile describes this as CVS Health accessibility-tooling work connected to the 25th ACM SIGACCESS ASSETS conference. The strongest supported portfolio signal is the engineering pattern: unify several noisy accessibility-testing tools into one reportable workflow that teams can operationalize.
 
 ## What I Owned
 
-- Contributed to the multi-tool evaluation and unified reporting workflow
-- Helped frame the system around practical accessibility enforcement rather than isolated audits
-- Presented the work publicly at ASSETS 2023 as part of the CVS Health effort
+- Contributed to accessibility tooling and reporting work around Testaro at CVS Health.
+- Helped connect multi-tool accessibility findings to practical engineering workflows.
+- Worked with Node.js, Playwright, axe-core, and WCAG/ADA-oriented accessibility evaluation.
 
-## Conference Presentation
+## Public Record
 
-- **Venue**: 25th ACM International Conference on Computers and Accessibility (ASSETS 2023)
-- **Role**: Speaker/Contributor representing CVS Health
-- **Focus**: Multi-tool compliance rule evaluation and unified reporting
+- **Paper**: [Testaro: Efficient Ensemble Testing for Web Accessibility](https://arxiv.org/abs/2309.10167)
+- **Venue**: Proceedings of the 25th ACM International Conference on Computers and Accessibility (ASSETS '23)
+- **DOI**: [10.1145/3597638.3614505](https://doi.org/10.1145/3597638.3614505)
+- **Scope**: about 650 rules across 8 accessibility tools, with unified reports designed to find more issues than a single tool alone.
 
 ## Hard Problems Solved
 
-- **Normalize fragmented outputs**: accessibility tools disagree in structure, coverage, and terminology; a usable pipeline needs one coherent reporting layer
-- **Make accessibility CI-friendly**: results had to be usable inside development workflows rather than existing as one-off audits
-- **Create reporting teams can act on**: the goal was not more raw findings, but clearer, consolidated signals for engineers and reviewers
+- **Normalize fragmented outputs**: accessibility tools disagree in structure, coverage, terminology, and severity. A usable system needs one reporting layer.
+- **Make results actionable**: raw findings are not enough; engineers need reports that can support review, remediation, and repeated testing.
+- **Shift accessibility earlier**: ensemble testing is most valuable when it fits development workflows instead of remaining a one-off audit activity.
 
 ## Key Features
 
-- **Multi-Tool Aggregation**: Combines results from multiple accessibility testing engines (axe-core, WAVE, etc.)
-- **Unified Reporting**: Standardized output format across disparate tool results
-- **Browser-Based Testing**: Automated test execution in real browser environments
-- **CI Integration**: Pluggable into GitHub Actions and other CI/CD pipelines for shift-left accessibility validation
-- **Compliance Rules**: Automated evaluation against WCAG standards
-
-## Impact
-
-- Enabled automated accessibility compliance checking across CVS Health's web properties
-- Shifted accessibility validation left in the development lifecycle
-- Reduced production accessibility issues by integrating with CI pipelines
+- **Multi-Tool Aggregation**: Combines checks from several accessibility-testing engines.
+- **Unified Reporting**: Produces standardized reports over heterogeneous tool output.
+- **Browser-Based Testing**: Uses automated browser execution for repeatable testing.
+- **Compliance Coverage**: Evaluates a large rule set related to web accessibility compliance.
 
 ## Why It Matters
 
-This project shows platform-style thinking: consolidate noisy inputs, create one reliable output surface, and make quality enforcement easier to operationalize across many teams.
+Testaro shows platform-style accessibility engineering: consolidate fragmented testing signals, make them repeatable, and turn them into an output surface that teams can act on.
 
 ## Tech Stack
 
 - **Runtime**: Node.js
 - **Testing**: Playwright, axe-core
-- **CI/CD**: GitHub Actions
-- **Reporting**: Custom unified report format
+- **Domain**: WCAG/ADA accessibility evaluation
+- **Reporting**: Unified ensemble reports
