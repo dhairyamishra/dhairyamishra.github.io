@@ -67,5 +67,35 @@ npm run build:og
 - **Inline MDX Media**: All project and experience content lives in `.mdx` files. Drop `<Hero>`, `<Figure>`, `<FigureGrid>`, `<VideoEmbed>` (in `src/components/mdx/`) directly inside the prose to interweave images and video with the narrative. Click-to-zoom is wired through `MediaLightbox.astro`.
 - **Mermaid in MDX**: Use `<MermaidBlock code={`...`} />` from any `.mdx` file to render Mermaid diagrams inline.
 
+## Verified Maintenance Notes
+
+Reviewed on 2026-06-30.
+
+This is an Astro portfolio site with React components, Tailwind CSS, MDX content
+collections, generated Open Graph imagery, and GitHub Pages deployment support.
+
+Verified npm scripts from `package.json`:
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start Astro dev server with host binding. |
+| `npm run build` | Generate the Open Graph PNG, then build the Astro site. |
+| `npm run build:og` | Regenerate `public/og.png` from the SVG source. |
+| `npm run preview` | Preview the production build locally. |
+| `npm run check` | Run Astro type/content checks. |
+| `npm run lint` | Run ESLint. |
+| `npm run format` | Format the repository with Prettier. |
+
+Primary source folders:
+
+| Path | Purpose |
+|---|---|
+| `src/components/` | Astro and React UI components. |
+| `src/content/` | MDX content collections for projects and experience. |
+| `src/data/` | Structured resume/profile data. |
+| `public/` | Static assets served by Astro. |
+| `scripts/` | Build-time helpers such as Open Graph image generation. |
+| `.github/` | GitHub workflow configuration. |
+
 ## 📄 License
 This repository is primarily for my personal portfolio, but feel free to explore the code.
