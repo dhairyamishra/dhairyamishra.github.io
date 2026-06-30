@@ -1,0 +1,252 @@
+{
+  "component": "Cover",
+  "figma_node_id": "7474:22533",
+  "analyzed_at": "2026-05-24T16:10:52.365Z",
+  "summary": {
+    "required": [
+      "Headings",
+      "Metadata",
+      "Media"
+    ],
+    "recommended": [
+      "Landmarks",
+      "Ordering",
+      "Canvas Utilities",
+      "Basic Notes"
+    ],
+    "skip": [
+      "Form elements",
+      "Buttons",
+      "Links",
+      "Tables",
+      "System Feedback",
+      "Keyboard interactions",
+      "Mobile Annotations",
+      "User Interactions"
+    ]
+  },
+  "annotations": [
+    {
+      "category": "Landmarks",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.3.6",
+        "4.1.1"
+      ],
+      "wcag_level": "AAA",
+      "items": [
+        {
+          "check": "Define landmark region for the Title frame containing the product name and logo lockup",
+          "example": "Landmark: <header> — Contains product logo lockup and title 'Annotation Toolkit'. This is the banner/header region for the cover page.",
+          "wcag_criterion": "1.3.6",
+          "wcag_level": "AAA"
+        },
+        {
+          "check": "Define landmark region for the Annotations frame which contains all annotation category previews",
+          "example": "Landmark: <main> — Contains the primary content area showcasing all annotation categories (Keys, System Feedback, Button Success, etc.).",
+          "wcag_criterion": "1.3.6",
+          "wcag_level": "AAA"
+        }
+      ]
+    },
+    {
+      "category": "Headings",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.3.1",
+        "2.4.6"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Assign heading level to the 'Annotation Toolkit' text node inside the Title frame",
+          "example": "Heading: H1 — 'Annotation Toolkit'. This is the primary and only top-level heading on the cover. No other headings should be at this level on this canvas.",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm no heading hierarchy is skipped — since this is a cover/canvas page, H1 should be the only heading unless sub-sections of annotations are labelled",
+          "example": "Heading hierarchy check: Only H1 ('Annotation Toolkit') is present on this cover. Sub-annotation frames (Keys, Focus, Landmarks, etc.) are decorative previews and do not require heading levels on the cover itself.",
+          "wcag_criterion": "2.4.6",
+          "wcag_level": "AA"
+        }
+      ]
+    },
+    {
+      "category": "Ordering",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.3.2",
+        "2.4.3"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Confirm reading order of the cover: Background visual elements should be last in DOM/reading order; Title and Logo Lockup should be read first",
+          "example": "Reading order: 1) Logo Lockup, 2) 'Annotation Toolkit' title text, 3) Annotation preview tiles (decorative). Background (BG, Background mist, Git lines) should be marked decorative and excluded from reading order.",
+          "wcag_criterion": "1.3.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "The Annotations frame is noted as rotatable (-47deg). Confirm that rotation does not disrupt logical reading order in any interactive or exported context.",
+          "example": "Focus/Reading order note: The 'Annotations (Editable: rotate -47deg to reorganize)' frame is a design-time layout aid. In any exported or published version, ensure annotation tiles are presented in a logical sequence (e.g. left-to-right, top-to-bottom) that matches their visual order.",
+          "wcag_criterion": "2.4.3",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Form elements",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Buttons",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Links",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Media",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.1.1"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Mark the Background mist rectangle as decorative",
+          "example": "Alt text: Decorative — Background mist rectangle is a visual design element only. Set role='presentation' or alt='' in any exported/published output. Do not convey information via this element.",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Mark the Git lines group as decorative",
+          "example": "Alt text: Decorative — Git lines graphic (inside BG frame) is a purely aesthetic background pattern. Set role='presentation' or aria-hidden='true'. No meaningful content is conveyed.",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Assess the Logo Lockup frame — if it contains a logo image, provide appropriate alt text",
+          "example": "Alt text: 'GitHub Annotation Toolkit logo' — If the Logo Lockup contains an image-based logo, it must have descriptive alt text. If the logo text is already conveyed by the adjacent 'Annotation Toolkit' text node, the logo image may be marked decorative (alt='').",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Mark the Annotations preview rectangle (sibling of Title frame) as decorative",
+          "example": "Alt text: Decorative — The 'Annotations' rectangle layer is a background/overlay design element. Mark as aria-hidden='true' or alt='' in any published output.",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Tables",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "System Feedback",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Keyboard interactions",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Metadata",
+      "priority": "required",
+      "wcag_criteria": [
+        "2.4.2",
+        "3.1.1"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Define the page/document title for this cover screen",
+          "example": "Page title: 'Annotation Toolkit — GitHub Annotation Toolkit Cover'. Ensure the Figma file or any exported HTML document sets <title>Annotation Toolkit | GitHub Annotation Toolkit</title>.",
+          "wcag_criterion": "2.4.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm the language of the cover content is declared",
+          "example": "Language: English (en). Ensure lang='en' is set on the root element of any exported or published version of this cover page.",
+          "wcag_criterion": "3.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Mobile Annotations",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "User Interactions",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Basic Notes",
+      "priority": "recommended",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": [
+        {
+          "check": "The Annotations frame has a design note to rotate -47deg. Confirm this rotation is a design-time instruction only and does not affect any published or exported accessibility tree.",
+          "example": "Design note: 'Annotations (Editable: rotate -47deg to reorganize)' — This frame is a layout composition aid for designers. Rotation must be reset or accounted for before any accessibility handoff. Ensure all child annotation tiles are accessible in their final presented orientation.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        },
+        {
+          "check": "Verify that all annotation category preview tiles within the Annotations frame (Keys, System Feedback, Button Success, Reading Warning, Arrow Stops, Focus, Heading, Preset, List, Form, Note, Table, Landmarks, Meta) are treated as decorative previews on the cover and do not require independent accessible labelling at this canvas level.",
+          "example": "Annotation tile note: All 14 annotation category tiles (Keys, System Feedback, Button Success, Reading Warning, Arrow Stops, Focus, Heading, Preset, List, Form, Note, Table, Landmarks, Meta) displayed on the cover are decorative previews of the toolkit's contents. They do not need individual accessible names on this cover page. Annotate each individually within their own dedicated frames/pages.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        }
+      ]
+    },
+    {
+      "category": "Canvas Utilities",
+      "priority": "recommended",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": [
+        {
+          "check": "Mark this frame as the Cover/Entry point for the Annotation Toolkit Figma file to aid designer and developer navigation",
+          "example": "Canvas status: COVER — This 'File Cover' frame is the entry point/cover page for the GitHub Annotation Toolkit. Design status: Published. No interactive flows originate from this frame. It serves as a visual index of annotation categories available in the toolkit.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        },
+        {
+          "check": "Document the layer hierarchy and design intent for the Background frame group to assist handoff",
+          "example": "Canvas utility note: Background layer group (BG frame + Background mist rectangle + Git lines group) is entirely decorative. These layers should be locked in Figma and excluded from developer handoff specs. No accessibility implementation required for these layers.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        }
+      ]
+    }
+  ]
+}

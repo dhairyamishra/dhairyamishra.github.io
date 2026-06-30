@@ -19,7 +19,7 @@ export const publications: Publication[] = [
     url: 'https://arxiv.org/abs/2602.22208',
   },
   {
-    title: 'Testaro: Web Accessibility Testing Framework',
+    title: 'Testaro: Ensemble Quality Reporting',
     venue: 'ACM SIGACCESS ASSETS 2023',
     role: 'Contributor',
     institution: 'CVS Health',

@@ -1,0 +1,246 @@
+{
+  "component": "Cover",
+  "figma_node_id": "7474:22533",
+  "analyzed_at": "2026-05-24T18:28:14.793Z",
+  "summary": {
+    "required": [
+      "Metadata",
+      "Headings",
+      "Media"
+    ],
+    "recommended": [
+      "Landmarks",
+      "Basic Notes",
+      "Canvas Utilities"
+    ],
+    "skip": [
+      "Form elements",
+      "Buttons",
+      "Links",
+      "Tables",
+      "System Feedback",
+      "Keyboard interactions",
+      "Mobile Annotations",
+      "User Interactions",
+      "Ordering"
+    ]
+  },
+  "annotations": [
+    {
+      "category": "Landmarks",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.3.6",
+        "4.1.2"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Define landmark region for the cover title area",
+          "example": "Landmark: <header> — Contains the product logo lockup and 'Annotation Toolkit' title. Marks the top-level branding region of the page/document.",
+          "wcag_criterion": "1.3.6",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Define landmark region for the annotations showcase area",
+          "example": "Landmark: <main> — Contains the rotated annotation examples frame (Keys, System Feedback, Button Success, etc.). This is the primary content area of the cover.",
+          "wcag_criterion": "1.3.6",
+          "wcag_level": "AA"
+        }
+      ]
+    },
+    {
+      "category": "Headings",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.3.1",
+        "2.4.6"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Assign heading level to 'Annotation Toolkit' title text",
+          "example": "Heading Level: H1 — Text: 'Annotation Toolkit'. This is the primary title of the cover and should be the single H1 on this page/screen.",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm no additional headings exist within the background or annotation frames that need hierarchy assignment",
+          "example": "Note: No H2–H6 headings are expected on this cover. If any annotation category labels (e.g. 'Keys', 'Form', 'Table') are exposed as text, they do NOT require heading markup — they are decorative illustration elements.",
+          "wcag_criterion": "2.4.6",
+          "wcag_level": "AA"
+        }
+      ]
+    },
+    {
+      "category": "Ordering",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Form elements",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Buttons",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Links",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Media",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.1.1",
+        "1.4.5"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Determine whether the Logo Lockup graphic is decorative or informative and annotate accordingly",
+          "example": "Image role: Decorative — Logo Lockup inside Title frame. Alt text: empty (alt=\"\") because the adjacent text node 'Annotation Toolkit' already conveys the identity. Mark as aria-hidden=\"true\".",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Annotate the Background / BG frame and Background mist rectangle as decorative",
+          "example": "Image role: Decorative — Background, BG frame, Background mist rectangle, and Git lines group are purely visual/aesthetic. Mark all as aria-hidden=\"true\". No alt text required.",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Annotate the Annotations illustration frame (rotated -47deg) as decorative",
+          "example": "Image role: Decorative — The 'Annotations (Editable)' frame containing Keys, System Feedback, Button Success, Reading Warning, Arrow Stops, Focus, Heading, Preset, List, Form, Note, Table, Landmarks, Meta sub-frames is a visual design showcase. Mark entire group as aria-hidden=\"true\". No alt text required.",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Annotate the Annotations rectangle overlay as decorative",
+          "example": "Image role: Decorative — 'Annotations' rectangle is a visual overlay element. Mark as aria-hidden=\"true\".",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Tables",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "System Feedback",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Keyboard interactions",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Metadata",
+      "priority": "required",
+      "wcag_criteria": [
+        "2.4.2",
+        "3.1.1"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Define the page/document title for this cover screen",
+          "example": "Page Title: 'Annotation Toolkit — GitHub Annotation Toolkit Cover'. Ensure the HTML <title> or document title attribute reflects the product name shown on the cover.",
+          "wcag_criterion": "2.4.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Specify the language of the cover content",
+          "example": "Language: lang=\"en\" — Set on the root <html> element (or equivalent document root). All visible text on this cover is English.",
+          "wcag_criterion": "3.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Mobile Annotations",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "User Interactions",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Basic Notes",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.4.3",
+        "1.4.11"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Verify colour contrast of 'Annotation Toolkit' title text against the Background mist / BG frame",
+          "example": "Concern: Confirm that the 'Annotation Toolkit' title text meets a minimum 4.5:1 contrast ratio against whatever background colour or mist overlay sits behind it. (WCAG 1.4.3 AA). Check both light and dark background states if applicable.",
+          "wcag_criterion": "1.4.3",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Confirm Logo Lockup has sufficient contrast or is supplemented by text",
+          "example": "Concern: If the Logo Lockup contains meaningful graphical elements (e.g. icon, wordmark strokes), ensure non-text contrast of 3:1 against adjacent background colours (WCAG 1.4.11). If purely decorative, this can be skipped.",
+          "wcag_criterion": "1.4.11",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Note that the rotated annotations frame is intended as illustration only",
+          "example": "Designer Note: The 'Annotations (Editable: rotate -47deg to reorganize)' frame is a decorative showcase of annotation category examples. It should be hidden from assistive technologies in production (aria-hidden=\"true\") and is not intended to be interactive or readable by screen readers.",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Canvas Utilities",
+      "priority": "recommended",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": [
+        {
+          "check": "Document the design status of the Cover canvas component",
+          "example": "Design Status: Cover — This is a title/splash canvas frame for the GitHub Annotation Toolkit design file. It is not a shipped UI component; no production implementation is expected. Accessibility annotations applied here serve as reference examples for the toolkit itself.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        },
+        {
+          "check": "Note the editorial rotation of the Annotations frame for design organisation",
+          "example": "Canvas Note: The 'Annotations (Editable)' frame is rotated -47deg for visual layout purposes on the cover. This is a design-time property only and has no bearing on the DOM order or accessibility tree in any implemented version.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        }
+      ]
+    }
+  ]
+}

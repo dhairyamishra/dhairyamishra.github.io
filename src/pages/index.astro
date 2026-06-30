@@ -18,7 +18,7 @@ const featuredProjects = allProjects
   .slice(0, 4);
 
 const proofPoints = [
-  { value: '18%', label: 'Alt-text catalog coverage lift', detail: 'CVS closed-loop VLM + LLM-judge system' },
+  { value: 'Live', label: 'Full-stack agentic product', detail: 'Teserax graph-based research agent' },
   { value: '16%', label: 'Ticket deflection', detail: 'CVS self-service RAG assistant' },
   { value: '12.64M', label: 'Synchronized multiplayer frames', detail: 'Solaris world-model research dataset' },
   { value: '96.57%', label: 'DistilBERT accuracy', detail: 'Cloud NLP content moderation API' },
@@ -32,8 +32,19 @@ const quickPaths = [
 
 const technicalWins = [
   {
-    eyebrow: 'Production Systems',
-    title: 'Built AI-supported internal systems at CVS Health',
+    eyebrow: 'Full-Stack Product Engineering',
+    title: 'Built and shipped a live agentic research product',
+    metric: 'Production SaaS',
+    summary:
+      'Designed Teserax as a graph-based research agent with React, TypeScript, FastAPI, typed API contracts, live-source RAG, async orchestration, and failure recovery.',
+    links: [
+      { label: 'Teserax', href: '/projects/teserax' },
+      { label: 'Projects', href: '/projects' },
+    ],
+  },
+  {
+    eyebrow: 'Backend + Platform Engineering',
+    title: 'Built production internal systems at CVS Health',
     metric: '16% ticket deflection',
     summary:
       'Built a self-service RAG assistant over ticket history and internal docs, cut resolution time by 20%, and owned reliability for customer-facing platform systems.',
@@ -43,47 +54,36 @@ const technicalWins = [
     ],
   },
   {
-    eyebrow: 'Accessibility Infrastructure',
-    title: 'Turned accessibility from manual review into automated enforcement',
-    metric: '18% coverage lift',
+    eyebrow: 'ML Engineering',
+    title: 'Built deployable ML systems, not just notebooks',
+    metric: '96.57% NLP accuracy',
     summary:
-      'Built a closed-loop alt-text pipeline using a Hugging Face VLM and LLM judge, and contributed to ensemble accessibility tooling through Testaro.',
+      'Built model-serving APIs, medical imaging pipelines, language-model experiments, and world-model data/evaluation systems with reproducible training and deployment paths.',
     links: [
-      { label: 'Testaro', href: '/projects/testaro' },
-      { label: 'Experience', href: '/experience' },
-    ],
-  },
-  {
-    eyebrow: 'Research + Applied ML',
-    title: 'Built systems spanning world models, LLM pipelines, and multimodal tooling',
-    metric: 'NeurIPS + production',
-    summary:
-      'Contributed to Solaris multiplayer world-model research, built a live graph-based research agent, and trained/evaluated applied ML systems across NLP and medical imaging.',
-    links: [
-      { label: 'Solaris', href: '/projects/solaris' },
-      { label: 'PICO-LLM', href: '/projects/pico-llm' },
+      { label: 'Cloud NLP', href: '/projects/cloud-nlp' },
+      { label: 'MRI Pipeline', href: '/projects/mri-brain-tumor' },
     ],
   },
 ];
 
 const capabilities = [
   {
-    title: 'Production AI / ML Systems',
+    title: 'Full-Stack Product Engineering',
     evidence:
-      'Built RAG assistants, alt-text automation, graph-based research tooling, and model-backed internal platforms with deployment and operational ownership.',
-    tools: ['Hugging Face', 'RAG', 'FastAPI', 'Terraform', 'ArgoCD'],
+      'Built user-facing and internal products with React, TypeScript, FastAPI, Node.js, typed contracts, cloud deployment, and operational ownership.',
+    tools: ['React', 'TypeScript', 'FastAPI', 'Node.js', 'Zod'],
   },
   {
-    title: 'Distributed Platform Engineering',
+    title: 'ML Engineering',
     evidence:
-      'Built internal developer tooling, observability pipelines, storage, databases, and cloud deployment workflows for enterprise and production-facing systems.',
-    tools: ['GCP', 'Postgres', 'MongoDB', 'OpenTelemetry', 'Grafana'],
+      'Built model-backed systems across NLP, computer vision, RAG, VLM evaluation, and multimodal pipelines with reproducible training and inference workflows.',
+    tools: ['PyTorch', 'JAX', 'Hugging Face', 'RAG', 'OpenCV'],
   },
   {
-    title: 'Evaluation and Research Discipline',
+    title: 'Backend + Platform Systems',
     evidence:
-      'Designed reproducible experiment pipelines, multi-agent evaluation frameworks, and cross-run analysis for LLM and world-model research.',
-    tools: ['PyTorch', 'JAX', 'wandb', 'VLM-as-Judge', 'Playwright'],
+      'Built internal developer tooling, observability pipelines, storage, databases, cloud deployment workflows, and support systems for production teams.',
+    tools: ['GCP', 'Terraform', 'MongoDB', 'Postgres', 'Grafana'],
   },
 ];
 
@@ -99,7 +99,7 @@ const affiliations = [
 ];
 ---
 
-<Layout title="Dhairya Mishra — Software Engineer & ML Researcher" ogType="profile">
+<Layout title="Dhairya Mishra - Full-Stack Software Engineer & ML Engineer" description="Full-stack software engineer and ML engineer building production web platforms, backend systems, and agentic ML products." ogType="profile">
   <Navigation />
 
   <main id="main-content">
@@ -112,13 +112,13 @@ const affiliations = [
         <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,420px)]">
           <div class="reveal">
             <p class="mb-5 font-mono text-sm uppercase tracking-[0.24em] text-neon-rose">
-              Software Engineer · ML Researcher
+              Full-Stack Software Engineer / ML Engineer
             </p>
             <h1 class="max-w-4xl text-5xl font-heading font-bold leading-[0.96] text-text-bright sm:text-6xl lg:text-7xl">
-              I build production AI systems, developer infrastructure, and research-grade ML pipelines that hold up under real constraints.
+              I build full-stack products, backend platforms, and ML systems that survive real users.
             </h1>
             <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-light md:text-xl">
-              My work spans customer-facing platform reliability, accessibility automation, RAG systems, and world-model research — from internal enterprise tooling to NeurIPS-scale experiments.
+              My work spans React/TypeScript applications, FastAPI and Node.js services, cloud infrastructure, RAG assistants, computer vision, and production ML pipelines.
             </p>
 
             <div class="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -159,16 +159,16 @@ const affiliations = [
               <div class="card-neon w-full p-5 md:p-6">
                 <div class="flex-1">
                   <p class="text-xs font-mono uppercase tracking-[0.16em] text-muted">Current focus</p>
-                  <h2 class="mt-2 text-xl font-heading font-semibold text-text-bright">Applied ML with production judgment</h2>
+                  <h2 class="mt-2 text-xl font-heading font-semibold text-text-bright">Engineering-first ML and product work</h2>
                   <p class="mt-3 text-sm leading-relaxed text-muted">
-                    Engineering systems where model quality, reliability, observability, and operator experience all matter at the same time.
+                    Building systems where product behavior, backend reliability, model quality, and developer experience all matter at the same time.
                   </p>
                 </div>
 
                 <div class="mt-6 space-y-3 border-t border-black/5 pt-5">
                   <div class="grid gap-1 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-4">
                     <span class="text-sm text-muted">Primary domains</span>
-                    <span class="text-sm font-medium text-text">LLMs · accessibility · platform infra</span>
+                    <span class="text-sm font-medium text-text">Full-stack · ML systems · agentic workflows</span>
                   </div>
                   <div class="grid gap-1 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-4">
                     <span class="text-sm text-muted">Recent signal</span>
@@ -208,7 +208,7 @@ const affiliations = [
             The strongest signal is shipped work under real constraints.
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-muted">
-            These are representative examples of ownership across production systems, accessibility infrastructure, and research-intensive ML work.
+            These are representative examples of ownership across full-stack products, backend/platform systems, and production ML workflows.
           </p>
         </div>
 
@@ -315,7 +315,7 @@ const affiliations = [
             If you need someone who can own both the model and the system around it, start here.
           </h2>
           <p class="mx-auto mt-4 max-w-2xl text-muted">
-            I am most useful on teams building production AI products, internal engineering platforms, accessibility infrastructure, and research systems that need to survive contact with real users.
+            I am most useful on teams building full-stack products, ML-backed applications, backend platforms, and agentic systems that need to survive contact with real users.
           </p>
           <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <a href="/contact" class="btn-neon-fill">Start a conversation</a>

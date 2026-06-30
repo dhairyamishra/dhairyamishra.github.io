@@ -23,32 +23,32 @@ const experience = await Promise.all(
 
 const summaryStats = [
   { value: '4+', label: 'Years across AI, platform, and full-stack systems' },
+  { value: '75%', label: 'Manual upkeep reduction from developer tooling' },
+  { value: '25%', label: 'MTTR reduction from observability pipeline' },
   { value: '14%', label: 'Engagement lift from Evidenza ad signals' },
-  { value: '18%', label: 'Catalog coverage lift from closed-loop alt text' },
-  { value: '16%', label: 'Ticket deflection from internal RAG assistant' },
 ];
 
 const coreDomains = [
-  'Production AI / ML',
-  'Accessibility Infrastructure',
-  'Platform Engineering',
+  'Full-Stack Engineering',
+  'ML Engineering',
+  'Backend Platforms',
+  'Agentic Systems',
+  'Cloud Infrastructure',
   'Observability',
-  'LLM Tooling',
-  'Data Pipelines',
 ];
 
 const highlightCards = [
   {
+    title: 'Full-stack systems',
+    detail: 'Built React, Node.js, FastAPI, and MongoDB/Postgres-backed tools used by engineering teams and production support workflows.',
+  },
+  {
+    title: 'ML-backed products',
+    detail: 'Built RAG assistants, VLM/LLM-judge workflows, NLP services, and multimodal scoring systems with measurable outcomes.',
+  },
+  {
     title: 'Platform reliability',
-    detail: 'Owned on-call reliability for customer-facing CVS Health platform systems including Digital Blocks 2.0 and Previews.',
-  },
-  {
-    title: 'Accessibility systems',
-    detail: 'Built and contributed to accessibility automation, reporting, and alt-text systems across Aetna and CVS Health.',
-  },
-  {
-    title: 'Applied AI',
-    detail: 'Built RAG assistants, VLM/LLM-judge workflows, and agentic orchestration systems with measured business outcomes.',
+    detail: 'Owned customer-facing platform reliability, observability pipelines, cloud infrastructure, and support systems.',
   },
 ];
 
@@ -58,7 +58,7 @@ const roleSignals: Record<string, { highlight: string; domains: string[] }> = {
     domains: ['LLM-as-Judge', 'MCP', 'FastAPI'],
   },
   'cvs-health': {
-    highlight: 'Built closed-loop alt-text and RAG systems, raised catalog coverage by 18%, deflected 16% of tickets, and reduced downtime by 12%.',
+    highlight: 'Built production RAG and VLM-backed systems, deflected 16% of support tickets, cut resolution time by 20%, and reduced platform downtime by 12%.',
     domains: ['RAG', 'VLMs', 'GCP', 'OpenTelemetry'],
   },
   'cvs-health-digital-development': {
@@ -66,13 +66,13 @@ const roleSignals: Record<string, { highlight: string; domains: string[] }> = {
     domains: ['Node.js', 'MongoDB', 'Grafana', 'Terraform'],
   },
   'aetna': {
-    highlight: 'Built Node.js and MongoDB-backed automation systems for accessibility operations, migration workflows, and platform health checks.',
+    highlight: 'Built Node.js and MongoDB-backed internal automation systems, migration workflows, and platform health checks.',
     domains: ['Node.js', 'MongoDB', 'Automation'],
   },
 };
 ---
 
-<Layout title="Experience — Dhairya Mishra" description="Professional experience spanning AI engineering, full-stack development, and ML research at CVS Health, Aetna, and Evidenza.">
+<Layout title="Experience - Dhairya Mishra" description="Professional experience across full-stack software engineering, ML engineering, backend platforms, and agentic systems.">
   <Navigation />
 
   <main id="main-content" class="py-20 md:py-28">
@@ -83,7 +83,7 @@ const roleSignals: Record<string, { highlight: string; domains: string[] }> = {
           Experience <span class="text-gradient-rose">Timeline</span>
         </h1>
         <p class="mx-auto max-w-2xl text-muted">
-          4+ years across production AI/ML systems, accessibility infrastructure, platform engineering, and research-adjacent experimentation.
+          4+ years across full-stack software engineering, ML engineering, backend platforms, and agentic systems.
         </p>
       </div>
 
@@ -92,7 +92,7 @@ const roleSignals: Record<string, { highlight: string; domains: string[] }> = {
           <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Career summary</p>
           <h2 class="mt-3 text-2xl font-heading font-semibold text-text-bright">This page is optimized for evaluating scope, ownership, and operating range.</h2>
           <p class="mt-4 text-sm leading-relaxed text-muted">
-            The strongest signal across these roles is consistent ownership of systems that combine software engineering discipline with operational, accessibility, and ML concerns. The work ranges from customer-facing reliability and internal developer tooling to RAG systems, observability, and multimodal LLM evaluation.
+            The strongest signal across these roles is engineering ownership: turning ambiguous product and platform problems into shipped systems. The work ranges from customer-facing reliability and internal developer tooling to RAG systems, observability, cloud infrastructure, and multimodal ML evaluation.
           </p>
           <div class="mt-5 flex flex-wrap gap-2">
             {coreDomains.map((domain) => (

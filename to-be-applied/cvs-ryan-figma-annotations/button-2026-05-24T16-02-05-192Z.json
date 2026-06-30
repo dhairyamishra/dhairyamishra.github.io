@@ -1,0 +1,367 @@
+{
+  "component": "Button",
+  "figma_node_id": "2:666",
+  "analyzed_at": "2026-05-24T16:00:54.051Z",
+  "summary": {
+    "required": [
+      "Buttons",
+      "Keyboard interactions",
+      "Form elements",
+      "Ordering"
+    ],
+    "recommended": [
+      "Headings",
+      "Landmarks",
+      "System Feedback",
+      "Media",
+      "Basic Notes",
+      "Canvas Utilities"
+    ],
+    "skip": [
+      "Links",
+      "Tables",
+      "Metadata",
+      "Mobile Annotations",
+      "User Interactions"
+    ]
+  },
+  "annotations": [
+    {
+      "category": "Landmarks",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.3.1",
+        "4.1.2"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Button Details panel should be contained within a recognizable landmark region when rendered in the UI",
+          "example": "Wrap the Button Details panel in a <section> or <aside> landmark with an accessible name: aria-label='Button Details'",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "How to: Button documentation frame should be contained within a <main> landmark if rendered as a standalone page",
+          "example": "Wrap the 'How to: Button' content in <main> to allow screen reader navigation directly to primary content.",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Headings",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.3.1",
+        "2.4.6"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Button Details panel header 'Button Details' should be marked as an appropriate heading level",
+          "example": "Mark 'Button Details' as <h2> if it appears within a page that already has an <h1>. Example: <h2>Button Details</h2>",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "VRT overview title 'Visual Regression Tests (VRT)' should be marked as a heading if this view is navigable by screen readers",
+          "example": "Mark 'Visual Regression Tests (VRT)' as <h1> or <h2> depending on page context. Example: <h2>Visual Regression Tests (VRT)</h2>",
+          "wcag_criterion": "2.4.6",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Section titles inside 'How to: Button' (via .SectionTitle instances) should use a consistent heading hierarchy",
+          "example": "Each .SectionTitle should render as <h3> if nested under the 'How to: Button' <h2>. Ensure no heading levels are skipped.",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Ordering",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.3.2",
+        "2.4.3"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Reading and focus order within the Button Details panel should follow logical top-to-bottom, left-to-right sequence: Header → Body fields (element, accessible name, description, type) → Footer",
+          "example": "Focus order: 1. 'Button Details' heading, 2. Element field, 3. Accessible Name field, 4. Description field, 5. Type field, 6. Keyboard shortcuts, 7. Links to Docs",
+          "wcag_criterion": "1.3.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Lasso Stamp label positions must not disrupt the reading order of annotated button instances on canvas",
+          "example": "Ensure that stamp labels (top, bottom, left, right variants) are rendered in DOM order matching the visual reading sequence of the annotated element.",
+          "wcag_criterion": "2.4.3",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Instances grid layout (12 instances across Labels group) should have a defined reading order matching left-to-right, top-to-bottom visual layout",
+          "example": "Reading order for Instance grid: Instance 1 → Instance 2 → ... → Instance 12, matching visual column/row layout. Document intended tab order for implementation.",
+          "wcag_criterion": "1.3.2",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Form elements",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.3.1",
+        "3.3.2",
+        "1.3.5"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Each field in the Button Details Body (element, accessible name, description, type) must have a visible label that is programmatically associated",
+          "example": "For the 'accessible name' field: <label for='btn-accessible-name'>Accessible Name</label><input id='btn-accessible-name' type='text' />",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "The 'type' field in Button Details must clearly indicate expected values (e.g., button, submit, reset) via a hint or placeholder",
+          "example": "Add hint text below the 'type' field: 'Accepted values: button | submit | reset'. Programmatically associate with aria-describedby.",
+          "wcag_criterion": "3.3.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "If any Button Details fields accept user input, ensure autocomplete attributes are applied where applicable",
+          "example": "If the accessible name field is user-editable, apply autocomplete='name' or autocomplete='off' as appropriate per WCAG 1.3.5.",
+          "wcag_criterion": "1.3.5",
+          "wcag_level": "AA"
+        }
+      ]
+    },
+    {
+      "category": "Buttons",
+      "priority": "required",
+      "wcag_criteria": [
+        "4.1.2",
+        "2.4.6",
+        "1.4.1"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "All Button instances across the canvas must have an explicit accessible name",
+          "example": "Every <button> must have a visible text label or aria-label. Example: <button type='button'>Save</button> or <button type='button' aria-label='Close dialog'>X</button>",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Icon-only button variants must have an accessible name that is not solely conveyed by icon shape or color",
+          "example": "For an icon-only button: <button type='button' aria-label='Delete item'><svg aria-hidden='true'>...</svg></button>",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Each button state (default, hover, active, focused, disabled, loading) must be annotated with its accessible state",
+          "example": "Disabled state: <button type='button' disabled aria-disabled='true'>Submit</button>. Loading state: <button type='button' aria-busy='true' aria-label='Loading, please wait'>Submit</button>",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "The 'type' attribute annotation in Button Details must specify button type for all button instances (button, submit, reset)",
+          "example": "Annotate: 'Default type is type=button. For form submission use type=submit. For form reset use type=reset.'",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Button accessible name must not rely on color alone to convey meaning",
+          "example": "Do not differentiate 'danger' vs 'primary' button meaning through color alone. Add visible text: 'Delete (destructive action)' or use an icon with descriptive aria-label.",
+          "wcag_criterion": "1.4.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Links",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Media",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.1.1"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Any icons used within button instances must either have a text alternative or be marked as decorative",
+          "example": "Decorative icon inside a button with text label: <svg aria-hidden='true' focusable='false'>...</svg>. Standalone icon button: <svg aria-label='Search' role='img'>...</svg>",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Stamp flag imagery used in the Button Details header should be marked decorative if it conveys no unique information",
+          "example": "If the Stamp flag is purely decorative: <img src='stamp-flag.svg' alt='' role='presentation' />",
+          "wcag_criterion": "1.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Tables",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "System Feedback",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "4.1.3",
+        "3.3.1"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Loading state buttons must announce their busy status to assistive technology via a live region",
+          "example": "When button enters loading state: set aria-busy='true' on the button, and optionally use a visually hidden live region: <span aria-live='polite' class='sr-only'>Loading, please wait...</span>",
+          "wcag_criterion": "4.1.3",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "If a button action results in an error (e.g., form submission failure), the error must be surfaced to screen readers",
+          "example": "On error: <div role='alert' aria-live='assertive'>Error: Form submission failed. Please try again.</div>. Associate error with triggering button via aria-describedby.",
+          "wcag_criterion": "3.3.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Keyboard interactions",
+      "priority": "required",
+      "wcag_criteria": [
+        "2.1.1",
+        "2.1.2",
+        "2.4.3",
+        "2.4.7"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "All button instances must be operable via keyboard using Enter and Space keys",
+          "example": "Annotate: 'Button must be activated with Enter key and Space key. Do not override default keyboard behavior unless replacement is documented.'",
+          "wcag_criterion": "2.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Keyboard shortcuts documented in the Button Details Keyboard Shortcuts instance must be annotated and non-conflicting with system shortcuts",
+          "example": "Document any custom keyboard shortcut (e.g., Alt+S for Submit). Ensure shortcuts can be turned off or remapped per WCAG 2.1.4 if single character.",
+          "wcag_criterion": "2.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Focus must be visible on all interactive button states — annotate the focus indicator style",
+          "example": "Annotate focus style: 'Focus indicator: 2px solid #005FCC outline with 2px offset. Must be visible against all button background colors (minimum 3:1 contrast ratio).'",
+          "wcag_criterion": "2.4.7",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Disabled buttons must not receive keyboard focus unless aria-disabled is used in place of the disabled attribute",
+          "example": "If using aria-disabled='true' (to preserve focus for user awareness): button remains focusable but announces as unavailable. If using disabled HTML attribute: button is removed from tab order entirely. Choose and annotate the pattern.",
+          "wcag_criterion": "2.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Tab stops for all button instances in the Instances grid must be documented — confirm no tab traps exist",
+          "example": "Annotate: 'Each button in the instance grid is a single tab stop. No focus trap present. Tab moves to next interactive element after the last button.'",
+          "wcag_criterion": "2.1.2",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Metadata",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Mobile Annotations",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "User Interactions",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Basic Notes",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "1.4.3",
+        "1.4.11"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Confirm minimum color contrast for all button variants (primary, secondary, danger, ghost, etc.) against their backgrounds",
+          "example": "Annotate each button variant: 'Primary button: text #FFFFFF on #005FCC background — contrast ratio 5.9:1 (passes AA). Verify all states including hover and disabled.'",
+          "wcag_criterion": "1.4.3",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Non-text contrast for button borders and focus indicators must meet 3:1 minimum against adjacent colors",
+          "example": "Annotate: 'Ghost button border: #767676 on #FFFFFF background — contrast ratio 4.5:1 (passes 3:1 minimum for non-text). Verify focus ring meets 3:1 against both button background and page background.'",
+          "wcag_criterion": "1.4.11",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "The Button Details 'description' field should clarify whether the description maps to aria-describedby or aria-label in implementation",
+          "example": "Note in Button Details: 'Description field maps to aria-describedby on the rendered <button> element. Use for supplementary context, not the primary accessible name.'",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm minimum button touch target size is 44x44px for all instances (relevant for any responsive/mobile rendering)",
+          "example": "Annotate: 'Minimum interactive target area for all button sizes: 44x44px. If button is visually smaller, use padding or wrapper element to meet touch target requirement.'",
+          "wcag_criterion": "2.5.5",
+          "wcag_level": "AAA"
+        }
+      ]
+    },
+    {
+      "category": "Canvas Utilities",
+      "priority": "recommended",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": [
+        {
+          "check": "Lasso Stamp, Bracket Stamp, and Pin Stamp components should be applied consistently to annotate all distinct button states and variants across the canvas",
+          "example": "Use Button Lasso Stamp to encircle each button variant group. Use Button Pin Stamp to call out specific accessibility properties (e.g., accessible name, role, state). Use Button Bracket Stamp to annotate measurement or focus indicator details.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        },
+        {
+          "check": "VRT frames (Frame 4, Frame 5, Lasso VRT, Details VRT) should be marked with design status to distinguish annotation layers from production-ready components",
+          "example": "Add a status label to each VRT frame: '[VRT Only — Do Not Ship]' or use Figma status markers (e.g., 'In Review', 'For Dev Handoff') to distinguish VRT assets from deliverable components.",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        },
+        {
+          "check": "Button Details component should include flow lines connecting each stamp annotation to its corresponding Button instance for clarity during developer handoff",
+          "example": "Draw connector lines from each Button Pin Stamp or Bracket Stamp to the annotated button instance. Label connectors with the annotation type (e.g., 'Accessible Name', 'Role', 'State').",
+          "wcag_criterion": "N/A",
+          "wcag_level": "N/A"
+        }
+      ]
+    }
+  ]
+}

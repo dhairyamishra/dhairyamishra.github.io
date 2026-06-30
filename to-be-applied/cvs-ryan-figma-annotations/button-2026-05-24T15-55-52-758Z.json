@@ -1,0 +1,332 @@
+{
+  "component": "Button",
+  "figma_node_id": "2:666",
+  "analyzed_at": "2026-05-24T15:55:52.756Z",
+  "summary": {
+    "required": [
+      "Buttons",
+      "Keyboard interactions",
+      "Ordering",
+      "Form elements"
+    ],
+    "recommended": [
+      "Basic Notes",
+      "Canvas Utilities",
+      "User Interactions",
+      "System Feedback"
+    ],
+    "skip": [
+      "Landmarks",
+      "Headings",
+      "Links",
+      "Media",
+      "Tables",
+      "Metadata",
+      "Mobile Annotations"
+    ]
+  },
+  "annotations": [
+    {
+      "category": "Landmarks",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Headings",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Ordering",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.3.2",
+        "2.4.3"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Confirm the Button receives focus in the expected sequential tab order relative to surrounding content",
+          "example": "Tab stop 1: Button receives focus before any subsequent interactive elements. Focus order matches visual reading order (left to right, top to bottom).",
+          "wcag_criterion": "2.4.3",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Verify reading order of button label and any supplementary icon or badge follows logical DOM sequence",
+          "example": "Reading order: [Icon (decorative, hidden from AT)] → [Button label text]. Icon does not interrupt label announcement.",
+          "wcag_criterion": "1.3.2",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Form elements",
+      "priority": "required",
+      "wcag_criteria": [
+        "1.3.1",
+        "3.3.2"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "If button appears inside a form, verify it is correctly typed as submit, reset, or button to avoid unintended form submission",
+          "example": "Button type='submit' when used as a primary form action. Button type='button' when used for non-submission actions such as opening a modal.",
+          "wcag_criterion": "1.3.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm any required field hints or validation errors associated with the button action are programmatically linked and visible",
+          "example": "If the button triggers form validation, ensure error summary is announced via aria-live or focus is moved to the error message.",
+          "wcag_criterion": "3.3.2",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Buttons",
+      "priority": "required",
+      "wcag_criteria": [
+        "4.1.2",
+        "1.4.1",
+        "1.3.3"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Every button variant must have a meaningful accessible name that describes its action",
+          "example": "Accessible name: 'Submit form'. Do not use generic labels like 'Click here' or 'Button'. If button is icon-only, provide aria-label='Close dialog'.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Annotate all interactive states: default, hover, focus, active, disabled, and loading",
+          "example": "States: Default | Hover (background changes to brand-dark) | Focus (2px solid #0057B8 offset 2px) | Active (pressed, scale 0.97) | Disabled (aria-disabled='true', opacity 40%, not focusable) | Loading (aria-busy='true', aria-label='Loading, please wait').",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Disabled button state must be communicated to assistive technology without relying solely on color",
+          "example": "Disabled: Use aria-disabled='true' rather than the HTML disabled attribute when button should remain in focus order. Visual indicator: muted gray fill + 'not-allowed' cursor. Do not rely on color alone.",
+          "wcag_criterion": "1.4.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Icon-only button variants must include a visible or programmatic text alternative",
+          "example": "Icon-only button: Add aria-label='Delete item' or pair with visually-hidden <span> containing button purpose text. Tooltip alone is insufficient.",
+          "wcag_criterion": "1.3.3",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Button with icon and text: confirm icon is marked decorative so it is not double-announced",
+          "example": "Icon inside button: aria-hidden='true' on the <svg> or <img> element. Screen reader announces only the visible text label.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Verify button role is correctly identified — native <button> element preferred; if using a <div> or <a>, role='button' must be explicitly set",
+          "example": "Use native <button> element. If a custom element is required, annotate: role='button', tabindex='0', keyboard: Enter and Space activate the button.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm button label does not change unexpectedly between states in a way that loses context",
+          "example": "Toggle button: aria-pressed='false' (label: 'Mute') → aria-pressed='true' (label: 'Unmute'). Or keep label static 'Mute' and rely on aria-pressed change.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Links",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Media",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Tables",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "System Feedback",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "4.1.3",
+        "3.3.1"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Loading state on button must announce status change to screen reader users via live region",
+          "example": "When button enters loading state: inject aria-live='polite' region with text 'Loading, please wait.' or use aria-busy='true' on the button with aria-label updated to 'Saving, please wait'.",
+          "wcag_criterion": "4.1.3",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Success or error feedback triggered by a button action must be surfaced to assistive technology",
+          "example": "After form submission button is activated: announce result via aria-live='assertive' region — e.g., 'Form submitted successfully' or 'Error: Please correct 2 fields before submitting'.",
+          "wcag_criterion": "3.3.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Keyboard interactions",
+      "priority": "required",
+      "wcag_criteria": [
+        "2.1.1",
+        "2.1.2",
+        "2.4.7"
+      ],
+      "wcag_level": "A",
+      "items": [
+        {
+          "check": "Button must be activatable with both Enter and Space keys",
+          "example": "Enter: activates button action. Space: activates button action (especially important for custom role='button' elements). Prevent default scroll on Space keypress.",
+          "wcag_criterion": "2.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Focus indicator must be visible and meet minimum contrast ratio on all button variants",
+          "example": "Focus ring: 2px solid outline, color #0057B8, offset 2px from button edge. Contrast ratio of focus indicator against adjacent color must be at least 3:1 (WCAG 2.2 criterion 2.4.11).",
+          "wcag_criterion": "2.4.7",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "No keyboard trap — user must be able to Tab away from the button without restriction",
+          "example": "Tab: moves focus to next interactive element. Shift+Tab: moves focus to previous interactive element. No custom key handler prevents standard navigation.",
+          "wcag_criterion": "2.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "If button opens a disclosure, modal, or dropdown, annotate the expected keyboard interaction for that pattern",
+          "example": "Button opens modal: Enter/Space opens modal, focus moves to first focusable element inside modal. Escape closes modal and returns focus to the triggering button.",
+          "wcag_criterion": "2.1.1",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Document any keyboard shortcuts defined in the Keyboard Shortcuts instance within Button Details",
+          "example": "Custom shortcut: Alt+S submits the primary action. Annotate: this shortcut must not conflict with browser or OS reserved shortcuts (WCAG 2.1.4 — single character shortcuts must be remappable or disableable).",
+          "wcag_criterion": "2.1.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Metadata",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "Mobile Annotations",
+      "priority": "skip",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": []
+    },
+    {
+      "category": "User Interactions",
+      "priority": "recommended",
+      "wcag_criteria": [
+        "2.5.1",
+        "2.5.5",
+        "2.5.8"
+      ],
+      "wcag_level": "AA",
+      "items": [
+        {
+          "check": "Button touch target size must meet minimum dimensions to support users with motor impairments",
+          "example": "Minimum touch target: 44×44px (WCAG 2.5.5 AAA) or at minimum 24×24px with sufficient spacing (WCAG 2.5.8 AA). Annotate intended tap target area on small/compact button variants.",
+          "wcag_criterion": "2.5.5",
+          "wcag_level": "AAA"
+        },
+        {
+          "check": "Button activation should use the up-event (pointer up / mouseup) not the down-event to allow users to cancel accidental activations",
+          "example": "Activate button action on pointerup/mouseup, not pointerdown/mousedown. This allows users to drag pointer away to cancel the action before releasing.",
+          "wcag_criterion": "2.5.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Hover state tooltip or additional info shown on hover must also be accessible on focus for keyboard users",
+          "example": "If a tooltip or contextual hint appears on mouse hover, it must also appear on keyboard focus. Tooltip must be dismissible with Escape key and persistent enough to be read.",
+          "wcag_criterion": "2.5.1",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Basic Notes",
+      "priority": "recommended",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": [
+        {
+          "check": "Review the 'Button Details' component body for completeness — element, accessible name, description, and type fields should all be filled in for each variant",
+          "example": "Note: Confirm 'element' field specifies <button> (preferred) or custom role. 'type' field should specify submit / button / reset per use case. 'Accessible name' field should cover all naming strategies used across variants.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm the VRT (Visual Regression Testing) frames include all interactive states so regressions in focus or disabled styling are caught",
+          "example": "VRT note: Ensure VRT test cases cover Default, Hover, Focus, Active, Disabled, and Loading states for all size and style variants. Missing state coverage may allow accessibility regressions to go undetected.",
+          "wcag_criterion": "1.4.11",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Confirm color contrast ratio for button label text against button background meets WCAG AA minimums across all variants",
+          "example": "Primary button: white label on brand blue — ratio must be ≥ 4.5:1 for normal text, ≥ 3:1 for large text (18pt+ or 14pt bold). Verify ghost/outline button contrast on both light and dark backgrounds.",
+          "wcag_criterion": "1.4.3",
+          "wcag_level": "AA"
+        },
+        {
+          "check": "Review 'How to: Button' documentation frame to verify accessibility guidance is included alongside usage guidance for consuming teams",
+          "example": "How-to note: Add accessibility section covering: accessible name requirements, state management, icon-only usage rules, and when to use aria-describedby for supplementary context.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        }
+      ]
+    },
+    {
+      "category": "Canvas Utilities",
+      "priority": "recommended",
+      "wcag_criteria": [],
+      "wcag_level": "N/A",
+      "items": [
+        {
+          "check": "Verify Pin Stamp, Bracket Stamp, and Lasso Stamp components are correctly linking each button variant to its corresponding Button Details annotation",
+          "example": "Canvas utility check: Each stamp instance should be paired with a 'Button Details' callout via 'Pair Stamp with Details'. Confirm no orphaned stamps exist without a linked details panel.",
+          "wcag_criterion": "4.1.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm Lasso Stamp label positions are consistent across similar annotation groupings for visual clarity of the annotation layer",
+          "example": "Canvas utility note: Standardize lasso label position to 'bottom-right ↓↘' or 'right →' for button group annotations to avoid label overlap with other annotation layers.",
+          "wcag_criterion": "1.3.2",
+          "wcag_level": "A"
+        },
+        {
+          "check": "Confirm the 'Details VRT' and 'Lasso VRT' frames in the VRT tests section include coverage for annotation stamps themselves to detect annotation breakage on library update",
+          "example": "VRT canvas note: Lasso VRT and Details VRT frames should cover at minimum one instance of each stamp variant (Pin, Bracket, Lasso) paired with a Button Details panel to catch stamp layout regressions.",
+          "wcag_criterion": "1.3.2",
+          "wcag_level": "A"
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 ---
-title: "Closed-Loop Alt-Text Automation at CVS Health"
-description: "Transformer-based alt-text pipeline that generated captions with a Hugging Face vision-language model and used an LLM judge prompted for CVS brand framing to write back only captions that improved on existing alt text, raising catalog coverage by 18%."
+title: "Closed-Loop VLM Content Automation at CVS Health"
+description: "Production workflow that generated image captions with a Hugging Face vision-language model, evaluated candidates with an LLM judge, and wrote back only improved outputs, raising catalog coverage by 18%."
 date: "2024-06"
-tags: ["Hugging Face", "Computer Vision", "VLM", "LLM-as-Judge", "Accessibility", "Python", "CI/CD"]
+tags: ["Hugging Face", "Computer Vision", "VLM", "LLM-as-Judge", "Python", "CI/CD"]
 featured: false
 category: "ml-ai"
 metric: "18%"
@@ -11,27 +11,27 @@ metricLabel: "Coverage Lift"
 
 ## Overview
 
-At CVS Health, I built a closed-loop alt-text pipeline for accessibility quality. The system generated candidate captions with a Hugging Face vision-language model, evaluated them with an LLM judge prompted for CVS brand framing, and wrote back only captions that beat the existing alt text.
+At CVS Health, I built a closed-loop content automation pipeline for image metadata quality. The system generated candidate captions with a Hugging Face vision-language model, evaluated them with an LLM judge prompted for CVS brand framing, and wrote back only captions that beat the existing text.
 
-The current resume frames this as a production-oriented accessibility and applied-AI system: it improved catalog coverage by **18%** while preserving a review boundary around brand fit and caption quality.
+The engineering value was the controlled update loop: model output was not blindly accepted. The workflow improved catalog coverage by **18%** while preserving a review boundary around brand fit, caption quality, and production safety.
 
 ## What I Owned
 
 - Built the transformer-based caption generation pipeline.
 - Designed the LLM-judge step for comparing generated captions against existing alt text.
-- Framed evaluation around CVS brand fit and accessibility quality rather than generic image captioning.
-- Connected the workflow to production-grade accessibility automation.
+- Framed evaluation around CVS brand fit and production content quality rather than generic image captioning.
+- Connected the workflow to production-grade content automation.
 
 ## Hard Problems Solved
 
 - **Avoid blind replacement**: the system only wrote back captions that improved on the existing alt text.
-- **Balance accessibility and brand voice**: captions needed to be useful, compliant, and consistent with CVS framing.
+- **Balance quality and brand voice**: captions needed to be useful, controlled, and consistent with CVS framing.
 - **Turn model output into workflow output**: the value came from closing the loop between generation, evaluation, and controlled update behavior.
 
 ## Impact
 
 - Raised catalog coverage by **18%**.
-- Created a repeatable applied-AI workflow for accessibility content quality.
+- Created a repeatable applied-ML workflow for content quality.
 - Demonstrated a practical pattern for using VLM generation with an LLM quality gate.
 
 ## Why It Matters
@@ -41,6 +41,6 @@ This project shows applied ML in a real enterprise workflow: model generation, p
 ## Tech Stack
 
 - **AI/ML**: Hugging Face vision-language models, LLM-as-judge evaluation
-- **Accessibility**: Alt-text quality automation, WCAG-oriented review
+- **Workflow**: Controlled caption updates, quality gates, production integration
 - **Backend**: Python
 - **Delivery**: Enterprise production pipeline integration

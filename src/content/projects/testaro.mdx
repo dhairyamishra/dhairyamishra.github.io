@@ -1,8 +1,8 @@
 ---
-title: "Testaro - Web Accessibility Ensemble Testing"
-description: "Open-source ensemble web accessibility testing work associated with CVS Health and published at ACM SIGACCESS ASSETS 2023. Testaro checks about 650 rules across 8 tools and generates unified reports across fragmented accessibility signals."
+title: "Testaro - Ensemble Quality Reporting"
+description: "Node.js and Playwright-based ensemble testing/reporting work associated with CVS Health and published at ACM SIGACCESS ASSETS 2023. Testaro checks about 650 rules across 8 tools and generates unified reports across fragmented tool outputs."
 date: "2023-10"
-tags: ["Accessibility", "Node.js", "Playwright", "axe-core", "ACM", "WCAG"]
+tags: ["Node.js", "Playwright", "axe-core", "ACM", "Quality Engineering", "Reporting"]
 featured: false
 category: "open-source"
 paperUrl: "https://arxiv.org/abs/2309.10167"
@@ -12,43 +12,43 @@ metricLabel: "Approx. Rules"
 
 ## Overview
 
-Testaro is an open-source NPM package for ensemble web accessibility testing. The public arXiv record describes it as checking compliance with about **650 rules** across **8 tools**: alfa, Axe, Equal Access, HTML CodeSniffer, Nu Html Checker, QualWeb, Testaro, and WAVE.
+Testaro is an open-source NPM package for ensemble browser-based quality testing. The public arXiv record describes it as checking about **650 rules** across **8 tools**: alfa, Axe, Equal Access, HTML CodeSniffer, Nu Html Checker, QualWeb, Testaro, and WAVE.
 
-My current public profile describes this as CVS Health accessibility-tooling work connected to the 25th ACM SIGACCESS ASSETS conference. The strongest supported portfolio signal is the engineering pattern: unify several noisy accessibility-testing tools into one reportable workflow that teams can operationalize.
+The strongest portfolio signal is the engineering pattern: unify several noisy testing tools into one reportable workflow that teams can operationalize. This is quality-platform work first: aggregation, normalization, repeatability, and reporting.
 
 ## What I Owned
 
-- Contributed to accessibility tooling and reporting work around Testaro at CVS Health.
-- Helped connect multi-tool accessibility findings to practical engineering workflows.
-- Worked with Node.js, Playwright, axe-core, and WCAG/ADA-oriented accessibility evaluation.
+- Contributed to testing and reporting work around Testaro at CVS Health.
+- Helped connect multi-tool findings to practical engineering workflows.
+- Worked with Node.js, Playwright, axe-core, and browser-based rule evaluation.
 
 ## Public Record
 
 - **Paper**: [Testaro: Efficient Ensemble Testing for Web Accessibility](https://arxiv.org/abs/2309.10167)
 - **Venue**: Proceedings of the 25th ACM International Conference on Computers and Accessibility (ASSETS '23)
 - **DOI**: [10.1145/3597638.3614505](https://doi.org/10.1145/3597638.3614505)
-- **Scope**: about 650 rules across 8 accessibility tools, with unified reports designed to find more issues than a single tool alone.
+- **Scope**: about 650 rules across 8 tools, with unified reports designed to find more issues than a single tool alone.
 
 ## Hard Problems Solved
 
-- **Normalize fragmented outputs**: accessibility tools disagree in structure, coverage, terminology, and severity. A usable system needs one reporting layer.
+- **Normalize fragmented outputs**: tools disagree in structure, coverage, terminology, and severity. A usable system needs one reporting layer.
 - **Make results actionable**: raw findings are not enough; engineers need reports that can support review, remediation, and repeated testing.
-- **Shift accessibility earlier**: ensemble testing is most valuable when it fits development workflows instead of remaining a one-off audit activity.
+- **Shift quality checks earlier**: ensemble testing is most valuable when it fits development workflows instead of remaining a one-off audit activity.
 
 ## Key Features
 
-- **Multi-Tool Aggregation**: Combines checks from several accessibility-testing engines.
+- **Multi-Tool Aggregation**: Combines checks from several testing engines.
 - **Unified Reporting**: Produces standardized reports over heterogeneous tool output.
 - **Browser-Based Testing**: Uses automated browser execution for repeatable testing.
-- **Compliance Coverage**: Evaluates a large rule set related to web accessibility compliance.
+- **Rule Coverage**: Evaluates a large rule set across browser-based quality tools.
 
 ## Why It Matters
 
-Testaro shows platform-style accessibility engineering: consolidate fragmented testing signals, make them repeatable, and turn them into an output surface that teams can act on.
+Testaro shows platform-style engineering: consolidate fragmented testing signals, make them repeatable, and turn them into an output surface that teams can act on.
 
 ## Tech Stack
 
 - **Runtime**: Node.js
 - **Testing**: Playwright, axe-core
-- **Domain**: WCAG/ADA accessibility evaluation
+- **Domain**: Browser-based quality evaluation
 - **Reporting**: Unified ensemble reports
