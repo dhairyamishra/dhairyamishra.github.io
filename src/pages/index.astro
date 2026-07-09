@@ -117,6 +117,14 @@ const affiliations = [
             <h1 class="max-w-4xl text-5xl font-heading font-bold leading-[0.96] text-text-bright sm:text-6xl lg:text-7xl">
               I build full-stack products, backend platforms, and ML systems that survive real users.
             </h1>
+            <Image
+              src={profileImg}
+              alt="Dhairya Mishra"
+              width={448}
+              height={448}
+              loading="eager"
+              class="mt-8 h-44 w-44 rounded-3xl border-2 border-neon-rose/20 object-cover shadow-[0_24px_56px_rgba(36,26,20,0.14)] lg:hidden"
+            />
             <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-light md:text-xl">
               My work spans React/TypeScript applications, FastAPI and Node.js services, cloud infrastructure, RAG assistants, computer vision, and production ML pipelines.
             </p>
@@ -153,7 +161,7 @@ const affiliations = [
                 width={448}
                 height={448}
                 loading="eager"
-                class="h-44 w-44 rounded-3xl border-2 border-neon-rose/20 object-cover shadow-[0_24px_56px_rgba(36,26,20,0.14)] md:h-56 md:w-56"
+                class="hidden h-44 w-44 rounded-3xl border-2 border-neon-rose/20 object-cover shadow-[0_24px_56px_rgba(36,26,20,0.14)] md:h-56 md:w-56 lg:block"
               />
 
               <div class="card-neon w-full p-5 md:p-6">
