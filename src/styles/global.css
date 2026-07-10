@@ -402,7 +402,7 @@
     margin-top: -1rem;
   }
   @media (min-width: 64rem) {
-    .hero-neon {
+    .hero-neon--width-wide {
       margin-left: -4rem;
       margin-right: -4rem;
     }
@@ -415,6 +415,10 @@
     @apply w-full h-auto block;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+  }
+  .hero-neon__img--natural {
+    aspect-ratio: auto;
+    object-fit: contain;
   }
   .hero-neon__overlay {
     @apply absolute inset-0 pointer-events-none;

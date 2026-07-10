@@ -4,14 +4,16 @@ interface Props {
   alt: string;
   eyebrow?: string;
   caption?: string;
+  fit?: 'cover' | 'natural';
+  width?: 'normal' | 'wide';
 }
 
-const { src, alt, eyebrow, caption } = Astro.props;
+const { src, alt, eyebrow, caption, fit = 'cover', width = 'wide' } = Astro.props;
 ---
 
-<figure class="hero-neon not-prose">
+<figure class={`hero-neon hero-neon--width-${width} not-prose`}>
   <div class="hero-neon__frame">
-    <img src={src} alt={alt} loading="eager" class="hero-neon__img" />
+    <img src={src} alt={alt} loading="eager" class={`hero-neon__img hero-neon__img--${fit}`} />
     <div class="hero-neon__overlay" aria-hidden="true"></div>
     {eyebrow && (
       <span class="hero-neon__eyebrow">{eyebrow}</span>

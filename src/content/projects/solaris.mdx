@@ -14,16 +14,19 @@ metricLabel: "Synchronized Frames"
 import Figure from '../../components/mdx/Figure.astro';
 import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
-<FigureGrid cols={2} width="wide" caption="Solaris generating synchronized first-person observations for two players simultaneously in Minecraft.">
-  <Figure
-    src="/images/projects/solaris/solaris-demo-1.gif"
-    alt="Solaris multiplayer world model demo — player one perspective"
-  />
-  <Figure
-    src="/images/projects/solaris/solaris-demo-2.gif"
-    alt="Solaris multiplayer world model demo — player two perspective"
-  />
-</FigureGrid>
+<Figure
+  src="/images/projects/solaris/solaris-demo-1.gif"
+  alt="Solaris multiplayer world model demo — player one perspective"
+  width="wide"
+  caption="Player one: Solaris generates a synchronized first-person observation in Minecraft."
+/>
+
+<Figure
+  src="/images/projects/solaris/solaris-demo-2.gif"
+  alt="Solaris multiplayer world model demo — player two perspective"
+  width="wide"
+  caption="Player two: the paired first-person observation remains synchronized with the same multiplayer world state."
+/>
 
 ## Overview
 

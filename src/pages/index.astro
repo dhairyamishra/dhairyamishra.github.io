@@ -1,299 +1,286 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
 import profileImg from '../assets/profile.jpg';
 
-type ProjectEntry = CollectionEntry<'projects'>;
-
-const allProjects = await getCollection('projects');
-const featuredProjects = allProjects
-  .filter((p: ProjectEntry) => p.data.featured)
-  .sort((a: ProjectEntry, b: ProjectEntry) => b.data.date.localeCompare(a.data.date))
-  .slice(0, 4);
-
-const proofPoints = [
-  { value: 'Live', label: 'Full-stack agentic product', detail: 'Teserax graph-based research agent' },
-  { value: '16%', label: 'Ticket deflection', detail: 'CVS self-service RAG assistant' },
-  { value: '12.64M', label: 'Synchronized multiplayer frames', detail: 'Solaris world-model research dataset' },
-  { value: '96.57%', label: 'DistilBERT accuracy', detail: 'Cloud NLP content moderation API' },
-];
-
-const quickPaths = [
-  { label: 'Best for recruiters', href: '/experience', description: 'Timeline, ownership, and outcomes' },
-  { label: 'Best for engineers', href: '#technical-wins', description: 'Architecture and systems proof' },
-  { label: 'Best for research', href: '/projects/solaris', description: 'World models, evaluation, and publication work' },
-];
-
-const technicalWins = [
+const outcomes = [
   {
-    eyebrow: 'Full-Stack Product Engineering',
-    title: 'Built and shipped a live agentic research product',
-    metric: 'Production SaaS',
-    summary:
-      'Designed Teserax as a graph-based research agent with React, TypeScript, FastAPI, typed API contracts, live-source RAG, async orchestration, and failure recovery.',
-    links: [
-      { label: 'Teserax', href: '/projects/teserax' },
-      { label: 'Projects', href: '/projects' },
-    ],
+    value: '16%',
+    label: 'support tickets deflected',
+    context: 'CVS Health RAG assistant',
   },
   {
-    eyebrow: 'Backend + Platform Engineering',
-    title: 'Built production internal systems at CVS Health',
-    metric: '16% ticket deflection',
-    summary:
-      'Built a self-service RAG assistant over ticket history and internal docs, cut resolution time by 20%, and owned reliability for customer-facing platform systems.',
-    links: [
-      { label: 'Experience', href: '/experience' },
-      { label: 'RAG Assistant', href: '/projects/cvs-rag-assistant' },
-    ],
+    value: '20%',
+    label: 'faster issue resolution',
+    context: 'CVS Health support workflow',
   },
   {
-    eyebrow: 'ML Engineering',
-    title: 'Built deployable ML systems, not just notebooks',
-    metric: '96.57% NLP accuracy',
-    summary:
-      'Built model-serving APIs, medical imaging pipelines, language-model experiments, and world-model data/evaluation systems with reproducible training and deployment paths.',
-    links: [
-      { label: 'Cloud NLP', href: '/projects/cloud-nlp' },
-      { label: 'MRI Pipeline', href: '/projects/mri-brain-tumor' },
-    ],
+    value: '14%',
+    label: 'engagement lift in A/B testing',
+    context: 'Evidenza creative intelligence',
   },
 ];
 
-const capabilities = [
+const caseStudies = [
   {
-    title: 'Full-Stack Product Engineering',
-    evidence:
-      'Built user-facing and internal products with React, TypeScript, FastAPI, Node.js, typed contracts, cloud deployment, and operational ownership.',
-    tools: ['React', 'TypeScript', 'FastAPI', 'Node.js', 'Zod'],
+    number: '01',
+    label: 'Enterprise AI system',
+    title: 'Made recurring engineering support questions self-service.',
+    problem:
+      'Engineering teams were repeatedly routing common troubleshooting questions through manual support instead of drawing on existing ticket history and documentation.',
+    ownership:
+      'Built the self-service retrieval and answer workflow over ticket history and internal documentation.',
+    result: '16% ticket deflection · 20% faster resolution',
+    href: '/projects/cvs-rag-assistant',
+    link: 'Read the RAG assistant case study',
+    tags: ['RAG', 'Ticket history', 'Internal docs', 'Enterprise support'],
   },
   {
-    title: 'ML Engineering',
-    evidence:
-      'Built model-backed systems across NLP, computer vision, RAG, VLM evaluation, and multimodal pipelines with reproducible training and inference workflows.',
-    tools: ['PyTorch', 'JAX', 'Hugging Face', 'RAG', 'OpenCV'],
+    number: '02',
+    label: 'Applied ML workflow',
+    title: 'Put a quality gate between model output and production content.',
+    problem:
+      'Catalog imagery needed better captions, but automatically replacing existing copy without a quality boundary would create brand and reliability risk.',
+    ownership:
+      'Built a vision-language generation pipeline and an LLM evaluation loop that only wrote back captions when they beat the existing text.',
+    result: '18% catalog coverage lift',
+    href: '/projects/cvs-ai-ci',
+    link: 'Read the VLM workflow case study',
+    tags: ['VLMs', 'LLM evaluation', 'Python', 'CI/CD'],
   },
   {
-    title: 'Backend + Platform Systems',
-    evidence:
-      'Built internal developer tooling, observability pipelines, storage, databases, cloud deployment workflows, and support systems for production teams.',
-    tools: ['GCP', 'Terraform', 'MongoDB', 'Postgres', 'Grafana'],
+    number: '03',
+    label: 'Full-stack product',
+    title: 'Built a research agent as a usable product, not a chat demo.',
+    problem:
+      'Linear chat obscures branching questions, source context, and the reasoning trail people need for serious research work.',
+    ownership:
+      'Solo-built and operate an interactive graph research agent with TypeScript, React, FastAPI, tool calling, async orchestration, RAG, and custom executable workflows.',
+    result: 'Solo-built and operate a production agentic tool',
+    href: '/projects/teserax',
+    link: 'Explore Teserax',
+    tags: ['TypeScript', 'React', 'FastAPI', 'Tool calling', 'RAG'],
   },
 ];
 
-const affiliations = [
-  { brand: 'nyu', label: 'NYU Courant' },
-  { brand: 'trine', label: 'Trine University' },
-  { brand: 'cvs', label: 'CVS Health' },
-  { brand: 'aetna', label: 'Aetna' },
-  { brand: 'evidenza', label: 'Evidenza' },
-  { brand: 'acm', label: 'ACM' },
-  { brand: 'neurips', label: 'NeurIPS' },
-  { brand: 'arxiv', label: 'arXiv' },
+const experienceSignals = [
+  { brand: 'cvs', label: 'Sr. Software Development Engineer', detail: 'CVS Health · 2024–2025' },
+  { brand: 'evidenza', label: 'AI Engineer Intern', detail: 'Evidenza · 2026' },
+  { brand: 'aetna', label: 'Advanced Software Developer', detail: 'Aetna Health · 2022–2023' },
+];
+
+const technicalAreas = [
+  {
+    title: 'Product delivery',
+    detail: 'React, TypeScript, FastAPI, Node.js, and typed API contracts for systems people can actually use.',
+  },
+  {
+    title: 'Applied ML',
+    detail: 'RAG, computer vision, LLM-as-judge evaluation, model serving, and reproducible inference workflows.',
+  },
+  {
+    title: 'Reliable systems',
+    detail: 'Cloud infrastructure, observability, testing, deployment, and the operational boundaries around production models.',
+  },
 ];
 ---
 
-<Layout title="Dhairya Mishra - Full-Stack Software Engineer & ML Engineer" description="Full-stack software engineer and ML engineer building production web platforms, backend systems, and agentic ML products." ogType="profile">
+<Layout
+  title="Dhairya Mishra — Software + ML Engineer"
+  description="Dhairya Mishra is a software and ML engineer who builds production AI systems, backend platforms, and full-stack products with measurable outcomes."
+  ogType="profile"
+>
   <Navigation />
 
   <main id="main-content">
-    <section class="relative overflow-hidden py-20 md:py-28">
-      <div class="absolute inset-0 grid-bg opacity-40"></div>
-      <div class="absolute top-12 left-0 h-64 w-64 rounded-full bg-neon-gold/5 blur-3xl"></div>
-      <div class="absolute right-0 top-32 h-72 w-72 rounded-full bg-neon-rose/5 blur-3xl"></div>
+    <section class="relative overflow-hidden border-b border-black/5 py-16 md:py-20 lg:pb-12">
+      <div class="absolute inset-0 grid-bg opacity-35"></div>
+      <div class="absolute -left-24 top-10 h-80 w-80 rounded-full bg-neon-gold/10 blur-3xl"></div>
+      <div class="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-neon-rose/10 blur-3xl"></div>
 
       <div class="section-container relative z-10">
-        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,420px)]">
+        <div class="grid items-start gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(340px,0.75fr)] lg:gap-16">
           <div class="reveal">
-            <p class="mb-5 font-mono text-sm uppercase tracking-[0.24em] text-neon-rose">
-              Full-Stack Software Engineer / ML Engineer
-            </p>
-            <h1 class="max-w-4xl text-5xl font-heading font-bold leading-[0.96] text-text-bright sm:text-6xl lg:text-7xl">
-              I build full-stack products, backend platforms, and ML systems that survive real users.
-            </h1>
-            <Image
-              src={profileImg}
-              alt="Dhairya Mishra"
-              width={448}
-              height={448}
-              loading="eager"
-              class="mt-8 h-44 w-44 rounded-3xl border-2 border-neon-rose/20 object-cover shadow-[0_24px_56px_rgba(36,26,20,0.14)] lg:hidden"
-            />
-            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-light md:text-xl">
-              My work spans React/TypeScript applications, FastAPI and Node.js services, cloud infrastructure, RAG assistants, computer vision, and production ML pipelines.
-            </p>
-
-            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href="/projects" class="btn-neon-fill">
-                Review flagship work
-                <svg class="ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-              </a>
-              <a href="/experience" class="btn-neon">
-                Review experience
-                <svg class="ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-              </a>
-            </div>
-
-            <div class="mt-10 grid gap-3 md:grid-cols-3">
-              {quickPaths.map((path, index) => (
-                <a
-                  href={path.href}
-                  class={`reveal reveal-delay-${index + 1} card-neon-interactive p-4`}
-                >
-                  <p class="text-xs font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">{path.label}</p>
-                  <p class="mt-2 text-sm leading-relaxed text-muted">{path.description}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div class="reveal reveal-delay-2">
-            <div class="flex flex-col items-start gap-6">
+            <div class="md:flex md:items-start md:gap-6 lg:block">
+              <div class="min-w-0">
+                <p class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-neon-rose sm:text-sm">
+                  Dhairya Mishra · Software + ML Engineer · New York
+                </p>
+                <h1 class="mt-5 max-w-4xl text-5xl font-heading font-bold leading-[0.98] tracking-[-0.04em] text-text-bright sm:text-6xl lg:text-7xl">
+                  I turn ideas into reliable software products.
+                </h1>
+              </div>
               <Image
                 src={profileImg}
                 alt="Dhairya Mishra"
                 width={448}
                 height={448}
                 loading="eager"
-                class="hidden h-44 w-44 rounded-3xl border-2 border-neon-rose/20 object-cover shadow-[0_24px_56px_rgba(36,26,20,0.14)] md:h-56 md:w-56 lg:block"
+                class="mt-6 h-40 w-40 flex-none rounded-3xl border-2 border-neon-rose/25 object-cover shadow-[0_20px_40px_rgba(36,26,20,0.14)] md:mt-0 md:h-48 md:w-48 lg:hidden"
               />
-
-              <div class="card-neon w-full p-5 md:p-6">
-                <div class="flex-1">
-                  <p class="text-xs font-mono uppercase tracking-[0.16em] text-muted">Current focus</p>
-                  <h2 class="mt-2 text-xl font-heading font-semibold text-text-bright">Engineering-first ML and product work</h2>
-                  <p class="mt-3 text-sm leading-relaxed text-muted">
-                    Building systems where product behavior, backend reliability, model quality, and developer experience all matter at the same time.
-                  </p>
-                </div>
-
-                <div class="mt-6 space-y-3 border-t border-black/5 pt-5">
-                  <div class="grid gap-1 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-4">
-                    <span class="text-sm text-muted">Primary domains</span>
-                    <span class="text-sm font-medium text-text">Full-stack · ML systems · agentic workflows</span>
-                  </div>
-                  <div class="grid gap-1 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-4">
-                    <span class="text-sm text-muted">Recent signal</span>
-                    <span class="text-sm font-medium text-text">NeurIPS 2026 submission + live shipped systems</span>
-                  </div>
-                  <div class="grid gap-1 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-4">
-                    <span class="text-sm text-muted">Operating style</span>
-                    <span class="text-sm font-medium text-text">Own architecture, delivery, and outcomes</span>
-                  </div>
-                </div>
-              </div>
             </div>
+            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted-light md:text-xl">
+              Former Senior Software Development Engineer at CVS Health. I build the systems around production AI: the product experience, APIs, evaluation, infrastructure, and operational safeguards that make the work useful.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="/projects" class="btn-neon-fill">See selected work</a>
+              <a href="/experience" class="btn-neon">View experience</a>
+              <a href="/contact" class="self-center text-sm font-medium text-muted underline decoration-neon-rose/25 underline-offset-4 hover:text-neon-rose hover:decoration-neon-rose">Get in touch</a>
+            </div>
+
+            <div class="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-black/10 pt-6 text-sm text-muted">
+              <span><strong class="font-semibold text-text">3+ years</strong> shipping software and ML systems</span>
+              <span><strong class="font-semibold text-text">Enterprise + startup</strong> operating range</span>
+              <span><strong class="font-semibold text-text">End-to-end</strong> technical ownership</span>
+            </div>
+
+            <div class="mt-12 hidden border-t border-black/10 pt-8 lg:block">
+              <p class="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">What I am strongest at</p>
+              <h2 class="mt-3 max-w-2xl text-2xl font-heading font-bold tracking-[-0.03em] text-text-bright">
+                The work lives at the intersection of product, systems, and applied ML.
+              </h2>
+              <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                I am most useful when a team needs more than a model or a feature: a dependable system that fits real workflows, makes deliberate tradeoffs, and has a clear outcome.
+              </p>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2 flex flex-col items-start gap-6">
+            <Image
+              src={profileImg}
+              alt="Dhairya Mishra"
+              width={448}
+              height={448}
+              loading="eager"
+              class="hidden h-44 w-44 rounded-[2rem] border-2 border-neon-rose/25 object-cover shadow-[0_24px_48px_rgba(36,26,20,0.16)] lg:block lg:h-auto lg:w-full"
+            />
+
+            <aside class="w-full rounded-2xl border border-black/10 bg-surface p-5 shadow-[0_24px_56px_rgba(36,26,20,0.10)] sm:p-7">
+              <div class="border-b border-black/10 pb-5">
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">Proof at a glance</p>
+                <p class="mt-2 text-lg font-heading font-semibold text-text-bright">Production engineering with measurable outcomes.</p>
+              </div>
+
+              <dl class="divide-y divide-black/10">
+                {outcomes.map((outcome) => (
+                  <div class="grid grid-cols-[88px_minmax(0,1fr)] gap-4 py-5">
+                    <dt class="font-heading text-3xl font-bold tracking-[-0.04em] text-neon-rose">{outcome.value}</dt>
+                    <dd>
+                      <p class="text-sm font-semibold leading-snug text-text">{outcome.label}</p>
+                      <p class="mt-1 text-xs leading-relaxed text-muted">{outcome.context}</p>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <a href="#selected-work" class="mt-2 inline-flex items-center text-sm font-medium text-neon-rose hover:text-neon-violet">
+                Inspect the work behind the numbers
+                <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+              </a>
+            </aside>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="border-y border-black/5 py-10 md:py-12">
+    <section class="py-16 md:py-20 lg:py-12">
       <div class="section-container">
-        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {proofPoints.map((item, index) => (
-            <div class={`reveal reveal-delay-${(index % 4) + 1} rounded-2xl border border-black/5 bg-surface p-5 shadow-neon-sm`}>
-              <p class="text-3xl font-heading font-bold text-gradient-rose">{item.value}</p>
-              <p class="mt-2 text-sm font-medium text-text">{item.label}</p>
-              <p class="mt-1 text-sm leading-relaxed text-muted">{item.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="technical-wins" class="py-20 md:py-24">
-      <div class="section-container">
-        <div class="reveal mb-12 max-w-3xl">
-          <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Selected technical wins</p>
-          <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright md:text-4xl">
-            The strongest signal is shipped work under real constraints.
+        <div class="reveal max-w-3xl lg:hidden">
+          <p class="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">What I am strongest at</p>
+          <h2 class="mt-3 text-3xl font-heading font-bold tracking-[-0.03em] text-text-bright md:text-4xl">
+            The work lives at the intersection of product, systems, and applied ML.
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-muted">
-            These are representative examples of ownership across full-stack products, backend/platform systems, and production ML workflows.
+            I am most useful when a team needs more than a model or a feature: a dependable system that fits real workflows, makes deliberate tradeoffs, and has a clear outcome.
           </p>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-3">
-          {technicalWins.map((win, index) => (
-            <div class={`reveal reveal-delay-${(index % 3) + 1} card-neon flex flex-col`}>
-              <p class="text-xs font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">{win.eyebrow}</p>
-              <h3 class="mt-3 text-2xl font-heading font-semibold text-text-bright">{win.title}</h3>
-              <p class="mt-3 text-sm font-medium uppercase tracking-[0.12em] text-neon-gold">{win.metric}</p>
-              <p class="mt-4 flex-grow text-sm leading-relaxed text-muted">{win.summary}</p>
-              <div class="mt-5 flex flex-wrap gap-3">
-                {win.links.map((link) => (
-                  <a href={link.href} class="link-neon text-sm font-medium">
-                    {link.label}
-                  </a>
-                ))}
-              </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-3 lg:mt-0">
+          {technicalAreas.map((area, index) => (
+            <div class={`reveal reveal-delay-${index + 1} border-t-2 border-neon-rose/35 bg-surface px-5 pb-6 pt-5 shadow-neon-sm`}>
+              <h3 class="text-lg font-heading font-semibold text-text-bright">{area.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{area.detail}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="py-20 md:py-24">
+    <section id="selected-work" class="border-y border-black/5 bg-surface-light/40 py-16 md:py-20">
       <div class="section-container">
-        <div class="reveal mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div class="max-w-2xl">
-            <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Flagship work</p>
-            <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright md:text-4xl">
-              Projects that best represent technical depth and execution range.
-            </h2>
+        <div class="reveal flex flex-col gap-4 border-b border-black/10 pb-8 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-3xl">
+            <p class="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">Selected work</p>
+            <h2 class="mt-3 text-3xl font-heading font-bold tracking-[-0.03em] text-text-bright md:text-4xl">Evidence, not adjectives.</h2>
           </div>
-          <p class="max-w-xl text-sm leading-relaxed text-muted">
-            A mix of shipped enterprise systems, agentic product work, and research pipelines. Each project includes architecture, decisions, and results.
-          </p>
+          <p class="max-w-xl text-sm leading-relaxed text-muted">Each example makes the problem, my ownership, and the result explicit. Technical detail is one click away.</p>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {featuredProjects.map((project: ProjectEntry, index: number) => (
-            <ProjectCard
-              project={project}
-              maxTags={4}
-              showReadMore
-              revealClass={`reveal reveal-delay-${(index % 4) + 1}`}
-            />
+        <div class="divide-y divide-black/10">
+          {caseStudies.map((study, index) => (
+            <article class={`reveal reveal-delay-${(index % 3) + 1} grid gap-6 py-10 lg:grid-cols-[84px_minmax(0,1fr)_minmax(250px,0.55fr)] lg:gap-10`}>
+              <div>
+                <p class="font-mono text-sm text-neon-rose">{study.number}</p>
+                <p class="mt-2 text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-muted">{study.label}</p>
+              </div>
+              <div>
+                <h3 class="max-w-2xl text-2xl font-heading font-semibold leading-tight text-text-bright">{study.title}</h3>
+                <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Problem</p>
+                    <p class="mt-2 text-sm leading-relaxed text-muted">{study.problem}</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">What I owned</p>
+                    <p class="mt-2 text-sm leading-relaxed text-muted">{study.ownership}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col justify-between rounded-xl border border-black/10 bg-surface p-5">
+                <div>
+                  <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Result</p>
+                  <p class="mt-2 text-xl font-heading font-semibold leading-tight text-text-bright">{study.result}</p>
+                  <div class="mt-5 flex flex-wrap gap-1.5">
+                    {study.tags.map((tag) => <span class="rounded-full border border-black/5 bg-base px-2 py-1 text-[10px] text-muted">{tag}</span>)}
+                  </div>
+                </div>
+                <a href={study.href} class="mt-7 inline-flex items-center text-sm font-medium text-neon-rose hover:text-neon-violet">
+                  {study.link}
+                  <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                </a>
+              </div>
+            </article>
           ))}
-        </div>
-
-        <div class="reveal mt-10">
-          <a href="/projects" class="btn-neon text-sm">
-            View all projects
-            <svg class="ml-2 inline-block h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-          </a>
         </div>
       </div>
     </section>
 
-    <div class="divider-neon-animated"></div>
-
-    <section class="py-20 md:py-24">
-      <div class="section-container">
-        <div class="reveal mb-12 max-w-3xl">
-          <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Capabilities</p>
-          <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright md:text-4xl">
-            Broad tool coverage matters less than where the tools have already been proven.
+    <section class="py-16 md:py-20">
+      <div class="section-container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.75fr)] lg:items-start">
+        <div class="reveal">
+          <p class="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">Career signal</p>
+          <h2 class="mt-3 max-w-2xl text-3xl font-heading font-bold tracking-[-0.03em] text-text-bright md:text-4xl">
+            Built in environments where reliability, users, and business outcomes all matter.
           </h2>
+          <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+            My experience includes customer-facing platform reliability, internal developer tooling, enterprise applied AI, and startup experimentation. The common thread is taking ambiguous work through to a system people can rely on.
+          </p>
+          <a href="/experience" class="btn-neon mt-7 inline-block">See the full experience timeline</a>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-3">
-          {capabilities.map((capability, index) => (
-            <div class={`reveal reveal-delay-${(index % 3) + 1} card-neon`}>
-              <h3 class="text-xl font-heading font-semibold text-text-bright">{capability.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-muted">{capability.evidence}</p>
-              <div class="mt-5 flex flex-wrap gap-2">
-                {capability.tools.map((tool) => (
-                  <span class="rounded-full border border-black/5 bg-base px-2.5 py-1 text-xs text-muted-light">{tool}</span>
-                ))}
+        <div class="reveal reveal-delay-2 divide-y divide-black/10 border-y border-black/10">
+          {experienceSignals.map((signal) => (
+            <div class="flex items-center gap-4 py-5">
+              <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-black/10 bg-surface">
+                <BrandLogo brand={signal.brand} size="sm" />
+              </div>
+              <div>
+                <p class="text-sm font-heading font-semibold text-text-bright">{signal.label}</p>
+                <p class="mt-1 text-xs text-muted">{signal.detail}</p>
               </div>
             </div>
           ))}
@@ -301,36 +288,15 @@ const affiliations = [
       </div>
     </section>
 
-    <section class="border-y border-black/5 py-10">
+    <section class="border-t border-black/5 py-16 md:py-20">
       <div class="section-container">
-        <p class="reveal mb-6 text-center text-[10px] uppercase tracking-[0.2em] text-muted">Affiliated with</p>
-        <div class="brand-strip">
-          {affiliations.map((item, index) => (
-            <div class={`brand-strip-item reveal reveal-delay-${(index % 5) + 1}`}>
-              <BrandLogo brand={item.brand} size="md" />
-              <span class="text-[10px] text-muted/70">{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="py-20 md:py-24">
-      <div class="section-container text-center">
-        <div class="reveal card-neon mx-auto max-w-3xl py-12 px-8">
-          <p class="text-sm font-mono uppercase tracking-[0.2em] text-neon-rose">Next step</p>
-          <h2 class="mt-4 text-3xl font-heading font-bold text-text-bright">
-            If you need someone who can own both the model and the system around it, start here.
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-muted">
-            I am most useful on teams building full-stack products, ML-backed applications, backend platforms, and agentic systems that need to survive contact with real users.
-          </p>
-          <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <p class="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">Start here</p>
+          <h2 class="mt-3 text-3xl font-heading font-bold tracking-[-0.03em] text-text-bright md:text-4xl">Looking for someone who can own both the model and the system around it?</h2>
+          <p class="mt-5 text-lg leading-relaxed text-muted">I am open to conversations about software engineering, applied ML, platform work, and product teams shipping AI responsibly.</p>
+          <div class="mt-8 flex justify-center gap-3">
             <a href="/contact" class="btn-neon-fill">Start a conversation</a>
-            <a href="https://github.com/dhairyamishra" target="_blank" rel="noopener noreferrer" class="btn-neon">
-              <Icon name="simple-icons:github" class="mr-2 inline-block h-4 w-4" aria-hidden="true" />
-              Review GitHub
-            </a>
+            <a href="/projects" class="btn-neon">View all projects</a>
           </div>
         </div>
       </div>

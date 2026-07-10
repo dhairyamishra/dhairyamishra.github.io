@@ -17,6 +17,8 @@ interface Props {
     proof: string;
     filters: string[];
     featuredLabel?: string;
+    image?: string;
+    imageAlt?: string;
   };
   maxTags?: number;
   showReadMore?: boolean;
@@ -33,6 +35,8 @@ const categoryLabels: Record<string, string> = {
 };
 
 const { project, signal, maxTags = 4, showReadMore = false, revealClass = '', extraClass = '' } = Astro.props;
+const visualSrc = signal?.image ?? project.data.thumbnail;
+const visualAlt = signal?.imageAlt ?? `${project.data.title} project visual`;
 ---
 
 <a
@@ -41,6 +45,27 @@ const { project, signal, maxTags = 4, showReadMore = false, revealClass = '', ex
   data-filters={signal?.filters.join(' ') ?? project.data.category}
   class={`${revealClass} group card-neon-interactive flex flex-col ${extraClass}`.trim()}
 >
+  {visualSrc ? (
+    <div class="relative -mx-6 -mt-6 mb-5 h-40 overflow-hidden rounded-t-xl border-b border-black/10 bg-base sm:h-44">
+      <img
+        src={visualSrc}
+        alt={visualAlt}
+        class="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none"></div>
+    </div>
+  ) : (
+    <div class="relative -mx-6 -mt-6 mb-5 flex h-40 overflow-hidden rounded-t-xl border-b border-black/10 bg-base sm:h-44">
+      <div class="absolute inset-0 grid-bg opacity-70"></div>
+      <div class="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon-rose/15 blur-3xl"></div>
+      <div class="absolute -bottom-20 -right-12 h-44 w-44 rounded-full bg-neon-gold/15 blur-3xl"></div>
+      <div class="relative z-10 flex h-full w-full flex-col justify-end p-5">
+        <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">Project brief</p>
+        <p class="mt-2 max-w-[16rem] text-lg font-heading font-semibold leading-tight text-text-bright">{project.data.title}</p>
+      </div>
+    </div>
+  )}
   <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold mb-4 opacity-50 group-hover:opacity-100 transition-opacity"></div>
   
   <div class="flex items-start justify-between gap-3 mb-3">
@@ -57,7 +82,7 @@ const { project, signal, maxTags = 4, showReadMore = false, revealClass = '', ex
           {project.data.metricLabel && <p class="text-[10px] text-muted">{project.data.metricLabel}</p>}
         </div>
       )}
-      {project.data.thumbnail && (
+      {project.data.thumbnail && !visualSrc && (
         <img
           src={project.data.thumbnail}
           alt={`${project.data.title} thumbnail`}

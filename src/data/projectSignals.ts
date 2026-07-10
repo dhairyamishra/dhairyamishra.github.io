@@ -3,6 +3,8 @@ export interface ProjectSignal {
   proof: string;
   filters: string[];
   featuredLabel?: string;
+  image?: string;
+  imageAlt?: string;
   challenge: string;
   focus: string;
   outcome: string;
@@ -14,6 +16,8 @@ export const projectSignals: Record<string, ProjectSignal> = {
     proof: 'Live TypeScript SaaS research agent with graph-based exploration, tool calling, live-source RAG, async orchestration, typed contracts, and graceful failure recovery.',
     filters: ['full-stack', 'agentic-systems', 'production-systems', 'backend-platform'],
     featuredLabel: 'Flagship Product',
+    image: '/images/projects/teserax/landing-page.png',
+    imageAlt: 'Teserax saved research graphs, templates, and new graph entry points',
     challenge: 'Turn linear LLM chat into a non-linear research workflow that can branch, synthesize, and recover from long-running AI task failures.',
     focus: 'Graph UX, tool-calling orchestration, live-source retrieval, typed APIs, and production deployment.',
     outcome: 'A live public SaaS product that combines research-agent behavior with a visual graph workflow.',
@@ -23,6 +27,8 @@ export const projectSignals: Record<string, ProjectSignal> = {
     proof: 'Solaris is a multiplayer video world model with 12.64M synchronized frames, multi-agent evaluation, and an arXiv paper listing Dhairya as an author.',
     filters: ['ml-engineering', 'research', 'computer-vision'],
     featuredLabel: 'Flagship Research',
+    image: '/images/projects/solaris/solaris-demo-2.gif',
+    imageAlt: 'Player two observation from Solaris, synchronized with the same multiplayer Minecraft world state',
     challenge: 'Model consistent multi-agent first-person video over long horizons in a dynamic environment.',
     focus: 'Data collection, world-model training setup, and evaluation-system design.',
     outcome: 'Publication-grade system with open artifacts, evaluation methodology, and a project website linked from arXiv.',
@@ -30,6 +36,8 @@ export const projectSignals: Record<string, ProjectSignal> = {
   'mri-brain-tumor': {
     role: 'End-to-end model design, evaluation, and automation',
     proof: 'Shared-encoder multimodal MRI system with 91.3% accuracy, 97.1% sensitivity, and a productized training-to-demo pipeline.',
+    image: '/images/projects/mri-brain-tumor/gradcam-demo.png',
+    imageAlt: 'SliceWise Grad-CAM visualization showing attention focused on the tumor region after brain masking',
     filters: ['ml-engineering', 'computer-vision', 'production-systems'],
     challenge: 'Unify classification and segmentation without paying the cost of separate models.',
     focus: 'Model architecture, training pipeline, and applied evaluation discipline.',
@@ -38,6 +46,8 @@ export const projectSignals: Record<string, ProjectSignal> = {
   'cloud-nlp': {
     role: 'Production ML service engineering',
     proof: 'Multi-model GCP service with zero-downtime switching, 96.57% DistilBERT accuracy, and 326+ passing tests.',
+    image: '/images/projects/cloud-nlp/multi-model-dashboard.png',
+    imageAlt: 'Cloud NLP multi-model dashboard',
     filters: ['ml-engineering', 'backend-platform', 'production-systems'],
     challenge: 'Serve text classification reliably while preserving model-switching flexibility and test confidence.',
     focus: 'Service design, deployment behavior, and operational safety for ML inference.',
@@ -70,6 +80,8 @@ export const projectSignals: Record<string, ProjectSignal> = {
   'pico-llm': {
     role: 'Experimentation and evaluation pipeline engineering',
     proof: 'Modular LLM research pipeline spanning K-Gram MLP, LSTM, and KV-cache Transformer architectures with cross-run analysis.',
+    image: '/images/projects/pico-llm/pareto_frontier_overlay.png',
+    imageAlt: 'PICO-LLM model evaluation Pareto frontier',
     filters: ['ml-engineering', 'research'],
     challenge: 'Compare multiple language-model architectures without ad hoc experimentation or weak analysis.',
     focus: 'Experiment reproducibility, metrics analysis, and model-comparison rigor.',
@@ -94,6 +106,8 @@ export const projectSignals: Record<string, ProjectSignal> = {
   'slovenia-lidar-floodmap': {
     role: 'Geospatial data pipeline and visualization builder',
     proof: 'Processed 81 national LiDAR tiles into deployable flood-susceptibility, NDVI, and ranked-risk map overlays for Ljubljana.',
+    image: '/images/projects/slovenia-lidar-floodmap/flood-susceptibility-ljubljana.png',
+    imageAlt: 'Ljubljana flood-susceptibility map generated from LiDAR data',
     filters: ['backend-platform', 'data-infrastructure'],
     challenge: 'Turn raw multi-tile LiDAR data into web-deliverable risk analysis while keeping scores comparable across the full dataset.',
     focus: 'Offline data processing, dataset-wide calibration, raster export, and static delivery architecture.',
