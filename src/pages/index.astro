@@ -3,9 +3,9 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import BrandLogo from '../components/BrandLogo.astro';
 import HomeProjectCard from '../components/HomeProjectCard.astro';
 import AffiliationMarquee from '../components/AffiliationMarquee.astro';
+import VerifiedBrandBadge from '../components/VerifiedBrandBadge.astro';
 import profileImg from '../assets/profile.jpg';
 
 const outcomes = [
@@ -342,9 +342,7 @@ const technicalAreas = [
         <div class="reveal reveal-delay-2 divide-y divide-black/10 border-y border-black/10">
           {experienceSignals.map((signal) => (
             <div class="flex items-center gap-4 py-5">
-              <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-black/10 bg-surface">
-                <BrandLogo brand={signal.brand} size="sm" />
-              </div>
+              <VerifiedBrandBadge brand={signal.brand} size="sm" />
               <div>
                 <p class="text-sm font-heading font-semibold text-text-bright">{signal.label}</p>
                 <p class="mt-1 text-xs text-muted">{signal.detail}</p>

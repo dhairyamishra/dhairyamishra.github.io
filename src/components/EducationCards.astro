@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import BrandLogo from './BrandLogo.astro';
+import VerifiedBrandBadge from './VerifiedBrandBadge.astro';
 import { education } from '../data/education';
 
 interface Props {
@@ -10,17 +10,13 @@ interface Props {
 
 const { compact = false } = Astro.props;
 
-const logoSize = compact ? 'w-12 h-12' : 'w-14 h-14';
-const logoVariant = compact ? 'lg' : 'lg';
 ---
 
 <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
   {education.map((edu, i) => (
     <div class={`reveal reveal-delay-${i + 1} card-neon group`}>
-      <div class="flex items-start gap-4">
-        <div class={`${logoSize} rounded-lg ${compact ? edu.brandBgClass : 'bg-base border-black/10'} border flex items-center justify-center flex-shrink-0`}>
-          <BrandLogo brand={edu.brand} size={logoVariant} />
-        </div>
+      <div class="flex flex-col items-start gap-4 sm:flex-row">
+        <VerifiedBrandBadge brand={edu.brand} size={compact ? 'sm' : 'md'} />
         <div>
           <h3 class={`font-heading font-semibold text-text-bright ${compact ? '' : 'text-lg'}`}>{edu.institution}</h3>
           {edu.subtitle && (

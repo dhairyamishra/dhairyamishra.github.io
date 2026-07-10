@@ -1,0 +1,63 @@
+---
+interface Props {
+  brand: string;
+  size?: 'sm' | 'md';
+}
+
+interface BrandAsset {
+  label: string;
+  src: string;
+  imageClass: string;
+  backgroundClass?: string;
+}
+
+const { brand, size = 'md' } = Astro.props;
+
+const assets: Record<string, BrandAsset> = {
+  cvs: {
+    label: 'CVS Health',
+    src: '/images/affiliations/cvs-health.png',
+    imageClass: 'h-3.5 w-[5.25rem]',
+    backgroundClass: 'border-[#cc0000] bg-[#cc0000]',
+  },
+  aetna: {
+    label: 'Aetna',
+    src: '/images/Aetna_id_AbpzbvY_0.png',
+    imageClass: 'h-6 w-20',
+  },
+  evidenza: {
+    label: 'Evidenza',
+    src: '/images/affiliations/evidenza.svg',
+    imageClass: 'h-6 w-20',
+  },
+  nyu: {
+    label: 'New York University',
+    src: '/images/Nyu_short_color.svg',
+    imageClass: 'h-7 w-20',
+  },
+  trine: {
+    label: 'Trine University',
+    src: '/images/Trine University Logo.png',
+    imageClass: 'h-9 w-9',
+  },
+};
+
+const asset = assets[brand];
+const sizeClass = size === 'sm' ? 'h-11 w-24' : 'h-12 w-28';
+const surfaceClass = asset?.backgroundClass ?? 'border-black/10 bg-surface';
+---
+
+{asset && (
+  <span
+    class={`inline-flex ${sizeClass} flex-none items-center justify-center rounded-xl border px-2 shadow-neon-sm ${surfaceClass}`}
+    aria-label={asset.label}
+  >
+    <img
+      src={asset.src}
+      alt={asset.label}
+      class={`${asset.imageClass} object-contain`}
+      loading="lazy"
+      decoding="async"
+    />
+  </span>
+)}
