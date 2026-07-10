@@ -10,11 +10,45 @@ metric: "96.57%"
 metricLabel: "Accuracy"
 ---
 
+import Figure from '../../components/mdx/Figure.astro';
+import FigureGrid from '../../components/mdx/FigureGrid.astro';
+
 ## Overview
 
 A production-grade text-classification service built to compare accuracy, latency, and operating cost across multiple model backends under one deployable API. I designed the service so teams could switch between **DistilBERT**, **TF-IDF + Logistic Regression**, and **TF-IDF + SVM** without downtime, then deployed the system on **GCP Compute Engine** with Dockerized packaging and a large automated test suite.
 
 This project is strongest as a proof of **production ML service engineering**: model quality was only one requirement. The harder part was giving the system operational flexibility — preserving one interface while making model swaps safe, testable, and cheap to run.
+
+## Product Walkthrough
+
+The Streamlit interface made the service's model tradeoffs visible in one place. A user could select an inference backend, submit text in the chat-style workspace, inspect the predicted class and confidence, and compare per-class probabilities and inference time.
+
+<Figure
+  src="/images/projects/cloud-nlp/multi-model-dashboard.png"
+  alt="Cloud NLP Classifier dashboard showing a non-hate-speech result, probability scores, toxicity category scores, model information, and inference timing"
+  caption="End-to-end dashboard: model controls and deployment statistics on the left, with the classification result, confidence, latency, and per-category scores in the analysis workspace."
+  width="wide"
+/>
+
+<Figure
+  src="/images/projects/cloud-nlp/api-connected-analysis.png"
+  alt="Cloud NLP Classifier connected to the toxicity API and displaying a six-category analysis for the text bad bad bad"
+  caption="API-connected inference view with confidence, 84.96 ms latency, chat history, and six toxicity-category probabilities."
+  width="wide"
+/>
+
+<FigureGrid cols={2} width="wide" caption="Users can switch inference backends while keeping the same workflow, then inspect the complete score distribution instead of receiving only a final label.">
+  <Figure
+    src="/images/projects/cloud-nlp/toxicity-probability-scores.png"
+    alt="Horizontal probability chart for threat, toxic, severe toxic, obscene, identity hate, and insult categories"
+    caption="Multi-label toxicity output surfaces the full class distribution, including overlapping toxic and insult signals."
+  />
+  <Figure
+    src="/images/projects/cloud-nlp/model-selector.png"
+    alt="Model selector listing logistic regression, linear SVM, DistilBERT, and multi-label toxicity classifier options"
+    caption="A single selector switches among fast ML baselines and deeper transformer models without changing the user workflow or API contract."
+  />
+</FigureGrid>
 
 ## What I Owned
 
