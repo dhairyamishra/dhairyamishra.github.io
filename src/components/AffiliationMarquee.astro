@@ -1,0 +1,218 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Affiliation {
+  name: string;
+  detail: string;
+  image?: string;
+  imageAlt?: string;
+  imageClass?: string;
+  imageWrapClass?: string;
+  icon?: string;
+  iconClass?: string;
+}
+
+const experienceAffiliations: Affiliation[] = [
+  {
+    name: 'CVS Health',
+    detail: 'Senior engineering',
+    image: '/images/affiliations/cvs-health.png',
+    imageAlt: 'CVS Health',
+    imageClass: 'h-4 w-[7.25rem] object-contain',
+    imageWrapClass: 'rounded-md bg-[#cc0000] px-2.5 py-1.5',
+  },
+  {
+    name: 'Aetna',
+    detail: 'Software engineering',
+    image: '/images/Aetna_id_AbpzbvY_0.png',
+    imageAlt: 'Aetna',
+    imageClass: 'h-6 w-20 object-contain',
+  },
+  {
+    name: 'Evidenza',
+    detail: 'AI engineering',
+    image: '/images/affiliations/evidenza.svg',
+    imageAlt: 'Evidenza',
+    imageClass: 'h-6 w-20 object-contain',
+  },
+  {
+    name: 'NYU Courant',
+    detail: 'Graduate study',
+    image: '/images/Nyu_short_color.svg',
+    imageAlt: 'New York University',
+    imageClass: 'h-7 w-8 object-contain',
+  },
+  {
+    name: 'Trine University',
+    detail: 'Software engineering',
+    image: '/images/Trine University Logo.png',
+    imageAlt: 'Trine University',
+    imageClass: 'h-8 w-8 object-contain',
+  },
+];
+
+const researchAffiliations: Affiliation[] = [
+  {
+    name: 'NeurIPS',
+    detail: '2026 submission',
+    image: '/images/neurips.png',
+    imageAlt: 'NeurIPS',
+    imageClass: 'h-8 w-8 object-contain',
+  },
+  {
+    name: 'ACM',
+    detail: 'ASSETS 2023',
+    icon: 'simple-icons:acm',
+    iconClass: 'h-7 w-7 text-[#0085CA]',
+  },
+  {
+    name: 'arXiv',
+    detail: '2602.22208',
+    icon: 'simple-icons:arxiv',
+    iconClass: 'h-7 w-7 text-[#B31B1B]',
+  },
+  {
+    name: 'NASA SpaceApps',
+    detail: 'Challenge winner',
+    icon: 'simple-icons:nasa',
+    iconClass: 'h-8 w-8 text-[#0B3D91]',
+  },
+  {
+    name: 'NYU VisionX',
+    detail: 'World-model research',
+    image: '/images/Nyu_short_color.svg',
+    imageAlt: 'New York University',
+    imageClass: 'h-7 w-8 object-contain',
+  },
+];
+
+const rows = [
+  { items: experienceAffiliations, direction: 'right' },
+  { items: researchAffiliations, direction: 'left' },
+];
+---
+
+<aside class="affiliation-panel" aria-labelledby="affiliation-heading">
+  <div class="flex items-end justify-between gap-5 px-5 pt-5">
+    <div>
+      <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">
+        Experience, education & research
+      </p>
+      <h2 id="affiliation-heading" class="mt-2 text-base font-heading font-semibold text-text-bright">
+        Built across enterprise, academia, and publication-grade research.
+      </h2>
+    </div>
+  </div>
+
+  <div class="mt-4 space-y-2.5 pb-5">
+    {rows.map((row) => (
+      <div class="affiliation-viewport">
+        <div class={`affiliation-track affiliation-track-${row.direction}`}>
+          {[false, true].map((duplicate) => (
+            <div class="affiliation-set" aria-hidden={duplicate ? 'true' : undefined}>
+              {row.items.map((item) => (
+                <div class="affiliation-pill">
+                  {item.image && (
+                    <span class={`flex flex-none items-center justify-center ${item.imageWrapClass ?? ''}`}>
+                      <img
+                        src={item.image}
+                        alt={duplicate ? '' : item.imageAlt ?? ''}
+                        class={item.imageClass}
+                        loading="eager"
+                        decoding="async"
+                      />
+                    </span>
+                  )}
+                  {item.icon && <Icon name={item.icon} class={item.iconClass} aria-hidden="true" />}
+                  <span class="whitespace-nowrap">
+                    <span class="block text-xs font-heading font-semibold leading-none text-text-bright">{item.name}</span>
+                    <span class="mt-1 block text-[10px] leading-none text-muted">{item.detail}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .affiliation-panel {
+    overflow: hidden;
+    border: 1px solid rgb(36 26 20 / 0.1);
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 0.72);
+    box-shadow: 0 18px 40px rgb(36 26 20 / 0.07);
+    backdrop-filter: blur(12px);
+  }
+
+  .affiliation-viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  .affiliation-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation-duration: 34s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .affiliation-track-left {
+    animation-name: affiliation-scroll-left;
+  }
+
+  .affiliation-track-right {
+    animation-name: affiliation-scroll-right;
+  }
+
+  .affiliation-set {
+    display: flex;
+    flex: none;
+    gap: 0.625rem;
+    padding-right: 0.625rem;
+  }
+
+  .affiliation-pill {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid rgb(36 26 20 / 0.08);
+    border-radius: 0.75rem;
+    background: rgb(255 255 255 / 0.9);
+    padding: 0.55rem 0.8rem;
+    box-shadow: 0 8px 18px rgb(36 26 20 / 0.05);
+  }
+
+  .affiliation-panel:hover .affiliation-track,
+  .affiliation-panel:focus-within .affiliation-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes affiliation-scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes affiliation-scroll-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .affiliation-track {
+      animation: none;
+      transform: none;
+    }
+
+    .affiliation-set[aria-hidden='true'] {
+      display: none;
+    }
+  }
+</style>
