@@ -17,10 +17,10 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
 import MermaidBlock from '../../components/MermaidBlock.astro';
 
 <Hero
-  src="/images/projects/mri-brain-tumor/architecture.svg"
-  alt="Shared encoder architecture diagram"
-  eyebrow="Architecture"
-  caption="Shared encoder architecture — single backbone for classification and segmentation"
+  src="/images/projects/mri-brain-tumor/gradcam-kaggle-masking.png"
+  alt="Grad-CAM comparison showing an MRI, heatmap, and tumor overlay before and after brain masking"
+  eyebrow="Explainability"
+  caption="Brain masking removes background and skull signal so Grad-CAM attention stays focused on the tumor region."
 />
 
 ## Overview
@@ -55,16 +55,19 @@ This project is strongest as an example of **end-to-end applied ML system design
 
 ## Live App — Detection & Segmentation
 
-<FigureGrid cols={2} width="wide" caption="SliceWise Streamlit app — real-time tumor detection with binary mask, probability map, and overlay outputs from a single MRI slice.">
-  <Figure
-    src="/images/projects/mri-brain-tumor/app-brats-overlay-full.png"
-    alt="SliceWise app showing tumor Detected at 100% probability with Original, Binary Mask, Probability Map, and Overlay panels"
-  />
-  <Figure
-    src="/images/projects/mri-brain-tumor/app-brats-overlay.png"
-    alt="SliceWise results panel showing detection confidence, binary mask, and probability map side-by-side"
-  />
-</FigureGrid>
+<Figure
+  src="/images/projects/mri-brain-tumor/app-brats-overlay-full.png"
+  alt="SliceWise app showing tumor Detected at 100% probability with Original, Binary Mask, Probability Map, and Overlay panels"
+  width="full"
+  caption="SliceWise Streamlit app — real-time tumor detection with the original MRI, binary mask, probability map, and overlay shown together at full width."
+/>
+
+<Figure
+  src="/images/projects/mri-brain-tumor/app-brats-overlay.png"
+  alt="SliceWise results panel showing detection confidence, binary mask, and probability map side-by-side"
+  width="wide"
+  caption="Focused inference results show detection confidence, tumor area, the binary mask, and the probability map."
+/>
 
 <Figure
   src="/images/projects/mri-brain-tumor/app-all-results.png"
@@ -74,6 +77,13 @@ This project is strongest as an example of **end-to-end applied ML system design
 />
 
 ## Inference Pipeline
+
+<Figure
+  src="/images/projects/mri-brain-tumor/architecture.svg"
+  alt="Shared encoder architecture diagram for MRI classification and segmentation"
+  width="wide"
+  caption="Shared encoder architecture — a single backbone supports classification and conditional segmentation."
+/>
 
 <MermaidBlock code={`flowchart LR
   A[MRI Input] --> B[Preprocessing]
@@ -106,16 +116,12 @@ Conditional segmentation activates only when tumor is detected, avoiding unneces
   />
 </FigureGrid>
 
-<FigureGrid cols={2} width="wide" caption="Effect of brain masking on Grad-CAM focus — masking removes skull/background signal and tightens attention to the tumor region. Top: without masking. Bottom: with masking.">
-  <Figure
-    src="/images/projects/mri-brain-tumor/gradcam-kaggle-masking.png"
-    alt="Grad-CAM brain masking comparison on Kaggle dataset — top row without masking, bottom row with masking applied"
-  />
-  <Figure
-    src="/images/projects/mri-brain-tumor/gradcam-brats-masking.png"
-    alt="Grad-CAM brain masking comparison on BraTS dataset — masking sharpens heatmap focus on tumor sub-regions"
-  />
-</FigureGrid>
+<Figure
+  src="/images/projects/mri-brain-tumor/gradcam-brats-masking.png"
+  alt="Grad-CAM brain masking comparison on BraTS dataset showing sharper heatmap focus on tumor sub-regions"
+  width="full"
+  caption="The same masking strategy on BraTS data removes background activation and sharpens heatmap focus on tumor sub-regions."
+/>
 
 <Figure
   src="/images/projects/mri-brain-tumor/gradcam-cross-dataset-inaccuracy.png"
