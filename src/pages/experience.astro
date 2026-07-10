@@ -4,176 +4,239 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import VerifiedBrandBadge from '../components/VerifiedBrandBadge.astro';
 import EducationCards from '../components/EducationCards.astro';
-import MediaLightbox from '../components/MediaLightbox.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
 
-type ExperienceEntry = CollectionEntry<'experience'>;
-
-const allExperience = await getCollection('experience');
-const sortedExperience = allExperience.sort(
-  (a: ExperienceEntry, b: ExperienceEntry) => a.data.order - b.data.order
-);
-const experience = await Promise.all(
-  sortedExperience.map(async (exp: ExperienceEntry) => ({
-    slug: exp.slug,
-    data: exp.data,
-    Content: (await exp.render()).Content,
-  }))
-);
-
-const summaryStats = [
-  { value: '4+', label: 'Years across AI, platform, and full-stack systems' },
-  { value: '75%', label: 'Manual upkeep reduction from developer tooling' },
-  { value: '25%', label: 'MTTR reduction from observability pipeline' },
-  { value: '14%', label: 'Engagement lift from Evidenza ad signals' },
+const proof = [
+  { value: '16%', label: 'fewer support tickets', context: 'Self-service answers from trusted company sources' },
+  { value: '20%', label: 'faster issue resolution', context: 'Less time spent searching past tickets and documentation' },
+  { value: '75%', label: 'less manual upkeep', context: 'Workflow automation for engineering teams' },
+  { value: '14%', label: 'higher engagement', context: 'Better signals for ad recommendations' },
 ];
 
-const coreDomains = [
-  'Full-Stack Engineering',
-  'ML Engineering',
-  'Backend Platforms',
-  'Agentic Systems',
-  'Cloud Infrastructure',
-  'Observability',
-];
-
-const highlightCards = [
+const problems = [
   {
-    title: 'Full-stack systems',
-    detail: 'Built React, Node.js, FastAPI, and MongoDB/Postgres-backed tools used by engineering teams and production support workflows.',
+    number: '01',
+    title: 'Your team answers the same questions repeatedly.',
+    detail: 'I turn scattered tickets and documentation into self-service tools that return useful, source-backed answers.',
+    proof: 'CVS Health: 16% fewer support tickets and 20% faster resolution',
   },
   {
-    title: 'ML-backed products',
-    detail: 'Built RAG assistants, VLM/LLM-judge workflows, NLP services, and multimodal scoring systems with measurable outcomes.',
+    number: '02',
+    title: 'A manual workflow is slowing everyone down.',
+    detail: 'I map the handoffs, automate the repetitive steps, and build a clear interface around the work people still need to own.',
+    proof: 'CVS Health: 75% less manual upkeep across four teams',
   },
   {
-    title: 'Platform reliability',
-    detail: 'Owned customer-facing platform reliability, observability pipelines, cloud infrastructure, and support systems.',
+    number: '03',
+    title: 'Production problems take too long to find and fix.',
+    detail: 'I add monitoring, useful operational views, and safer delivery practices so teams can see failures and respond sooner.',
+    proof: 'CVS Health: 12% less downtime and about 25% faster recovery',
+  },
+  {
+    number: '04',
+    title: 'An AI feature needs a quality boundary.',
+    detail: 'I build evaluation into the workflow so generated content is measured, compared, and rejected when it is not an improvement.',
+    proof: 'CVS Health: 18% more catalog images with useful captions',
   },
 ];
 
-const roleSignals: Record<string, { highlight: string; domains: string[] }> = {
-  'evidenza': {
-    highlight: 'Built LLM-as-judge persona generation and multimodal ad-scoring pipelines, reaching 80% trait coverage and driving a 14% engagement lift in A/B testing.',
-    domains: ['LLM-as-Judge', 'MCP', 'FastAPI'],
+const cvsOutcomes = [
+  {
+    problem: 'Support knowledge was trapped in tickets and internal documentation.',
+    work: 'Built a self-service assistant that answered recurring questions from those trusted sources.',
+    result: '16% fewer support tickets and 20% faster resolution.',
   },
-  'cvs-health': {
-    highlight: 'Built production RAG and VLM-backed systems, deflected 16% of support tickets, cut resolution time by 20%, and reduced platform downtime by 12%.',
-    domains: ['RAG', 'VLMs', 'GCP', 'OpenTelemetry'],
+  {
+    problem: 'Product images were missing useful, on-brand captions.',
+    work: 'Built an AI-assisted caption workflow with an automatic quality check. New text was saved only when it improved on the existing caption.',
+    result: '18% more catalog images had useful captions.',
   },
-  'cvs-health-digital-development': {
-    highlight: 'Built Node.js internal developer tooling, adopted by multiple CVS engineering teams, and cut manual upkeep by 75%.',
-    domains: ['Node.js', 'MongoDB', 'Grafana', 'Terraform'],
+  {
+    problem: 'Engineering workflows required repeated status, assignment, and board updates.',
+    work: 'Built the planning view and automation used across four teams.',
+    result: '75% less manual upkeep.',
   },
-  'aetna': {
-    highlight: 'Built Node.js and MongoDB-backed internal automation systems, migration workflows, and platform health checks.',
-    domains: ['Node.js', 'MongoDB', 'Automation'],
+  {
+    problem: 'Customer-facing failures were difficult to diagnose quickly.',
+    work: 'Owned on-call reliability and built monitoring that made incidents easier to see and investigate.',
+    result: '12% less downtime and roughly 25% faster recovery.',
   },
-};
+];
 ---
 
-<Layout title="Experience - Dhairya Mishra" description="Professional experience across full-stack software engineering, ML engineering, backend platforms, and agentic systems.">
+<Layout
+  title="Experience - Dhairya Mishra"
+  description="How Dhairya Mishra uses software and applied AI to remove manual work, resolve problems faster, and improve production reliability."
+>
   <Navigation />
 
-  <main id="main-content" class="py-20 md:py-28">
-    <div class="section-container">
-      <div class="mb-16 text-center reveal">
-        <p class="mb-4 font-mono text-sm uppercase tracking-widest text-neon-rose">Career</p>
-        <h1 class="mb-4 text-4xl font-heading font-bold md:text-5xl">
-          Experience <span class="text-gradient-rose">Timeline</span>
-        </h1>
-        <p class="mx-auto max-w-2xl text-muted">
-          4+ years across full-stack software engineering, ML engineering, backend platforms, and agentic systems.
-        </p>
-      </div>
-
-      <section class="mb-12 grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,1fr)]">
-        <div class="card-neon reveal">
-          <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Career summary</p>
-          <h2 class="mt-3 text-2xl font-heading font-semibold text-text-bright">This page is optimized for evaluating scope, ownership, and operating range.</h2>
-          <p class="mt-4 text-sm leading-relaxed text-muted">
-            The strongest signal across these roles is engineering ownership: turning ambiguous product and platform problems into shipped systems. The work ranges from customer-facing reliability and internal developer tooling to RAG systems, observability, cloud infrastructure, and multimodal ML evaluation.
+  <main id="main-content">
+    <section class="border-b border-black/5 py-20 md:py-28">
+      <div class="section-container">
+        <div class="max-w-4xl reveal">
+          <p class="mb-5 font-mono text-xs uppercase tracking-[0.24em] text-neon-rose">Experience</p>
+          <h1 class="max-w-4xl text-4xl font-heading font-bold leading-[1.08] text-text-bright md:text-6xl">
+            I build software and AI systems that remove manual work and hold up in production.
+          </h1>
+          <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted md:text-xl">
+            Four years across CVS Health, Aetna, and Evidenza—building internal tools, customer-facing platforms, AI-assisted workflows, and the safeguards needed to operate them.
           </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            {coreDomains.map((domain) => (
-              <span class="rounded-full border border-black/5 bg-base px-2.5 py-1 text-xs text-muted-light">{domain}</span>
-            ))}
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#work" class="btn-primary">See the evidence</a>
+            <a href="/contact" class="btn-secondary">Discuss a problem</a>
           </div>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          {summaryStats.map((item, index) => (
-            <div class={`reveal reveal-delay-${(index % 4) + 1} rounded-2xl border border-black/5 bg-surface p-5 shadow-neon-sm`}>
+        <div class="mt-14 grid overflow-hidden rounded-2xl border border-black/5 bg-surface shadow-neon-sm sm:grid-cols-2 lg:grid-cols-4">
+          {proof.map((item, index) => (
+            <div class={`reveal reveal-delay-${index + 1} p-6 lg:border-r lg:border-black/5 lg:last:border-r-0`}>
               <p class="text-3xl font-heading font-bold text-gradient-rose">{item.value}</p>
-              <p class="mt-2 text-sm leading-relaxed text-muted">{item.label}</p>
+              <p class="mt-1 font-heading font-semibold text-text-bright">{item.label}</p>
+              <p class="mt-2 text-xs leading-relaxed text-muted">{item.context}</p>
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mb-16 grid gap-4 md:grid-cols-3">
-        {highlightCards.map((card, index) => (
-          <div class={`reveal reveal-delay-${(index % 3) + 1} card-neon`}>
-            <p class="text-sm font-heading font-semibold text-text-bright">{card.title}</p>
-            <p class="mt-2 text-sm leading-relaxed text-muted">{card.detail}</p>
+    <section class="py-20 md:py-24">
+      <div class="section-container">
+        <div class="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+          <div class="reveal">
+            <p class="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-neon-rose">Where I help</p>
+            <h2 class="text-3xl font-heading font-bold text-text-bright md:text-4xl">Problems I know how to move forward.</h2>
+            <p class="mt-4 max-w-md leading-relaxed text-muted">
+              I am most useful when the problem crosses product, engineering, and applied AI—and someone needs to own the path from ambiguity to a working system.
+            </p>
           </div>
-        ))}
-      </section>
 
-      <div class="relative mx-auto mb-24 max-w-4xl">
-        <div class="absolute bottom-0 left-4 top-0 w-px bg-gradient-to-b from-neon-rose/40 via-neon-violet/30 to-transparent md:left-8"></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {problems.map((item, index) => (
+              <article class={`reveal reveal-delay-${(index % 4) + 1} card-neon`}>
+                <p class="font-mono text-xs text-neon-rose">{item.number}</p>
+                <h3 class="mt-4 text-lg font-heading font-semibold leading-snug text-text-bright">{item.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted">{item.detail}</p>
+                <p class="mt-5 border-t border-black/5 pt-4 text-xs font-medium leading-relaxed text-neon-rose">{item.proof}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
-        {experience.map((exp, i) => (
-          <div class={`reveal reveal-delay-${i + 1} relative pb-12 pl-12 last:pb-0 md:pl-20`}>
-            <div class="absolute left-[11px] top-1 h-3 w-3 rounded-full border-2 border-base bg-neon-rose shadow-neon-sm md:left-[27px]"></div>
+    <section id="work" class="border-y border-black/5 bg-surface/40 py-20 md:py-24">
+      <div class="section-container">
+        <div class="mb-12 max-w-3xl reveal">
+          <p class="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-neon-rose">Selected experience</p>
+          <h2 class="text-3xl font-heading font-bold text-text-bright md:text-4xl">The problem, what I built, and what changed.</h2>
+          <p class="mt-4 leading-relaxed text-muted">The technical details are available, but the outcomes come first.</p>
+        </div>
 
-            <div class="card-neon group">
-              <div class="mb-4 flex flex-col items-start gap-4 sm:flex-row">
-                {exp.data.brand && (
-                  <VerifiedBrandBadge brand={exp.data.brand} />
-                )}
-                <div class="flex-1">
-                  <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <h2 class="text-lg font-heading font-semibold text-text-bright">{exp.data.role}</h2>
-                      <p class="text-sm text-neon-rose/70">{exp.data.company} &middot; {exp.data.location}</p>
-                    </div>
-                    <span class="text-xs font-mono text-muted">{exp.data.startDate} — {exp.data.endDate}</span>
-                  </div>
-                </div>
-              </div>
-
-              {roleSignals[exp.slug] && (
-                <div class="mb-4 rounded-xl border border-black/5 bg-base px-4 py-4">
-                  <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.16em] text-neon-rose">Top impact</p>
-                  <p class="mt-2 text-sm leading-relaxed text-text">{roleSignals[exp.slug].highlight}</p>
-                  <div class="mt-3 flex flex-wrap gap-2">
-                    {roleSignals[exp.slug].domains.map((domain) => (
-                      <span class="rounded-full border border-black/5 bg-surface px-2.5 py-1 text-xs text-muted-light">{domain}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div class="prose-neon prose-neon-sm mt-3">
-                <exp.Content />
+        <div class="space-y-6">
+          <article class="reveal rounded-2xl border border-black/5 bg-surface p-6 shadow-neon-sm md:p-8">
+            <div class="flex flex-col gap-5 border-b border-black/5 pb-7 sm:flex-row sm:items-center">
+              <VerifiedBrandBadge brand="evidenza" />
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-mono uppercase tracking-[0.16em] text-neon-rose">Graduate AI internship · Jan–May 2026</p>
+                <h3 class="mt-2 text-2xl font-heading font-semibold text-text-bright">AI Engineer, Evidenza</h3>
+                <p class="mt-1 text-sm text-muted">Brooklyn, NY · During M.S. studies at NYU</p>
               </div>
             </div>
+            <div class="mt-7 grid gap-6 md:grid-cols-3">
+              <div>
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">The problem</p>
+                <p class="mt-2 text-sm leading-relaxed text-text">Customer profiles missed less-common traits, and creative teams needed a repeatable way to assess competitor ads.</p>
+              </div>
+              <div>
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">What I built</p>
+                <p class="mt-2 text-sm leading-relaxed text-text">A profile generator that improved its own instructions through scored feedback, plus an ad-analysis workflow using both images and text.</p>
+              </div>
+              <div class="rounded-xl border border-neon-rose/15 bg-base p-5">
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">What changed</p>
+                <p class="mt-2 font-heading font-semibold text-text-bright">80% coverage of long-tail traits</p>
+                <p class="mt-2 font-heading font-semibold text-text-bright">14% engagement lift in A/B testing</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="reveal rounded-2xl border border-black/5 bg-surface p-6 shadow-neon-sm md:p-8">
+            <div class="flex flex-col gap-5 border-b border-black/5 pb-7 sm:flex-row sm:items-center">
+              <VerifiedBrandBadge brand="cvs" />
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-mono uppercase tracking-[0.16em] text-neon-rose">2023–2025 · Promoted in 2024</p>
+                <h3 class="mt-2 text-2xl font-heading font-semibold text-text-bright">Software Development Engineer III → Senior SDE</h3>
+                <p class="mt-1 text-sm text-muted">CVS Health · New York, NY</p>
+              </div>
+            </div>
+            <div class="mt-7 grid gap-4 md:grid-cols-2">
+              {cvsOutcomes.map((item, index) => (
+                <div class={`reveal reveal-delay-${(index % 4) + 1} rounded-xl border border-black/5 bg-base p-5`}>
+                  <p class="text-xs leading-relaxed text-muted"><span class="font-semibold text-text-bright">Problem:</span> {item.problem}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-text"><span class="font-semibold text-text-bright">Built:</span> {item.work}</p>
+                  <p class="mt-4 border-t border-black/5 pt-4 font-heading font-semibold leading-relaxed text-neon-rose">{item.result}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article class="reveal rounded-2xl border border-black/5 bg-surface p-6 shadow-neon-sm md:p-8">
+            <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+              <VerifiedBrandBadge brand="aetna" />
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-mono uppercase tracking-[0.16em] text-neon-rose">Feb 2022–Jan 2023</p>
+                <h3 class="mt-2 text-2xl font-heading font-semibold text-text-bright">Advanced Software Developer, Aetna</h3>
+                <p class="mt-1 text-sm text-muted">New York, NY</p>
+              </div>
+            </div>
+            <div class="mt-7 grid gap-6 border-t border-black/5 pt-7 md:grid-cols-[1fr_1fr_0.8fr]">
+              <div>
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">The problem</p>
+                <p class="mt-2 text-sm leading-relaxed text-text">Engineering operations relied on repetitive quality checks, platform maintenance, and migration steps.</p>
+              </div>
+              <div>
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">What I built</p>
+                <p class="mt-2 text-sm leading-relaxed text-text">Internal automation, data-migration workflows, validation tools, and platform health checks using Node.js and MongoDB.</p>
+              </div>
+              <div class="rounded-xl border border-neon-rose/15 bg-base p-5">
+                <p class="text-[10px] font-heading font-semibold uppercase tracking-[0.18em] text-neon-rose">What changed</p>
+                <p class="mt-2 font-heading font-semibold leading-relaxed text-text-bright">Less repetitive QA and safer, more consistent platform changes.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <details class="reveal mt-6 rounded-2xl border border-black/5 bg-surface px-6 py-5 shadow-neon-sm">
+          <summary class="cursor-pointer font-heading font-semibold text-text-bright">Technical toolkit</summary>
+          <p class="mt-4 max-w-4xl text-sm leading-relaxed text-muted">
+            React, TypeScript, Node.js, Python, FastAPI, MongoDB, PostgreSQL, Google Cloud, Terraform, GitHub Actions, monitoring with Grafana and OpenTelemetry, retrieval-based assistants, vision-language models, and automated AI evaluation.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-24">
+      <div class="section-container">
+        <div class="mb-10 text-center reveal">
+          <p class="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-neon-rose">Education</p>
+          <h2 class="text-3xl font-heading font-bold text-text-bright md:text-4xl">Academic background</h2>
+        </div>
+        <EducationCards compact={true} />
+      </div>
+    </section>
+
+    <section class="border-t border-black/5 py-20">
+      <div class="section-container">
+        <div class="reveal rounded-2xl border border-black/5 bg-surface p-8 shadow-neon-sm md:flex md:items-center md:justify-between md:gap-10 md:p-10">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-neon-rose">Have a problem like these?</p>
+            <h2 class="mt-3 text-2xl font-heading font-bold text-text-bright md:text-3xl">I can help turn a manual workflow or AI idea into a dependable product.</h2>
           </div>
-        ))}
+          <div class="mt-6 flex flex-wrap gap-3 md:mt-0 md:flex-none">
+            <a href="/projects" class="btn-secondary">See selected work</a>
+            <a href="/contact" class="btn-primary">Get in touch</a>
+          </div>
+        </div>
       </div>
-
-      <MediaLightbox />
-
-      <div class="divider-neon-animated mb-20"></div>
-
-      <div class="mb-14 text-center reveal">
-        <h2 class="text-3xl font-heading font-bold md:text-4xl">
-          Academic <span class="text-gradient-rose">Background</span>
-        </h2>
-      </div>
-      <EducationCards />
-    </div>
+    </section>
   </main>
 
   <Footer />
