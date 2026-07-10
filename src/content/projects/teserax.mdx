@@ -10,11 +10,82 @@ metric: "Live"
 metricLabel: "SaaS Product"
 ---
 
+import Hero from '../../components/mdx/Hero.astro';
+import Figure from '../../components/mdx/Figure.astro';
+import FigureGrid from '../../components/mdx/FigureGrid.astro';
+
+<Hero
+  src="/images/projects/teserax/landing-page.png"
+  alt="Teserax landing page comparing a long AI chat with a scannable graph of decisions, costs, risks, options, and answers"
+  eyebrow="Live Product"
+  caption="Teserax turns complicated AI conversations into a graph that keeps answers, sources, decisions, and next steps visible."
+/>
+
 ## Overview
 
 Teserax is a solo-built production SaaS research agent and graph-based thinking tool. The live product turns linear LLM chat into a visual, non-linear exploration space where users can branch into parallel lines of inquiry, merge or summarize findings, and synthesize insights on an interactive canvas.
 
 The current resume describes Teserax as a TypeScript SaaS research agent with multi-step orchestration, tool calling, RAG over live web sources, typed API contracts, async workflows, retry behavior, and failure recovery. The live site metadata reinforces the graph-based interaction model: the product is not just an API wrapper, but a workflow surface for non-linear research and analysis.
+
+<Figure
+  src="/images/projects/teserax/graph-dashboard.png"
+  alt="Teserax graph dashboard showing saved research, forecasting, and workflow-automation graphs"
+  width="wide"
+  caption="Saved graphs make research sessions persistent and searchable, while templates and new graphs provide clear entry points for repeatable work."
+/>
+
+## Product Walkthrough
+
+### Research on a graph
+
+Teserax begins with a normal question, retrieves live sources, and preserves both the evidence and the generated answer as connected nodes. The chat panel remains available for follow-up questions while the canvas exposes how each result relates to the root question and the next suggested investigations.
+
+<Figure
+  src="/images/projects/teserax/research-graph.png"
+  alt="Teserax research workspace with chat, live web-search sources, a generated answer node, and suggested follow-up branches"
+  width="full"
+  caption="A question becomes a traceable research graph: source retrieval, generated answers, context-aware chat, and suggested follow-ups remain connected on one canvas."
+/>
+
+### Turn research into a tunable decision lab
+
+The graph can expand beyond document-like answers into interactive artifacts. In this forecasting example, Teserax decomposes a World Cup prediction into expert analyses, calibration evidence, and a final synthesis, then adds controls that let the user adjust assumptions and rerun the forecast.
+
+<Figure
+  src="/images/projects/teserax/forecast-lab.png"
+  alt="Teserax World Cup forecast lab with a controls node, multiple expert-analysis nodes, merged evidence, and a final probability forecast"
+  width="full"
+  caption="The complete forecast lab separates controls, expert evidence, calibration, and final synthesis while preserving their dependencies."
+/>
+
+<Figure
+  src="/images/projects/teserax/forecast-controls.png"
+  alt="Expanded Teserax forecast controls with adjustable model weights, assumptions, and a button to rerun the prediction"
+  width="full"
+  caption="Generated controls turn a static answer into an inspectable decision tool with explicit weights, assumptions, and rerun behavior."
+/>
+
+<FigureGrid cols={2} width="wide" caption="Users can inspect individual expert reasoning and the final merged synthesis without losing the surrounding graph context.">
+  <Figure
+    src="/images/projects/teserax/expert-analysis.png"
+    alt="Expanded expert-analysis node showing calibrated probabilities, evidence, recommended factor adjustments, and uncertainty triggers"
+  />
+  <Figure
+    src="/images/projects/teserax/final-synthesis.png"
+    alt="Expanded final forecast node summarizing probabilities, confidence, assumptions, disagreements, sensitivity, and the concise answer"
+  />
+</FigureGrid>
+
+### Compile instructions into executable workflows
+
+Teserax can also turn natural-language goals into structured workflows. A workflow-control node defines the stages and variables, worker nodes execute focused research or analysis, and their outputs remain available as inspectable artifacts on the graph.
+
+<Figure
+  src="/images/projects/teserax/workflow-orchestration.png"
+  alt="Teserax workflow view with a workflow-control node coordinating worker nodes for a kitchen and living-room renovation analysis"
+  width="full"
+  caption="Natural-language instructions compile into a multi-stage workflow with a visible controller, specialized workers, and inspectable outputs."
+/>
 
 ## What I Owned
 
