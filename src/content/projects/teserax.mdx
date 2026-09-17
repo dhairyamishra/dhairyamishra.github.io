@@ -2,7 +2,7 @@
 title: "Teserax - Graph-Based Research Agent"
 description: "Solo-built production TypeScript SaaS research agent that turns linear LLM chat into a graph-based exploration space with branching, synthesis, tool calling, RAG over live web sources, async orchestration, typed API contracts, and graceful failure recovery."
 date: "2026-03"
-tags: ["TypeScript", "React", "FastAPI", "Zod", "Tool Calling", "Async Agents", "RAG", "EC2", "Cloudflare"]
+tags: ["TypeScript", "React", "Hono", "Node.js", "Zod", "Tool Calling", "Async Agents", "RAG", "Vercel", "Railway", "Supabase"]
 featured: true
 category: "full-stack"
 liveUrl: "https://teserax.vercel.app/"
@@ -27,7 +27,7 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
 Teserax is a solo-built production SaaS research agent and graph-based thinking tool. The live product turns linear LLM chat into a visual, non-linear exploration space where users can branch into parallel lines of inquiry, merge or summarize findings, and synthesize insights on an interactive canvas.
 
-The current resume describes Teserax as a TypeScript SaaS research agent with multi-step orchestration, tool calling, RAG over live web sources, typed API contracts, async workflows, retry behavior, and failure recovery. The live site metadata reinforces the graph-based interaction model: the product is not just an API wrapper, but a workflow surface for non-linear research and analysis.
+Teserax began with a FastAPI backend deployed through EC2 and Cloudflare, then migrated to a TypeScript-native Hono/Node architecture. The current system serves the React/Vite frontend from Vercel, runs its persistent streaming backend on Railway, and uses Supabase for data and authentication. This evolution preserves the graph-based interaction model while giving long-running orchestration, shared Zod contracts, and persistence clearer production boundaries.
 
 <Figure
   src="/images/projects/teserax/graph-dashboard.png"
@@ -96,6 +96,7 @@ Teserax can also turn natural-language goals into structured workflows. A workfl
 - Implemented multi-step agent orchestration with tool calling and retrieval over live web sources.
 - Used Zod-typed API contracts to keep frontend/backend behavior explicit and testable.
 - Added async workflow handling, retries, and graceful degradation for long-running AI tasks.
+- Migrated the backend from FastAPI on EC2/Cloudflare to Hono/Node on Railway, with the React/Vite frontend on Vercel and data/auth on Supabase.
 - Deployed and operated the live product at [teserax.vercel.app](https://teserax.vercel.app/).
 
 ## Hard Problems Solved
@@ -111,7 +112,7 @@ Teserax can also turn natural-language goals into structured workflows. A workfl
 - **Agentic Research Flow**: Multi-step orchestration with tool calling and RAG over live web sources.
 - **Typed API Contracts**: Zod schemas keep request/response behavior explicit across the stack.
 - **Async Orchestration**: Long-running research flows use retries and failure-recovery behavior for graceful degradation.
-- **Production Deployment**: Live SaaS surface deployed publicly and linked from the current resume.
+- **Production Deployment**: Vercel serves the frontend and forwards API traffic to a persistent Railway backend, with Supabase providing Postgres, authentication, and row-level security.
 
 ## Why It Matters
 
@@ -120,6 +121,7 @@ Teserax is the clearest current proof of solo AI product engineering in the port
 ## Tech Stack
 
 - **Frontend**: TypeScript, React, graph-based interaction UI
-- **Backend / AI**: FastAPI, tool calling, RAG, async agent orchestration
+- **Backend / AI**: Hono on Node.js, tool calling, RAG, async agent orchestration
 - **Contracts**: Zod typed schemas
-- **Infrastructure**: EC2, Cloudflare, Vercel deployment surface
+- **Data / Auth**: Supabase Postgres, Auth, row-level security
+- **Infrastructure**: Vercel frontend, Railway persistent backend
