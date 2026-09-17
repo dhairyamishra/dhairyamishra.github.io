@@ -1,14 +1,14 @@
 ---
 title: "Slovenia CLSS LiDAR — Flood Susceptibility & Forest Health Map"
-description: "A static geospatial web application and analysis pipeline built from Slovenia's official national airborne LiDAR dataset. Processes 81 Ljubljana-area tiles into flood-susceptibility, forest-coverage, land-classification, and high-risk-location overlays, then publishes the results as an interactive no-backend map on GitHub Pages."
+description: "A geospatial analysis pipeline that progressed from an 81-tile, 15 GB Ljubljana pilot to 91.7 GB of official Slovenian LiDAR across 391 km², producing flood-risk, forest-health, and land-classification outputs for an interactive static map."
 date: "2026-06"
 tags: ["Python", "LiDAR", "GIS", "Remote Sensing", "NDVI", "GeoJSON", "NumPy", "SciPy", "GitHub Pages"]
 featured: false
 category: "research"
 github: "https://github.com/dhairyamishra/slovenia-lidar-floodmap"
 liveUrl: "https://dhairyamishra.github.io/slovenia-lidar-floodmap/"
-metric: "81"
-metricLabel: "LiDAR Tiles"
+metric: "391 km²"
+metricLabel: "LiDAR Coverage"
 ---
 
 import Figure from '../../components/mdx/Figure.astro';
@@ -25,7 +25,13 @@ import FigureGrid from '../../components/mdx/FigureGrid.astro';
 
 This project turns a large raw LiDAR dataset from Slovenia's **official CLSS national scanning programme** into a deployable flood-analysis product. I built both the **offline analysis pipeline** and the **interactive delivery layer**: processing region tiles, calibrating dataset-wide factor ranges, generating overlay rasters, ranking the highest-risk cells, and publishing the results as a static web map with no backend.
 
-The portfolio value here is not only the visualization. The harder engineering work is in transforming roughly **15 GB of raw `.laz` data** into lightweight web assets that remain spatially consistent, comparable across tiles, and cheap to host. The final system visualizes flood susceptibility, forest coverage, land classification, and ranked high-risk locations across a contiguous **9 × 9 km block over Ljubljana**, with additional regional examples.
+The project progressed in two documented stages. The initial published pilot transformed roughly **15 GB across 81 LiDAR tiles** into lightweight web assets for a contiguous **9 × 9 km block over Ljubljana**. The pipeline then expanded to **91.7 GB of LiDAR across 391 km²**, while batch-processing improvements made the larger workload **3.3× faster**. Both stages produced spatially comparable flood, vegetation, land-classification, and ranked-risk outputs that remain inexpensive to serve.
+
+## Progressive Scale-Up
+
+- **Ljubljana pilot**: 15 GB, 81 tiles, and a 9 × 9 km study area established the calibration, raster-generation, ranking, and static-delivery workflow.
+- **Expanded analysis**: 91.7 GB across 391 km² extended the same project beyond the original city-scale snapshot.
+- **Pipeline optimization**: Numba and multiprocessing improved batch runtime by 3.3×, making the expanded scope practical.
 
 ## Official Dataset
 
@@ -99,6 +105,7 @@ The land-classification layer is important because it proves the pipeline is not
 - A **Python pipeline** that transforms raw `GKOT_*.laz` files into deployable susceptibility, NDVI, and classification rasters
 - A **ranking/export layer** that produces globally ranked high-risk cells and GeoJSON markers
 - A **static frontend** that overlays the outputs interactively and publishes them through GitHub Pages
+- A **Numba and multiprocessing optimization pass** that improved batch runtime by 3.3× as the dataset grew to 91.7 GB across 391 km²
 
 ## Technical Depth
 
@@ -127,7 +134,7 @@ This is a strong example of choosing the right architecture for the problem. Ins
 
 ## Why It Matters
 
-This project shows that I can work comfortably at the intersection of **geospatial data engineering, analysis design, and product delivery**. I did not just compute one metric on one file; I built a repeatable pipeline that scales across many official LiDAR tiles, preserves comparability at dataset scope, and ships the results in a form that is immediately inspectable by a user in the browser.
+This project shows that I can work comfortably at the intersection of **geospatial data engineering, analysis design, and product delivery**. I did not just compute one metric on one file; I grew a repeatable pipeline from an 81-tile Ljubljana pilot into a 91.7 GB, 391 km² analysis, improved batch performance by 3.3×, preserved comparability at dataset scope, and shipped the results in a form that is immediately inspectable in the browser.
 
 ## Tech Stack
 

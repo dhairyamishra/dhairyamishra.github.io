@@ -105,13 +105,13 @@ export const projectSignals: Record<string, ProjectSignal> = {
   },
   'slovenia-lidar-floodmap': {
     role: 'Geospatial data pipeline and visualization builder',
-    proof: 'Processed 81 national LiDAR tiles into deployable flood-susceptibility, NDVI, and ranked-risk map overlays for Ljubljana.',
+    proof: 'Scaled an 81-tile, 15 GB Ljubljana pilot to 91.7 GB of national LiDAR across 391 km², with 3.3× faster batch processing.',
     image: '/images/projects/slovenia-lidar-floodmap/flood-susceptibility-ljubljana.png',
     imageAlt: 'Ljubljana flood-susceptibility map generated from LiDAR data',
     filters: ['backend-platform', 'data-infrastructure'],
     challenge: 'Turn raw multi-tile LiDAR data into web-deliverable risk analysis while keeping scores comparable across the full dataset.',
     focus: 'Offline data processing, dataset-wide calibration, raster export, and static delivery architecture.',
-    outcome: 'A reproducible LiDAR-to-web pipeline that turns heavy geospatial source data into a usable interactive analysis product.',
+    outcome: 'A progressively scaled LiDAR-to-web pipeline that turns 91.7 GB of geospatial source data into a usable interactive analysis product.',
   },
 };
 
